@@ -1,16 +1,13 @@
 import AddEventComponent from "@/components/AddEventComponent";
-import EventsSection from "@/components/EventsSection";
+import AllEvents from "@/components/AllEvents";
 
-const EventsPage = async ({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>;
-}) => {
-  const { page } = await searchParams;
+const EventsPage = ({ searchParams }: { searchParams: { page?: string } }) => {
+  const page = searchParams?.page;
+
   return (
     <div className="w-[90%] mx-auto">
       <AddEventComponent />
-      <EventsSection page={page as string} />
+      <AllEvents page={page as string} />
     </div>
   );
 };

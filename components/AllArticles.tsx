@@ -14,8 +14,6 @@ const AllArticles = ({ page }: { page: string }) => {
 
   const articles: Article[] = allArticles?.response;
 
-  if (isLoading) return <CategoriesPageSkeleton />;
-
   return (
     <Suspense fallback={<CategoriesPageSkeleton />}>
       <div className="w-full pt-6">
