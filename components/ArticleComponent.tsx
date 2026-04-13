@@ -20,7 +20,7 @@ const ArticleComponent = ({ id }: { id: number }) => {
     id,
   );
 
-  if (data?.error) {
+  if (!data?.article) {
     return notFound();
   }
 

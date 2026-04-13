@@ -1,8 +1,13 @@
 import UserArticleSection from "@/components/UserArticleSection";
 import UserProfileBanner from "@/components/UserProfileBanner";
+import { notFound } from "next/navigation";
 
 const ProfilePage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
+
+  if (id) {
+    return notFound();
+  }
 
   return (
     <div className="w-[80%] md:w-[70%] lg:w-240 mx-auto md:px-8">

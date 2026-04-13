@@ -8,6 +8,10 @@ const SearchPage = async ({
   const page = (await searchParams)?.page;
   const q = (await searchParams)?.q;
 
+  if (!q) {
+    return;
+  }
+
   return (
     <div>
       <AllSearch page={page as string} q={q as string} />
