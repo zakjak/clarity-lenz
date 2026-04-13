@@ -3,13 +3,8 @@ import { User } from "@/lib/types/users";
 import { plateToHtml } from "@/lib/utils/plateToHtml";
 import { useSession } from "next-auth/react";
 import { notFound } from "next/navigation";
-import { useEffect, useState } from "react";
-import {
-  FaBookmark,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaShareAlt,
-} from "react-icons/fa";
+import { useState } from "react";
+import { FaFacebookF, FaLinkedinIn, FaShareAlt } from "react-icons/fa";
 import { Separator } from "./ui/separator";
 import { calculateTime, slugify } from "@/lib/utils/helpers";
 import Image from "next/image";
@@ -27,7 +22,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { TiTick } from "react-icons/ti";
 import { Button } from "./ui/button";
 import { FaRegCopy, FaXTwitter } from "react-icons/fa6";
-import { useSavedArticle, useToggleBookmark } from "@/hooks/useBookmarks";
 
 const ArticleStory = ({
   articleStory,
@@ -51,20 +45,20 @@ const ArticleStory = ({
     twitter: `https://twitter.com/intent/tweet?url=${articleUrl}&text=${encodedTitle}`,
   };
 
-  const { data: savedArticle, isLoading } = useSavedArticle(
-    session?.user?.id as string,
-  );
+  // const { data: savedArticle, isLoading } = useSavedArticle(
+  //   session?.user?.id as string,
+  // );
 
-  const { mutate, data: toggleMark } = useToggleBookmark(
-    session?.user?.id as string,
-  );
+  // const { mutate, data: toggleMark } = useToggleBookmark(
+  //   session?.user?.id as string,
+  // );
 
-  const isSaving =
-    Array.isArray(toggleMark) &&
-    toggleMark?.some((item) => item.ownerId === session?.user?.id);
+  // const isSaving =
+  //   Array.isArray(toggleMark) &&
+  //   toggleMark?.some((item) => item.ownerId === session?.user?.id);
 
-  const isSavedData =
-    savedArticle?.some((item) => item.ownerId === session?.user?.id) ?? false;
+  // const isSavedData =
+  //   savedArticle?.some((item) => item.ownerId === session?.user?.id) ?? false;
 
   const copyToClipboard = async () => {
     try {
