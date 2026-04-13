@@ -12,7 +12,7 @@ const UpcomingEventsComponent = () => {
 
   return (
     <div className="mt-10">
-      {events?.length >= 1 && (
+      {events && events?.length >= 1 && (
         <div className="flex items-center justify-between mt-4">
           <h2 className="font-semibold">Upcoming Events</h2>
           <Link href="/events">
