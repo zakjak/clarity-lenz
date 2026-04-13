@@ -1,11 +1,11 @@
 import AllArticles from "@/components/AllArticles";
 
 const ArticlesPage = async ({
-  searchParams,
+  params,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  params: Promise<{ page?: string }>;
 }) => {
-  const { page } = await searchParams;
+  const { page } = await params;
   return (
     <div>
       <AllArticles page={page as string} />
