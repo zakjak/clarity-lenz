@@ -5,6 +5,7 @@ import { Article } from "@/lib/types/article";
 import { useArticles } from "@/hooks/useArticles";
 import TopCategoryStory from "./TopCategoryStory";
 import PaginationComponent from "./PaginationComponent";
+import { Suspense } from "react";
 
 const AllArticles = ({ page }: { page: string }) => {
   const pageNumber = Number(page) || 1;
@@ -16,18 +17,20 @@ const AllArticles = ({ page }: { page: string }) => {
   if (isLoading) return <CategoriesPageSkeleton />;
 
   return (
-    <div className="w-full pt-6">
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 lg:gap-6 lg:w-240 md:w-160 w-[70%] mx-auto">
-        {articles?.map((story) => (
-          <TopCategoryStory key={story.id} topStory={story} />
-        ))}
+    <Suspense fallback={<CategoriesPageSkeleton />}>
+      <div className="w-full pt-6">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 lg:gap-6 lg:w-240 md:w-160 w-[70%] mx-auto">
+          {articles?.map((story) => (
+            <TopCategoryStory key={story.id} topStory={story} />
+          ))}
+        </div>
+        <div className="mt-8">
+          {allArticles?.pageNumber > 1 && (
+            <PaginationComponent pageNumber={allArticles?.pageNumber} />
+          )}
+        </div>
       </div>
-      <div className="mt-8">
-        {allArticles?.pageNumber > 1 && (
-          <PaginationComponent pageNumber={allArticles?.pageNumber} />
-        )}
-      </div>
-    </div>
+    </Suspense>
   );
 };
 
