@@ -1,7 +1,7 @@
 "use client";
 
 import { useSavedArticles } from "@/hooks/useSavedArticles";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TopCategoryStory from "./TopCategoryStory";
 import { useInView } from "react-intersection-observer";
 import CategoriesPageSkeleton from "./CategoriesPageSkeleton";

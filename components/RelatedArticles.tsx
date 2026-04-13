@@ -1,5 +1,4 @@
 import { Article } from "@/lib/types/article";
-import React from "react";
 import { Card } from "./ui/card";
 import Link from "next/link";
 import Image from "next/image";

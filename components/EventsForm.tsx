@@ -347,10 +347,6 @@ const EventsForm = ({
             name="eventDate"
             control={form.control}
             render={({ field, fieldState }) => {
-              const timeValue = field.value
-                ? format(field.value, "HH:mm:ss")
-                : "10:30:00";
-
               return (
                 <Field>
                   <FieldLabel htmlFor="date-picker-optional">
