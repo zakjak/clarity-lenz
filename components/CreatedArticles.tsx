@@ -1,16 +1,10 @@
 import { useInView } from "react-intersection-observer";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCreatedArticles } from "@/hooks/useCreatedArticles";
 import CategoriesPageSkeleton from "./CategoriesPageSkeleton";
 import TopCategoryStory from "./TopCategoryStory";
 
-const CreatedArticles = ({
-  ownerId,
-  setOpen,
-}: {
-  ownerId: string;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+const CreatedArticles = ({ ownerId }: { ownerId: string }) => {
   const [visiblePageCount, setVisiblePageCount] = useState(2);
 
   const { ref, inView } = useInView({ threshold: 0 });
@@ -38,11 +32,7 @@ const CreatedArticles = ({
     <div className="">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 md:gap-4 gap-2">
         {createdArticles?.map((article) => (
-          <TopCategoryStory
-            key={article?.id}
-            topStory={article}
-            setOpen={setOpen}
-          />
+          <TopCategoryStory key={article?.id} topStory={article} />
         ))}
       </div>
       <div

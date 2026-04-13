@@ -5,7 +5,6 @@ import CreatedArticles from "./CreatedArticles";
 import { Dispatch, SetStateAction } from "react";
 
 const SavedArticles = ({
-  setOpen,
   id,
 }: {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -20,9 +19,7 @@ const SavedArticles = ({
           Latest
         </h1>
       </div>
-      {session?.user && (
-        <CreatedArticles ownerId={id as string} setOpen={setOpen} />
-      )}
+      {session?.user && <CreatedArticles ownerId={id as string} />}
     </div>
   );
 };
