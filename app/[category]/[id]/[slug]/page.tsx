@@ -1,7 +1,7 @@
 import ArticleComponent from "@/components/ArticleComponent";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import React from "react";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -62,10 +62,6 @@ export async function generateMetadata({
 
 const ArticlePage = async ({ params }: { params: Promise<{ id: number }> }) => {
   const id = (await params)?.id;
-
-  if (!id) {
-    return notFound();
-  }
 
   return (
     <div>

@@ -2,13 +2,12 @@
 
 import { useArticle, useRelatedArticles } from "@/hooks/useArticle";
 import { useSession } from "next-auth/react";
-import { notFound } from "next/navigation";
-import React from "react";
 import { useInView } from "react-intersection-observer";
 import ArticleComponentSkeleton from "./ArticleComponentSkeleton";
 import ArticleStory from "./ArticleStory";
 import RelatedArticles from "./RelatedArticles";
 import CommentSection from "./CommentSection";
+import { notFound } from "next/navigation";
 
 const ArticleComponent = ({ id }: { id: number }) => {
   const { data, isFetching, isLoading } = useArticle(id);
@@ -20,7 +19,7 @@ const ArticleComponent = ({ id }: { id: number }) => {
     id,
   );
 
-  if (!data?.article) {
+  if (data?.article?.length === 0) {
     return notFound();
   }
 

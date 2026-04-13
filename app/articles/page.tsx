@@ -1,5 +1,7 @@
 import AllArticles from "@/components/AllArticles";
 
+export const dynamic = "force-dynamic";
+
 const ArticlesPage = async ({
   searchParams,
 }: {

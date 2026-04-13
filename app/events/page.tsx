@@ -1,6 +1,8 @@
 import AddEventComponent from "@/components/AddEventComponent";
 import AllEvents from "@/components/AllEvents";
 
+export const dynamic = "force-dynamic";
+
 const EventsPage = async ({
   searchParams,
 }: {

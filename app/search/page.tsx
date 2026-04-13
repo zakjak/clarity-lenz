@@ -1,5 +1,7 @@
 import AllSearch from "@/components/AllSearch";
 
+export const dynamic = "force-dynamic";
+
 const SearchPage = async ({
   searchParams,
 }: {
@@ -7,10 +9,6 @@ const SearchPage = async ({
 }) => {
   const page = (await searchParams)?.page;
   const q = (await searchParams)?.q;
-
-  if (!q) {
-    return;
-  }
 
   return (
     <div>
