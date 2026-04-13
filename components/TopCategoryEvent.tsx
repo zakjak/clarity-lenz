@@ -1,16 +1,12 @@
-import { EventProp, User } from "@/lib/types/users";
-import { useSession } from "next-auth/react";
+import { EventProp } from "@/lib/types/users";
 import { usePathname } from "next/navigation";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Card, CardFooter } from "./ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { AiOutlineDelete } from "react-icons/ai";
-import { Dialog, DialogTrigger } from "./ui/dialog";
-import { TbEdit } from "react-icons/tb";
-import ArticleDialog from "./ArticleDialog";
-import { Badge } from "./ui/badge";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,24 +18,13 @@ import {
   AlertDialogTitle,
 } from "./ui/alert-dialog";
 import { Separator } from "./ui/separator";
-import { calculateTime } from "@/lib/utils/helpers";
-import EventsForm from "./EventsForm";
 import moment from "moment";
 import { IoCalendarOutline } from "react-icons/io5";
 import { TiTicket } from "react-icons/ti";
-import { useDeleteArticle } from "@/hooks/useArticle";
 import { useDeleteEvent } from "@/hooks/useEvents";
 
-const TopCategoryEvent = ({
-  event,
-  setOpen,
-}: {
-  event: EventProp;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+const TopCategoryEvent = ({ event }: { event: EventProp }) => {
   const [openDelete, setOpenDelete] = useState(false);
-  const [openEdit, setOpenEdit] = useState(false);
-  const { data: session } = useSession();
 
   const { mutate } = useDeleteEvent();
   const pathname = usePathname();
@@ -49,10 +34,6 @@ const TopCategoryEvent = ({
   const end = moment(event?.eventEnd);
   const duration = moment.duration(end.diff(start));
   const formatted = `${duration.hours()}h ${duration.minutes()}m`;
-
-  const handleEdit = () => {
-    setOpenEdit(true);
-  };
 
   return (
     <>

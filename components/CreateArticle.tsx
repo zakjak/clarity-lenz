@@ -27,7 +27,6 @@ const CreateArticle = ({
           user={session?.user as User}
           setOpenEdit={setOpenEdit}
           openEdit={openEdit}
-          setOpen={setOpen}
         />
       </Dialog>
     </div>
