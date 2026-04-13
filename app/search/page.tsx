@@ -5,7 +5,8 @@ const SearchPage = async ({
 }: {
   searchParams: Promise<{ page?: string; q?: string }>;
 }) => {
-  const { page, q } = await searchParams;
+  const page = (await searchParams)?.page;
+  const q = (await searchParams)?.q;
 
   return (
     <div>

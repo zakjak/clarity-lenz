@@ -1,8 +1,12 @@
 import AddEventComponent from "@/components/AddEventComponent";
 import AllEvents from "@/components/AllEvents";
 
-const EventsPage = ({ searchParams }: { searchParams: { page?: string } }) => {
-  const page = searchParams?.page;
+const EventsPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) => {
+  const page = (await searchParams).page;
 
   return (
     <div className="w-[90%] mx-auto">

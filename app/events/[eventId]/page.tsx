@@ -6,7 +6,7 @@ const EventPage = async ({
 }: {
   params: Promise<{ eventId: number }>;
 }) => {
-  const { eventId } = await params;
+  const eventId = (await params)?.eventId;
 
   return (
     <div>

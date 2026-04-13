@@ -60,7 +60,8 @@ export async function generateMetadata({
 }
 
 const ArticlePage = async ({ params }: { params: Promise<{ id: number }> }) => {
-  const { id } = await params;
+  const id = (await params)?.id;
+
   return (
     <div>
       <ArticleComponent id={id} />
