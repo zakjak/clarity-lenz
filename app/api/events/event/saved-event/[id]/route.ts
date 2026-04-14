@@ -30,7 +30,7 @@ export async function GET(
 
 export async function PUT(
   req: Request,
-  { params }: { params: Promise<{ id: number }> },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   const res = await req.json();
