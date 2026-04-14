@@ -27,7 +27,7 @@ const Navbar = () => {
               />
             </div>
 
-            <div className="hidden md:flex w-full bg-black">
+            <div className="hidden md:flex w-full bg-black gap-4">
               <Link href="/">Home</Link>
               <Link href="/articles">Articles</Link>
               <Link href="/events">Events</Link>
