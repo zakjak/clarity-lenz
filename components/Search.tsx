@@ -25,7 +25,7 @@ const Search = () => {
   };
 
   return (
-    <div className="flex-1 mx-10">
+    <div className="flex-1 mx-10 ">
       <SearchInput onSearch={handleSearch} value={q as string} />
     </div>
   );

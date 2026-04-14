@@ -41,13 +41,13 @@ const SearchInput = ({ onSearch, value }: SearchInputProps) => {
   const onSubmit = (data: SearchFormValues) => [onSearch(data.search)];
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex  gap-2 ">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex gap-2">
       <div className="flex-1">
         <Input
           {...register("search")}
           type="text"
           placeholder="Search..."
-          className="flex-1 w-full"
+          className="flex-1 w-full "
         />
       </div>
       <Button type="submit" variant="outline" className="cursor-pointer">
