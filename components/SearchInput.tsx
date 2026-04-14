@@ -42,7 +42,7 @@ const SearchInput = ({ onSearch, value }: SearchInputProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex gap-2">
-      <div className="flex-1">
+      <div className="flex-1 text-zinc-100">
         <Input
           {...register("search")}
           type="text"
