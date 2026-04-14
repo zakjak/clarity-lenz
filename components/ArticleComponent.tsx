@@ -7,7 +7,6 @@ import ArticleComponentSkeleton from "./ArticleComponentSkeleton";
 import ArticleStory from "./ArticleStory";
 import RelatedArticles from "./RelatedArticles";
 import CommentSection from "./CommentSection";
-import { notFound } from "next/navigation";
 
 const ArticleComponent = ({ id }: { id: number }) => {
   const { data, isFetching, isLoading } = useArticle(id);
@@ -18,10 +17,6 @@ const ArticleComponent = ({ id }: { id: number }) => {
     data && data?.article[0]?.category,
     id,
   );
-
-  if (data?.article?.length === 0) {
-    return notFound();
-  }
 
   if (isLoading) {
     return <ArticleComponentSkeleton />;

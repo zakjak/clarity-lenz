@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { IoIosSearch } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 
 const SearchSchema = z.object({
   search: z.string().min(1, { message: "Search query cannot be empty" }),
@@ -22,12 +23,19 @@ const SearchInput = ({ onSearch, value }: SearchInputProps) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SearchFormValues>({
     resolver: zodResolver(SearchSchema),
     defaultValues: {
       search: "",
     },
+  });
+
+  useEffect(() => {
+    if (value) {
+      setValue("search", value);
+    }
   });
 
   const onSubmit = (data: SearchFormValues) => [onSearch(data.search)];
@@ -40,7 +48,6 @@ const SearchInput = ({ onSearch, value }: SearchInputProps) => {
           type="text"
           placeholder="Search..."
           className="flex-1 w-full"
-          value={value || ""}
         />
       </div>
       <Button type="submit" variant="outline" className="cursor-pointer">
