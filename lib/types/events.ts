@@ -1,5 +1,6 @@
 export type SavedEvent = {
   id: number;
   userId: string;
-  eventId: number;
+  eventId: { eventId: number; email: string };
+  email: string;
 };

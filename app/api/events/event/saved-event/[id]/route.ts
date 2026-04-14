@@ -1,9 +1,7 @@
 import { db } from "@/lib";
 import { events, register } from "@/lib/db/events";
-import { users } from "@/lib/db/schema";
-import { EventEmail, htmlEmail } from "@/lib/utils/send-event";
+import { htmlEmail } from "@/lib/utils/send-event";
 import { sendMail } from "@/lib/utils/send-mail";
-import { render } from "@react-email/render";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
@@ -11,7 +9,11 @@ export async function GET(
   req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const id = (await params).id;
+  const { id } = await params;
+
+  if (!id || id === "undefined") {
+    return NextResponse.json({ error: "User is required" }, { status: 400 });
+  }
 
   try {
     const savedEvent = await db
@@ -28,21 +30,14 @@ export async function GET(
 
 export async function PUT(
   req: Request,
-  { params }: { params: Promise<{ id: string }> },
+  { params }: { params: Promise<{ id: number }> },
 ) {
   const { id } = await params;
   const res = await req.json();
 
   const numericId = Number(id);
 
-  const result = await db
-    .select({ count: register.id })
-    .from(register)
-    .where(eq(register.eventId, numericId));
-
-  const exists = (result[0]?.count ?? 0) > 0;
-
-  if (!exists) {
+  try {
     const response = await db
       .insert(register)
       .values({ userId: res.userId, eventId: numericId })
@@ -53,10 +48,10 @@ export async function PUT(
       .from(events)
       .where(eq(events.id, numericId));
 
-    const sentUser = await db
-      .select()
-      .from(users)
-      .where(eq(users.id, res.userId));
+    // const sentUser = await db
+    //   .select()
+    //   .from(users)
+    //   .where(eq(users.id, res.userId));
 
     // const sendEmail = EventEmail({
     //   title: savedEvent[0].title,
@@ -81,14 +76,19 @@ export async function PUT(
       platform: savedEvent[0]?.platform as string,
     });
 
+    console.log();
+
     await sendMail({
       email: "Clarity Lenz <<sponsor@thevybenews.com>",
       subject: `Registeration for ${savedEvent[0].title}`,
       //   text: sendText,
       html: sendEmailTo,
-      sendTo: sentUser[0].email as string,
+      sendTo: res.email,
     });
 
     return NextResponse.json(response);
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json("Server error, try again");
   }
 }

@@ -14,13 +14,41 @@ import { useSession } from "next-auth/react";
 import { useSavedEvent, useToggleEvent } from "@/hooks/useEvents";
 import { Spinner } from "./ui/spinner";
 import { IoTicketOutline } from "react-icons/io5";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { Field, FieldError, FieldGroup, FieldLabel } from "./ui/field";
+import { Controller, useForm } from "react-hook-form";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "./ui/input";
+import { useState } from "react";
+
+const formSchema = z.object({
+  email: z.email(),
+});
 
 const EventLayout = ({ event }: { event: EventProp }) => {
+  const [open, setOpen] = useState(false);
   const { data: session } = useSession();
   const start = moment(event?.eventStart);
   const end = moment(event?.eventEnd);
   const duration = moment.duration(end.diff(start));
   const formattedDuration = `${duration.hours()}h:${duration.minutes()}m`;
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
 
   const { data: savedEvent, isLoading } = useSavedEvent(
     session?.user?.id as string,
@@ -32,10 +60,19 @@ const EventLayout = ({ event }: { event: EventProp }) => {
 
   const isSaving =
     Array.isArray(toggleMark) &&
-    toggleMark?.some((item) => item.userId === session?.user?.id);
+    toggleMark?.some((item) => item?.userId === session?.user?.id);
 
   const isSavedData =
-    savedEvent?.some((item) => item.userId === session?.user?.id) ?? false;
+    Array.isArray(savedEvent) &&
+    savedEvent?.some((item) => item?.userId === session?.user?.id);
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    mutate({ eventId: event?.id ?? 0, email: values.email });
+    form.reset({
+      email: "",
+    });
+    setOpen(false);
+  };
 
   return (
     <div className="w-full mt-8">
@@ -119,21 +156,68 @@ const EventLayout = ({ event }: { event: EventProp }) => {
         </div>
       </div>
       {session?.user ? (
-        <Button
-          onClick={() => mutate(event?.id ?? 0)}
-          className="w-full my-8 cursor-pointer"
-          disabled={isSavedData}
-        >
-          {isSavedData || isSaving ? (
-            "You have already registered for this event"
-          ) : (
-            <div className="flex items-center gap-2">
-              <IoTicketOutline className="w-6! h-6!" />
-              <span>{"Register for Event"}</span>
-            </div>
-          )}
-          {isLoading && <Spinner />}
-        </Button>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button
+              disabled={isSavedData}
+              className="flex items-center gap-2 w-full my-8 cursor-pointer"
+            >
+              {isSavedData || isSaving ? (
+                "You have already registered for this event"
+              ) : (
+                <span className="flex  items-center gap-2">
+                  <IoTicketOutline className="w-6! h-6!" />
+                  {"Register for Event"}
+                  {isLoading && <Spinner />}
+                </span>
+              )}
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-sm">
+            <form id="form-rhf" onSubmit={form.handleSubmit(onSubmit)}>
+              <DialogHeader>
+                <DialogTitle>Register for {event?.title}</DialogTitle>
+                <DialogDescription>
+                  To Confirm your registration, type your email address to
+                  register for this event. You will be sent an email to your
+                  preferred email address
+                </DialogDescription>
+              </DialogHeader>
+              <FieldGroup>
+                <Controller
+                  name="email"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel htmlFor="form-rhf-email" className="mt-4">
+                        Email
+                      </FieldLabel>
+                      <Input
+                        {...field}
+                        id="form-rhf-email"
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Enter email address..."
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+              </FieldGroup>
+              <DialogFooter className="mt-4">
+                <DialogClose asChild>
+                  <Button variant="outline" className="cursor-pointer">
+                    Cancel
+                  </Button>
+                </DialogClose>
+                <Button className="cursor-pointer" type="submit">
+                  Register
+                </Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
       ) : (
         <span className="flex items-center gap-2 font-bold my-8">
           <FaBookmark /> Login to Register for event

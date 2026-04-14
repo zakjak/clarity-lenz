@@ -48,7 +48,9 @@ export const useEvents = (page: number) => {
   });
 };
 
-const fetchSavedEvent = async (id: string): Promise<SavedEvent[]> => {
+const fetchSavedEvent = async (id: string) => {
+  if (!id) return;
+
   const res = await fetch(`/api/events/event/saved-event/${id}`);
   if (!res) {
     throw new Error("Network response was not ok");
@@ -71,14 +73,16 @@ type SavedOwner = {
 const toggleEvent = async ({
   eventId,
   userId,
+  email,
 }: {
   userId: string;
   eventId: number;
+  email: string;
 }): Promise<SavedOwner[]> => {
   const res = await fetch(`/api/events/event/saved-event/${eventId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userId }),
+    body: JSON.stringify({ userId, email }),
   });
 
   return res.json();
@@ -86,7 +90,8 @@ const toggleEvent = async ({
 
 export const useToggleEvent = (userId: string) => {
   return useMutation({
-    mutationFn: (eventId: number) => toggleEvent({ eventId, userId }),
+    mutationFn: ({ eventId, email }: { eventId: number; email: string }) =>
+      toggleEvent({ eventId, userId, email }),
     onMutate: async (eventId, context) => {
       await context.client.cancelQueries({
         queryKey: ["saved_event", userId],
