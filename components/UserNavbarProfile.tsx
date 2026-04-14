@@ -41,7 +41,7 @@ const UserNavbarProfile = () => {
               </AvatarFallback>
             </Avatar>
           </PopoverTrigger>
-          <PopoverContent className="flex flex-col gap-3 mt-2">
+          <PopoverContent className="flex flex-col gap-3 mt-2 z-999">
             {session?.user?.isAdmin && (
               <>
                 <Link

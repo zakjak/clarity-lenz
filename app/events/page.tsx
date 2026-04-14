@@ -11,7 +11,7 @@ const EventsPage = async ({
   const page = (await searchParams).page;
 
   return (
-    <div className="w-[90%] mx-auto">
+    <div className="w-[90%] mx-auto mt-6">
       <AddEventComponent />
       <AllEvents page={page as string} />
     </div>
