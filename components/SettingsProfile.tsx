@@ -27,6 +27,7 @@ const formSchema = z.object({
     .string()
     .min(2, { message: "Should be at least 2 characters" })
     .max(250, { message: "Should not be more 250 characters" }),
+  email: z.email().min(1, { message: "Email cannot be empty" }),
 });
 
 const SettingsProfile = () => {
@@ -38,12 +39,16 @@ const SettingsProfile = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      email: "",
     },
   });
 
   useEffect(() => {
     if (session?.user?.name) {
-      form.reset({ name: session.user.name });
+      form.reset({
+        name: session.user.name,
+        email: session.user.email as string,
+      });
     }
   }, [session, form]);
 
@@ -53,7 +58,7 @@ const SettingsProfile = () => {
       const res = await fetch(`/api/user/${session?.user?.id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: values.name }),
+        body: JSON.stringify({ username: values.name, email: values.email }),
       });
 
       if (res.ok) {
@@ -113,7 +118,26 @@ const SettingsProfile = () => {
                       id="form-name"
                       aria-invalid={fieldState.invalid}
                       autoComplete="off"
-                      placeholder="Enter name"
+                      placeholder="Enter name..."
+                      {...field}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name="email"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="form-name">Email</FieldLabel>
+                    <Input
+                      id="form-email"
+                      aria-invalid={fieldState.invalid}
+                      autoComplete="off"
+                      placeholder="Enter Email..."
                       {...field}
                     />
                     {fieldState.invalid && (

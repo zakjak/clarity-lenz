@@ -7,7 +7,7 @@ import UserNavbarProfile from "./UserNavbarProfile";
 import { ModeToggle } from "./ModeToggle";
 import Image from "next/image";
 import Search from "./Search";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -34,14 +34,14 @@ const Navbar = () => {
 
             <div className="hidden md:flex w-full bg-black gap-4 text-white font-semibold tracking-wide">
               <Link
-                className={`${pathname === "/" ? "border-b-3" : ""}`}
+                className={`${pathname === "/" ? "border-b-3 border-white" : ""}`}
                 href="/"
               >
                 Home
               </Link>
               <Link
                 href="/articles"
-                className={`${pathname === "/articles" ? "border-b-3" : ""}`}
+                className={`${pathname === "/articles" ? "border-b-3 border-white" : ""}`}
               >
                 Articles
               </Link>
@@ -67,18 +67,21 @@ const Navbar = () => {
       </div>
       <div className="block gap-6 md:hidden w-full dark:bg-zinc-950 bg-white pb-2 ">
         <div className="w-full flex justify-center gap-2 text-sm mb-4 bg-black pb-3 text-white">
-          <Link href="/" className={`${pathname === "/" ? "border-b-3" : ""}`}>
+          <Link
+            href="/"
+            className={`${pathname === "/" ? "border-b-3 border-white" : ""}`}
+          >
             Home
           </Link>
           <Link
             href="/articles"
-            className={`${pathname === "/articles" ? "border-b-3" : ""}`}
+            className={`${pathname === "/articles" ? "border-b-3 border-white" : ""}`}
           >
             Articles
           </Link>
           <Link
             href="/events"
-            className={`${pathname === "/events" ? "border-b-3" : ""}`}
+            className={`${pathname === "/events" ? "border-b-3 border-white" : ""}`}
           >
             Events
           </Link>
