@@ -32,7 +32,7 @@ const Navbar = () => {
               />
             </div>
 
-            <div className="hidden md:flex w-full bg-black gap-4 text-white font-semibold tracking-wide">
+            <div className="hidden md:flex w-full bg-black gap-4 text-white font-semibold tracking-wide text-lg">
               <Link
                 className={`${pathname === "/" ? "border-b-3 border-white" : ""}`}
                 href="/"
@@ -66,7 +66,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="block gap-6 md:hidden w-full dark:bg-zinc-950 bg-white pb-2 ">
-        <div className="w-full flex justify-center gap-2 text-sm mb-4 bg-black pb-3 text-white">
+        <div className="w-full flex justify-center gap-2 text-lg mb-4 bg-black pb-3 text-white">
           <Link
             href="/"
             className={`${pathname === "/" ? "border-b-3 border-white" : ""}`}
