@@ -47,7 +47,7 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
       <Card className="mt-2 rounded-2xl! overflow-hidden">
         <div className="relative">
           <Link
-            href={`/${topStory?.category}/${topStory?.id}/${
+            href={`${process.env.NEXT_PUBLIC_API_URL}/${topStory?.category}/${topStory?.id}/${
               topStory && topStory?.title?.replaceAll(" ", "-")
             }`}
           >
@@ -127,7 +127,7 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
         </div>
         <div className="my-4 mx-2">
           <Link
-            href={`/${topStory?.category}/${
+            href={`${process.env.NEXT_PUBLIC_API_URL}/${topStory?.category}/${
               topStory?.id
             }/${topStory?.title?.replaceAll(" ", "-")}`}
           >

@@ -39,7 +39,7 @@ const TopCategoryEvent = ({ event }: { event: EventProp }) => {
     <>
       <Card className="mt-2 rounded-2xl overflow-hidden">
         <div className="relative">
-          <Link href={`/events/${event?.id}`}>
+          <Link href={`${process.env.NEXT_PUBLIC_API_URL}/events/${event?.id}`}>
             <Image
               src={event?.image ?? ""}
               width={240}
@@ -88,7 +88,7 @@ const TopCategoryEvent = ({ event }: { event: EventProp }) => {
           </AlertDialog>
         </div>
         <div className="p-5 mx-2">
-          <Link href={`/events/${event?.id}`}>
+          <Link href={`${process.env.NEXT_PUBLIC_API_URL}/events/${event?.id}`}>
             <h2 className="text-[15px] line-clamp-2 hover:underline mb-2">
               {event?.title}
             </h2>
@@ -113,7 +113,10 @@ const TopCategoryEvent = ({ event }: { event: EventProp }) => {
           </div>
         </div>
         <CardFooter className="flex-col gap-2 w-full my-4">
-          <Link href={`/events/${event?.id}`} className="w-full">
+          <Link
+            href={`${process.env.NEXT_PUBLIC_API_URL}/events/${event?.id}`}
+            className="w-full"
+          >
             <Button type="button" className="w-full cursor-pointer">
               <TiTicket /> View Event
             </Button>
