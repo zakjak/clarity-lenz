@@ -9,6 +9,8 @@ const UserArticleSection = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
   const { data: session } = useSession();
 
+  console.log(id);
+
   return (
     <div>
       {session?.user?.isAdmin && (

@@ -33,6 +33,7 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const { data: session } = useSession();
+  console.log(topStory);
 
   const { mutate } = useDeleteArticle();
   const pathname = usePathname();
@@ -44,45 +45,53 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
 
   return (
     <>
-      <Card className="mt-2 rounded-2xl! overflow-hidden">
+      <Card className="mt-2">
         <div className="relative">
           <Link
             href={`${process.env.NEXT_PUBLIC_API_URL}/${topStory?.category}/${topStory?.id}/${
               topStory && topStory?.title?.replaceAll(" ", "-")
             }`}
           >
-            <Image
-              src={topStory?.image}
-              width={240}
-              height={240}
-              alt={`${topStory?.title}`}
-              className=" w-full h-56 object-cover"
-            />
+            <div className="w-full md:h-40 h-60 relative">
+              <Image
+                src={topStory?.image}
+                fill
+                alt={`${topStory?.title}`}
+                className=" w-full h-56 object-cover absolute"
+              />
+            </div>
           </Link>
           <div>
             {isProfile && (
               <>
                 <div className="flex flex-col gap-2 absolute top-3 right-3">
-                  <Button
-                    variant="destructive"
-                    onClick={() => setOpenDelete(true)}
-                    className="rounded-full cursor-pointer hover:bg-red-600 font-semibold"
-                  >
-                    <AiOutlineDelete />
-                    Delete
-                  </Button>
+                  {topStory?.authors?.includes(session?.user?.id as string) && (
+                    <Button
+                      variant="destructive"
+                      onClick={() => setOpenDelete(true)}
+                      className="rounded-full cursor-pointer hover:bg-red-600 font-semibold"
+                    >
+                      <AiOutlineDelete />
+                      Delete
+                    </Button>
+                  )}
+
                   <Dialog
                     open={openEdit}
                     onOpenChange={(open) => {
                       setOpenEdit(open);
                     }}
                   >
-                    <DialogTrigger asChild>
-                      <Button onClick={handleEdit} className="cursor-pointer">
-                        <TbEdit />
-                        Edit
-                      </Button>
-                    </DialogTrigger>
+                    {topStory?.authors?.includes(
+                      session?.user?.id as string,
+                    ) && (
+                      <DialogTrigger asChild>
+                        <Button onClick={handleEdit} className="cursor-pointer">
+                          <TbEdit />
+                          Edit
+                        </Button>
+                      </DialogTrigger>
+                    )}
 
                     <ArticleDialog
                       user={session?.user as User}
@@ -136,10 +145,10 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
             </h2>
           </Link>
           <div className="flex items-center gap-2 text-xs text-zinc-400 mt-2">
-            <span className="font-bold text-xs tracking-wider">
+            <span className="font-bold text-[0.6rem] tracking-widest dark:bg-[#192649] dark:text-[#C9B4F7] dark:px-2 dark:py-1 dark:rounded-full">
               {topStory?.category?.toUpperCase()}
             </span>
-            <Separator className="h-4! w-0.5! bg-gray-400" />
+            <Separator className="h-1! w-1! bg-gray-400 rounded-full!" />
             <span className="font-bold">{calculateTime(topStory?.date)}</span>
           </div>
         </div>

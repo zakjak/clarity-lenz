@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-8 z-999 overflow-hidden m-8 rounded-2xl">
-      <div className="w-full h-15 md:h-20 flex shadow bg-white ">
+      <div className="w-full h-15 md:h-20 flex shadow bg-white dark:bg-[#080D21] dark:shadow-2xl">
         <div className="w-[95%] flex justify-between mx-auto items-center">
           <div className="flex gap-5 items-center">
             <div className="flex items-center">

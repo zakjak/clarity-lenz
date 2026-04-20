@@ -10,7 +10,6 @@ const SavedArticles = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   id: string;
 }) => {
-  const { data: session } = useSession();
   return (
     <div>
       <div className="flex items-center gap-2">
@@ -19,7 +18,7 @@ const SavedArticles = ({
           Latest
         </h1>
       </div>
-      {session?.user && <CreatedArticles ownerId={id as string} />}
+      <CreatedArticles ownerId={id as string} />
     </div>
   );
 };
