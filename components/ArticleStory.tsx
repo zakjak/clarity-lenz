@@ -77,11 +77,11 @@ const ArticleStory = ({
   return (
     <div className="lg:col-span-4 md:col-span-3 w-full col-span-6">
       <div className="">
-        <h1 className="lg:text-3xl lg:font-semibold font-bold md:text-xl text-lg my-2">
+        <h1 className="lg:text-4xl lg:font-semibold font-black tracking-wide md:text-xl text-lg my-2 capitalize">
           {articleStory?.article[0]?.title}
         </h1>
-        <div className="flex items-center gap-1 mb-4">
-          <span className="text-sm font-semibold tracking-wider">
+        <div className="flex items-center gap-1 mb-4 text-zinc-600 dark:text-zinc-300 text-xs font-semibold">
+          <span className="  tracking-wider">
             {articleStory?.article[0]?.category?.toUpperCase()}
           </span>
           <Separator className="bg-gray-400 h-4! w-0.5!" />

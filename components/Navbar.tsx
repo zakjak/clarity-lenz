@@ -11,9 +11,9 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
+
   return (
-    <div className="sticky top-0 z-999">
+    <div className="sticky top-0 z-999 overflow-hidden m-8">
       <div className="w-full h-15  md:h-20 flex shadow bg-black">
         <div className="w-[90%] flex justify-between mx-auto items-center">
           <div className="flex gap-5 items-center">
