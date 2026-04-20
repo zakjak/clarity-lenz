@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import CreateArticle from "./CreateArticle";
 import SavedArticles from "./SavedArticles";
 import { useSession } from "next-auth/react";
+import CreateVideo from "./CreateVideo";
 
 const UserArticleSection = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
@@ -12,7 +13,10 @@ const UserArticleSection = ({ id }: { id: string }) => {
   return (
     <div>
       {session?.user?.isAdmin && (
-        <CreateArticle open={open} setOpen={setOpen} />
+        <div className="flex mt-3">
+          <CreateArticle open={open} setOpen={setOpen} />
+          <CreateVideo />
+        </div>
       )}
 
       <SavedArticles setOpen={setOpen} id={id} />
