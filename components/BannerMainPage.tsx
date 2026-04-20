@@ -17,7 +17,7 @@ const BannerMainPage = () => {
   return (
     <div className="w-full lg:h-130 h-100 relative">
       <Image
-        src="/images/cover-image-lady.png"
+        src="/images/cover-image-4.jpg"
         fill
         alt="Banner image, lady on a laptop"
         className="w-full h-full object-cover"
