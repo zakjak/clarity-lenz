@@ -1,6 +1,6 @@
 import { db } from "@/lib";
 import { articles } from "@/lib/db/articles";
-import { arrayContains, desc } from "drizzle-orm";
+import { and, arrayContains, desc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -18,7 +18,9 @@ export async function GET(
     const createdArticles = await db
       .select()
       .from(articles)
-      .where(arrayContains(articles?.authors, [id]))
+      .where(
+        and(arrayContains(articles.authors, [id]), eq(articles.isDraft, false)),
+      )
       .orderBy(desc(articles.date))
       .limit(10)
       .offset(calculatePageNumber);

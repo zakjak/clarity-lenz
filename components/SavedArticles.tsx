@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import CreatedArticles from "./CreatedArticles";
 import { Dispatch, SetStateAction } from "react";
 

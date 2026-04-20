@@ -1,3 +1,5 @@
+"use client";
+
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import { useCreatedArticles } from "@/hooks/useCreatedArticles";

@@ -5,12 +5,12 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-export const useCreatedArticles = (id: string) => {
+export const useCreatedArticles = (authorsId: string) => {
   return useInfiniteQuery({
-    queryKey: ["created-articles", id],
+    queryKey: ["created-articles", authorsId],
     queryFn: ({ pageParam }) =>
       fetch(
-        `/api/articles/article/saved-articles/created-articles/${id}?page=${pageParam}`,
+        `/api/articles/article/saved-articles/created-articles/${authorsId}?page=${pageParam}`,
       ).then((res) => res.json()),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -79,7 +79,7 @@ export const useEditArticle = () => {
 
 export const useDraft = (id: string) => {
   return useInfiniteQuery({
-    queryKey: ["created-articles", id],
+    queryKey: ["article-draft", id],
     queryFn: ({ pageParam }) =>
       fetch(`/api/articles/draft/${id}?page=${pageParam}`).then((res) =>
         res.json(),

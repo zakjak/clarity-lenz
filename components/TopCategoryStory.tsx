@@ -33,7 +33,6 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const { data: session } = useSession();
-  console.log(topStory);
 
   const { mutate } = useDeleteArticle();
   const pathname = usePathname();
