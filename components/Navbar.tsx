@@ -54,7 +54,7 @@ const Navbar = () => {
               </Link>
               <Link
                 href="/videos"
-                className={`${pathname === "/events" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
+                className={`${pathname === "/videos" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
               >
                 Videos
               </Link>
@@ -96,6 +96,12 @@ const Navbar = () => {
             className={`${pathname === "/events" ? "border-b-3 border-[#363384]" : ""}`}
           >
             Events
+          </Link>
+          <Link
+            href="/videos"
+            className={`${pathname === "/videos" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
+          >
+            Videos
           </Link>
         </div>
 
