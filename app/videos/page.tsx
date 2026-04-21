@@ -1,5 +1,7 @@
 import AllVideos from "@/components/AllVideos";
 
+export const dynamic = "force-dynamic";
+
 const VideosPage = async ({
   searchParams,
 }: {
