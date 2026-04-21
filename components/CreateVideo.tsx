@@ -17,7 +17,7 @@ const CreateVideo = () => {
         <DialogTrigger asChild>
           <Button className="cursor-pointer">Create Video</Button>
         </DialogTrigger>
-        <VideoDialog user={session?.user as User} />
+        <VideoDialog user={session?.user as User} setOpen={setOpen} />
       </Dialog>
     </div>
   );

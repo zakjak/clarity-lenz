@@ -158,3 +158,11 @@ export const events = pgTable("events", {
 	createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 	timezone: varchar({ length: 300 }).notNull(),
 });
+
+export const videos = pgTable("videos", {
+	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "videos_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),
+	videoUrl: text("video_url").notNull(),
+	title: varchar({ length: 300 }),
+	description: text(),
+	platform: varchar({ length: 300 }),
+});

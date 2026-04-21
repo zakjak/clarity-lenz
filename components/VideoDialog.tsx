@@ -1,5 +1,5 @@
 import { User } from "@/lib/types/users";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import {
   DialogClose,
   DialogContent,
@@ -13,6 +13,9 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
+import { useCreateVideo } from "@/hooks/useCreateVideos";
+import { Video } from "@/lib/types/video";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   videoUrl: z.string().min(1, { message: "Field Cannot be empty" }),
@@ -21,8 +24,17 @@ const formSchema = z.object({
   description: z.string().optional(),
 });
 
-const VideoDialog = ({ user }: { user: User }) => {
+const VideoDialog = ({
+  user,
+  setOpen,
+}: {
+  user: User;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { mutate } = useCreateVideo(user?.id);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,7 +45,36 @@ const VideoDialog = ({ user }: { user: User }) => {
     },
   });
 
-  const onSubmuit = (values: z.infer<typeof formSchema>) => {};
+  const onSubmuit = (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    const { title, videoUrl, description, platform } = values;
+
+    try {
+      const video = {
+        title,
+        videoUrl,
+        description,
+        platform,
+      };
+
+      mutate(video as Video);
+      form.reset({
+        title: "",
+        videoUrl: "",
+        description: "",
+        platform: "",
+      });
+      setIsSubmitting(false);
+      setOpen(false);
+    } catch (err) {
+      console.log(err);
+      setIsSubmitting(false);
+      toast("Server error. Please try again!");
+    } finally {
+      setIsSubmitting(false);
+      setOpen(false);
+    }
+  };
   return (
     <DialogContent
       className="overflow-y-scroll h-190 z-999 w-[90%]"

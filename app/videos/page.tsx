@@ -1,5 +1,16 @@
-const VideosPage = () => {
-  return <div></div>;
+import AllVideos from "@/components/AllVideos";
+
+const VideosPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) => {
+  const page = (await searchParams)?.page;
+  return (
+    <div>
+      <AllVideos page={page as string} />
+    </div>
+  );
 };
 
 export default VideosPage;

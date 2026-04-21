@@ -7,6 +7,7 @@ import QueryClientProvider from "@/components/QueryClientProvider";
 import AuthProvider from "@/components/providers";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({
             <QueryClientProvider>
               <TooltipProvider>
                 <main className="grow">{children}</main>
+                <Toaster />
               </TooltipProvider>
             </QueryClientProvider>
             <Footer />
