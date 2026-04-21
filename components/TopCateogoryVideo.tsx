@@ -28,7 +28,7 @@ const TopCateogoryVideo = ({ video }: { video: Video }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-full h-200 overflow-scroll">
         <iframe
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
           title={video.title}
