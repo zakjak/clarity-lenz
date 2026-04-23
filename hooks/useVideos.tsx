@@ -12,7 +12,7 @@ const fetchVideos = async (page: number) => {
 
 export const useVideos = (page: number) => {
   return useQuery({
-    queryKey: ["events", page],
+    queryKey: ["created-videos", page],
     queryFn: () => fetchVideos(page),
     placeholderData: keepPreviousData,
   });
