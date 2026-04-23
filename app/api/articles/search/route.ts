@@ -12,7 +12,6 @@ export async function GET(req: Request) {
 
     const query = q.replaceAll("+", " ").trim();
 
-    if (!query) return [];
     const calculatePageNumber = (page - 1) * 10;
 
     const countRows = await db
