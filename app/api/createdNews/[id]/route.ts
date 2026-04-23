@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ id: string; ownerId: string }> },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const param = await params;
   const { id } = param;
