@@ -45,45 +45,45 @@ const AllSearch = ({ page, q }: { page: string; q: string }) => {
         <div className="w-[90%]">
           {articles?.map((article) => (
             <div key={article?.id} className="border-b pb-6 pt-4">
-              <div className="mt-2 flex gap-2">
+              <div className="mt-2 grid grid-cols-3 gap-2 h-30 items-center">
                 <Link
                   href={`/${article?.category}/${article?.id}/${
                     article && article?.title?.replaceAll(" ", "-")
                   }`}
-                  className="h-full"
+                  className="h-full col-span-1"
                 >
-                  <div className="md:h-40 md:w-60 w-40 h-32">
+                  {/* md:h-40 md:w-60 w-40 h-32 */}
+                  <div className="w-full h-full relative">
                     <Image
                       src={article?.image}
-                      width={240}
-                      height={240}
+                      fill
                       alt={`${article?.title}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover absolute"
                     />
                   </div>
                 </Link>
-                <div className="mt-4 leading-8 max-w-[70%]">
+                <div className="leading-8 max-w-[90%] col-span-2">
                   <Link
                     href={`/${article?.category}/${
                       article?.id
                     }/${article?.title?.replaceAll(" ", "-")}`}
                   >
-                    <h2 className="md:text-md text-sm hover:underline">
+                    <h2 className="md:text-md text-sm hover:underline line-clamp-2 md:line-clamp-3">
                       {article.title}
                     </h2>
                   </Link>
-                  <div className="text-xs text-gray-400">
-                    <div className="flex items-center gap-2">
-                      <span>{article?.category}</span>
-                      <Separator className="h-4 w-0.5 bg-gray-400" />
-                      <span>{calculateTime(article?.date)}</span>
-                    </div>
+                  <div className="text-xs text-gray-400 mt-2">
                     <span className="text-black md:line-clamp-2 my-2 lg:line-clamp-3 dark:text-zinc-400 text-[.79rem] hidden">
                       {JSON.parse(article.story)[0]?.children[0]?.text +
                         " " +
                         JSON.parse(article.story)[1]?.children[0]?.text +
                         JSON.parse(article.story)[2]?.children[0]?.text}
                     </span>
+                    <div className="flex items-center gap-2">
+                      <span>{article?.category}</span>
+                      <Separator className="h-4 w-0.5 bg-gray-400" />
+                      <span>{calculateTime(article?.date)}</span>
+                    </div>
                   </div>
                 </div>
               </div>
