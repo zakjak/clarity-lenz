@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Card } from "./ui/card";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
-import { calculateTime } from "@/lib/utils/helpers";
+import { calculateTime, slugify } from "@/lib/utils/helpers";
 import { Article } from "@/lib/types/article";
 
 import { AiOutlineDelete } from "react-icons/ai";
@@ -47,7 +47,7 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
       <Card className="mt-2">
         <div className="relative">
           <Link
-            href={`${process.env.NEXT_PUBLIC_API_URL}/${topStory?.category}/${topStory?.id}/${
+            href={`${process.env.NEXT_PUBLIC_API_URL}/${slugify(topStory?.category)}/${topStory?.id}/${
               topStory && topStory?.title?.replaceAll(" ", "-")
             }`}
           >
