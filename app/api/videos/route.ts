@@ -20,8 +20,6 @@ export async function GET(req: Request) {
       .limit(10)
       .offset(calculatePageNumber);
 
-    console.log(response);
-
     return NextResponse.json({ response, pageNumber });
   } catch (err) {
     console.log("Error fetching articles:", err);

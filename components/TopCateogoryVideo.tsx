@@ -1,19 +1,19 @@
 import { Video } from "@/lib/types/video";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "./ui/dialog";
 import Image from "next/image";
-import { formatted } from "@/lib/utils/helpers";
+import { calculateTime, formatted } from "@/lib/utils/helpers";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { FaRegClock } from "react-icons/fa6";
 
 const TopCateogoryVideo = ({ video }: { video: Video }) => {
   const videoId = new URL(video?.videoUrl).searchParams.get("v");
   const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  console.log(video);
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="">
+        <div className="border">
           <Image
             src={thumbnail}
             alt={`${video.title}`}
@@ -21,10 +21,17 @@ const TopCateogoryVideo = ({ video }: { video: Video }) => {
             height={640}
             className="cursor-pointer"
           />
-          <div className="mt-2">
-            <h3 className="text-xs font-semibold line-clamp-2 hover:underline cursor-pointer">
+          <div className="mt-2 flex flex-col gap-2 p-2">
+            <h3 className="font-semibold line-clamp-2 hover:underline cursor-pointer">
               {video?.title}
             </h3>
+            <p className="line-clamp-2 text-xs text-zinc-600 w-[90%]">
+              {formatted(video?.description)}
+            </p>
+            <span className="text-xs flex text-zinc-600 items-center gap-2">
+              <FaRegClock />
+              {calculateTime(video?.date)}
+            </span>
           </div>
         </div>
       </DialogTrigger>

@@ -4,4 +4,6 @@ export type Video = {
   videoUrl: string;
   description: string;
   platform: string;
+  ownerId: string;
+  date: string;
 };

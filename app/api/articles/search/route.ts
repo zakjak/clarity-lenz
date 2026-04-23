@@ -1,5 +1,6 @@
 import { db } from "@/lib";
 import { articles } from "@/lib/db/articles";
+import { videos } from "@/lib/db/videos";
 import { and, count, eq, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
@@ -9,8 +10,10 @@ export async function GET(req: Request) {
   try {
     const page = Number(searchParams.get("page")) || 1;
     const q = String(searchParams.get("q"));
-    const query = q.replaceAll("+", " ");
 
+    const query = q.replaceAll("+", " ").trim();
+
+    if (!query) return [];
     const calculatePageNumber = (page - 1) * 10;
 
     const countRows = await db

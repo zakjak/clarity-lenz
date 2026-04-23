@@ -2,12 +2,12 @@
 
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
-import { useCreatedArticles } from "@/hooks/useCreatedArticles";
 import CategoriesPageSkeleton from "./CategoriesPageSkeleton";
 import TopCategoryStory from "./TopCategoryStory";
 import { useCreatedNews } from "@/hooks/useCreatedNews";
+import TopCateogoryVideo from "./TopCateogoryVideo";
 
-const CreatedArticles = ({
+const CreatedVideos = ({
   ownerId,
   type,
 }: {
@@ -21,7 +21,7 @@ const CreatedArticles = ({
     useCreatedNews(ownerId, type);
 
   const visiblePages = data?.pages.slice(-visiblePageCount);
-  const createdArticles = visiblePages?.flat();
+  const createdVideos = visiblePages?.flat();
 
   useEffect(() => {
     const fetchNextAtticles = () => {
@@ -37,11 +37,13 @@ const CreatedArticles = ({
     return <CategoriesPageSkeleton />;
   }
 
+  console.log(createdVideos);
+
   return (
     <div className="">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 md:gap-4 gap-2">
-        {createdArticles?.map((article) => (
-          <TopCategoryStory key={article?.id} topStory={article} />
+        {createdVideos?.map((video) => (
+          <TopCateogoryVideo video={video} key={video.id} />
         ))}
       </div>
       <div
@@ -62,4 +64,4 @@ const CreatedArticles = ({
   );
 };
 
-export default CreatedArticles;
+export default CreatedVideos;

@@ -43,27 +43,30 @@ const UserProfileBanner = ({ id }: { id: string }) => {
     <div className="w-full">
       {data?.user?.length > 0 && (
         <div className="">
-          <div className="flex flex-col md:flex md:flex-row gap-4 w-[90%] mx-auto mt-6 justify-center items-center">
+          <div className="flex flex-col md:flex md:flex-row gap-4 mx-auto mt-6 justify-center items-center relative p-10 rounded-xl overflow-hidden shadow">
+            <Image
+              src="/images/profile-banner.png"
+              fill
+              className="absolute -z-10 object-cover"
+              alt="profile banner background"
+            />
             {data?.user[0]?.image ? (
               <Image
                 src={data?.user[0].image}
                 alt={`Profile of ${data?.user[0].name}`}
                 width={240}
                 height={240}
-                className="rounded-full md:rounded-lg w-35 h-35 md:w-50 md:h-50 lg:w-60 lg:h-60"
+                className="rounded-full border-3 border-white shadow-xl md:rounded-lg w-35 h-35 md:w-50 md:h-50 lg:w-60 lg:h-60"
               />
             ) : (
               <div className="">
                 <p>{data?.user[0]?.name?.slice(0, 1)}</p>
               </div>
             )}
-
-            <div className="grow flex justify-between">
+            <div className="grow md:flex md:justify-between text-center md:text-left">
               <div className="w-full">
-                <h2 className="text-lg md:text-2xl lg:text-3xl text-center md:text-left">
-                  {data?.user[0]?.name}
-                </h2>
-                <h3 className="text-center md:text-left">
+                <h2 className="text-lg font-semibold">{data?.user[0]?.name}</h2>
+                <h3 className="text-center md:text-left text-xsfont-semibold">
                   {data?.aboutUser[0]?.position}
                 </h3>
                 <Separator className="w-full my-2" />
@@ -78,7 +81,7 @@ const UserProfileBanner = ({ id }: { id: string }) => {
                     />
                   )}
                 </div>
-                <div className="mt-5">
+                <div className="my-2">
                   {socials?.map(
                     (social) =>
                       social?.link && (
@@ -94,7 +97,7 @@ const UserProfileBanner = ({ id }: { id: string }) => {
                 </div>
               </div>
               {session?.user?.id === data?.user[0]?.id && (
-                <div className="">
+                <div className="flex items-center text-blue-800 justify-center">
                   <EditProfileComponent
                     userId={session?.user?.id as string}
                     userInfo={data?.aboutUser[0]}

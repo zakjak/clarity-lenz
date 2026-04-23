@@ -13,10 +13,10 @@ const ArticleComponent = ({ id }: { id: number }) => {
   const { data: session } = useSession();
   const { ref, inView } = useInView({ threshold: 0 });
 
-  const { data: relatedArticles } = useRelatedArticles(
-    data && data?.article[0]?.category,
-    id,
-  );
+  // const { data: relatedArticles } = useRelatedArticles(
+  //   data && data?.article[0]?.category,
+  //   id,
+  // );
 
   if (isLoading) {
     return <ArticleComponentSkeleton />;
@@ -29,9 +29,9 @@ const ArticleComponent = ({ id }: { id: number }) => {
         {data?.article && <ArticleStory articleStory={data} />}
 
         {/* Right Section */}
-        {data && <RelatedArticles articles={relatedArticles} />}
+        {/* {data && <RelatedArticles articles={relatedArticles} />} */}
       </div>
-      {session ? (
+      {/* {session ? (
         <div ref={ref} className="mt-8">
           <CommentSection
             postId={data.article[0]?.id ?? 0}
@@ -43,7 +43,7 @@ const ArticleComponent = ({ id }: { id: number }) => {
         <h1 className="text-xl my-4 font-bold">
           Login to view and comment on articles
         </h1>
-      )}
+      )} */}
     </div>
   );
 };

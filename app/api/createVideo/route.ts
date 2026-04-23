@@ -1,12 +1,11 @@
 import { db } from "@/lib";
 import { videos } from "@/lib/db/videos";
-import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const body = await req.json();
 
-  const { title, videoUrl, description, platform } = body;
+  const { title, videoUrl, description, platform, ownerId } = body;
 
   try {
     const response = await db
@@ -16,6 +15,7 @@ export async function POST(req: Request) {
         videoUrl,
         description,
         platform,
+        ownerId,
       })
       .returning();
 

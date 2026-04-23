@@ -3,7 +3,6 @@
 import { useSearch } from "@/hooks/useSearch";
 import { Article } from "@/lib/types/article";
 import { useState } from "react";
-import { Card } from "./ui/card";
 import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,7 +35,7 @@ const AllSearch = ({ page, q }: { page: string; q: string }) => {
                 ${data?.countRows[0]?.count} for ${q?.replaceAll("+", " ")}`;
     }
   };
-  // const texts = JSON.parse(item.story);
+  console.log(articles);
   return (
     <div className="p-8 mx-auto lg:w-[60%] md:w-[80%]">
       <div className="">

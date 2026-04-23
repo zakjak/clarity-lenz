@@ -133,23 +133,26 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
             </AlertDialogContent>
           </AlertDialog>
         </div>
-        <div className="my-4 mx-2">
+        <div className="flex flex-col gap-3 text-xs my-4 mx-2">
+          <div className="flex items-center justify-between">
+            <span className="font-extrabold text-[0.6rem] tracking-widest dark:bg-[#192649] dark:text-[#C9B4F7] dark:px-2 dark:py-1 dark:rounded-full bg-blue-100 text-blue-600 py-0.5 px-2 rounded-full">
+              {topStory?.category?.toUpperCase()}
+            </span>
+            {/* <Separator className="h-1! w-1! bg-gray-400 rounded-full!" /> */}
+            <span className="font-semibold text-zinc-400">
+              {calculateTime(topStory?.date)}
+            </span>
+          </div>
+
           <Link
             href={`${process.env.NEXT_PUBLIC_API_URL}/${topStory?.category}/${
               topStory?.id
             }/${topStory?.title?.replaceAll(" ", "-")}`}
           >
-            <h2 className="text-[15px] line-clamp-2 hover:underline">
+            <h2 className="text-sm line-clamp-2 hover:underline font-semibold">
               {topStory?.title}
             </h2>
           </Link>
-          <div className="flex items-center gap-2 text-xs text-zinc-400 mt-2">
-            <span className="font-bold text-[0.6rem] tracking-widest dark:bg-[#192649] dark:text-[#C9B4F7] dark:px-2 dark:py-1 dark:rounded-full">
-              {topStory?.category?.toUpperCase()}
-            </span>
-            <Separator className="h-1! w-1! bg-gray-400 rounded-full!" />
-            <span className="font-bold">{calculateTime(topStory?.date)}</span>
-          </div>
         </div>
       </Card>
     </>

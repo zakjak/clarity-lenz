@@ -15,7 +15,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="sticky top-8 z-999 overflow-hidden m-8 rounded-2xl">
+    <div className="sticky top-8 z-999 overflow-hidden m-8 rounded-2xl shadow border">
       <div className="w-full h-15 md:h-20 flex shadow bg-white dark:bg-[#06081A] dark:shadow-2xl">
         <div className="w-[95%] flex justify-between mx-auto items-center">
           <div className="flex gap-5 items-center">
@@ -77,7 +77,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:bg-[#06081A] bg-white pb-2 ">
+      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:bg-[#06081A] bg-white pb-2 pt-4">
         <div className="w-full flex justify-center gap-6 text-sm mb-4 pb-3">
           <Link
             href="/"

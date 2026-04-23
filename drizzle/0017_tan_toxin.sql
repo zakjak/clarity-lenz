@@ -1,0 +1,1 @@
+ALTER TABLE "videos" ADD COLUMN "date" timestamp DEFAULT now() NOT NULL;

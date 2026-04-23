@@ -55,6 +55,7 @@ const VideoDialog = ({
         videoUrl,
         description,
         platform,
+        ownerId: user?.id,
       };
 
       mutate(video as Video);

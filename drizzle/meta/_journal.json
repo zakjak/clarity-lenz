@@ -92,6 +92,41 @@
       "when": 1776689100335,
       "tag": "0012_dapper_george_stacy",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1776815554419,
+      "tag": "0013_dusty_lionheart",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1776834817924,
+      "tag": "0014_lumpy_kingpin",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1776849876602,
+      "tag": "0015_wide_winter_soldier",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1776898349933,
+      "tag": "0016_last_namora",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1776899989276,
+      "tag": "0017_tan_toxin",
+      "breakpoints": true
     }
   ]
 }
