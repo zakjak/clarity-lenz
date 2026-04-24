@@ -15,9 +15,9 @@ const roboto = Roboto({
 
 const BannerMainPage = () => {
   return (
-    <div className="w-full lg:h-130 h-100 relative">
+    <div className="w-full lg:h-[50rem] h-100 relative">
       <Image
-        src="/images/cover-image-4.jpg"
+        src="/images/dorcas-banner.jpeg"
         fill
         alt="Banner image, lady on a laptop"
         className="w-full h-full object-cover"

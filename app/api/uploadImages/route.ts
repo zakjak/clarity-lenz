@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   const formData = await req.formData();
 
   try {
-    const image = formData.get("file");
+    const image = formData.get("image");
     const images = formData.getAll("images");
 
     const uploadPromises = [];

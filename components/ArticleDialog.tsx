@@ -85,11 +85,13 @@ const ArticleDialog = ({
   openEdit,
   setOpenEdit,
   articleId,
+  setOpen,
 }: {
   user: User;
   openEdit?: boolean;
   setOpenEdit: Dispatch<SetStateAction<boolean>>;
   articleId?: number;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const inputTagRef = useRef<HTMLInputElement | null>(null);
@@ -200,7 +202,6 @@ const ArticleDialog = ({
     values: z.infer<typeof formSchema>,
     isDraft: boolean,
   ) => {
-    setIsSubmitting(true);
     const formData = new FormData();
 
     if (values.image && values.image instanceof File) {
@@ -219,9 +220,13 @@ const ArticleDialog = ({
         body: formData,
       });
 
-      if (responseUpload) {
-        const resultUploads = await responseUpload.json();
+      if (!responseUpload.ok) {
+        throw new Error("Upload failed");
+      }
+      const resultUploads = await responseUpload.json();
+      console.log(resultUploads);
 
+      if (resultUploads) {
         if (imagePreview?.startsWith("https")) {
           const images = resultUploads;
 
@@ -250,8 +255,8 @@ const ArticleDialog = ({
               category,
               tags,
               authors,
-              story: story,
-              image: image,
+              story,
+              image,
               imageTitle,
               images: imagesUrl,
               isDraft,
@@ -345,7 +350,7 @@ const ArticleDialog = ({
             });
 
             setIsSubmitting(false);
-            setOpenEdit(false);
+            setOpen(false);
           } else {
             const { title, imageTitle, category, tags, authors, story } =
               values;
@@ -373,9 +378,10 @@ const ArticleDialog = ({
       console.log(error);
       setIsSubmitting(false);
       setOpenEdit(false);
+      setOpen(false);
     } finally {
       setIsSubmitting(false);
-
+      setOpen(false);
       setOpenEdit(false);
     }
   };

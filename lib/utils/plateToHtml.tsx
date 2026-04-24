@@ -8,11 +8,18 @@ type SlateNode = {
   bold?: boolean;
   italic?: boolean;
   underline?: boolean;
+  strikethrough?: boolean;
+  code?: boolean;
+  superscript?: boolean;
+  subscript?: boolean;
   color?: string;
+  bgColor?: string;
   fontSize?: string;
   fontFamily?: string;
   align?: string;
   lineHeight?: string;
+  url?: string; // for links
+  indent?: number; // for indentation
 };
 
 type TextAlign = "start" | "center" | "end" | "justify";

@@ -22,7 +22,7 @@ const Navbar = () => {
             <div className="flex items-center">
               <Link
                 href="/"
-                className="w-30 h-30 md:w-40 md:h-30 relative mt-5 md:mt-0"
+                className="w-30 h-30 md:w-40 md:h-30 relative mt-5 md:mt-0 "
               >
                 <Image
                   src="/images/logo.png"
