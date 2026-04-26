@@ -31,7 +31,7 @@ import { useDeleteArticle } from "@/hooks/useArticle";
 import ArticleDialog from "./ArticleDialog";
 const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
   const [openDelete, setOpenDelete] = useState(false);
-  const [openEdit, setOpenEdit] = useState(false);
+  const [open, setOpen] = useState(false);
   const { data: session } = useSession();
 
   const { mutate } = useDeleteArticle();
@@ -39,7 +39,7 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
   const isProfile = pathname.includes("/profile");
 
   const handleEdit = () => {
-    setOpenEdit(true);
+    setOpen(true);
   };
 
   return (
@@ -76,9 +76,9 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
                   )}
 
                   <Dialog
-                    open={openEdit}
+                    open={open}
                     onOpenChange={(open) => {
-                      setOpenEdit(open);
+                      setOpen(open);
                     }}
                   >
                     {topStory?.authors?.includes(
@@ -94,9 +94,9 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
 
                     <ArticleDialog
                       user={session?.user as User}
-                      openEdit={openEdit}
+                      openEdit={open}
                       articleId={topStory?.id as number}
-                      setOpenEdit={setOpenEdit}
+                      setOpenEdit={setOpen}
                     />
                   </Dialog>
                 </div>

@@ -91,7 +91,7 @@ const ArticleDialog = ({
   openEdit?: boolean;
   setOpenEdit: Dispatch<SetStateAction<boolean>>;
   articleId?: number;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const inputTagRef = useRef<HTMLInputElement | null>(null);
@@ -350,7 +350,7 @@ const ArticleDialog = ({
             });
 
             setIsSubmitting(false);
-            setOpen(false);
+            setOpen?.(false);
           } else {
             const { title, imageTitle, category, tags, authors, story } =
               values;
@@ -378,10 +378,10 @@ const ArticleDialog = ({
       console.log(error);
       setIsSubmitting(false);
       setOpenEdit(false);
-      setOpen(false);
+      setOpen?.(false);
     } finally {
       setIsSubmitting(false);
-      setOpen(false);
+      setOpen?.(false);
       setOpenEdit(false);
     }
   };
