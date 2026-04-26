@@ -34,9 +34,9 @@ const Navbar = () => {
         borderRadius: scrolled ? "1rem" : "",
       }}
       transition={{ type: "spring", stiffness: 120, damping: 20 }}
-      className={`fixed left-1/2 -translate-x-1/2 z-50
+      className={`sticky  z-50
         bg-white/10 backdrop-blur-2xl shadow-2xl
-        px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20`}
+        px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20 mx-auto`}
     >
       <div className="w-full h-15 md:h-20 flex">
         <div className="w-[95%] flex justify-between mx-auto items-center">

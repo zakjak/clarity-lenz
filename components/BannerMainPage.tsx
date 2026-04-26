@@ -15,7 +15,7 @@ const roboto = Roboto({
 
 const BannerMainPage = () => {
   return (
-    <div className="w-full lg:h-200 h-100 relative mt-26">
+    <div className="w-full lg:h-200 h-100 relative">
       <Image
         src="/images/dorcas-banner.jpeg"
         fill
