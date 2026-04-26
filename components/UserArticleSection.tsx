@@ -21,7 +21,7 @@ const UserArticleSection = ({ id }: { id: string }) => {
         </div>
       )}
 
-      <div className="bg-white p-4 rounded-2xl mb-4 shadow">
+      <div className=" p-4 rounded-2xl mb-4 shadow">
         <div className="flex items-center border-b-2 gap-4 font-bold">
           <div
             className={`${type === "articles" ? "border-b-4 border-blue-700 text-blue-800" : ""} cursor-pointer`}

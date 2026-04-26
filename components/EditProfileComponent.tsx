@@ -96,7 +96,7 @@ const EditProfileComponent = ({
       <Dialog onOpenChange={setOpen} modal={false} open={open}>
         <form onSubmit={form.handleSubmit(onSubmit)} id="form-user-info">
           <DialogTrigger asChild>
-            <Button variant="ghost" className="cursor-pointer">
+            <Button variant="outline" className="cursor-pointer">
               Edit Profile <FaRegEdit />
             </Button>
           </DialogTrigger>

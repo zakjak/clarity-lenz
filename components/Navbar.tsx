@@ -7,16 +7,38 @@ import { ModeToggle } from "./ModeToggle";
 import Image from "next/image";
 import Search from "./Search";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { motion } from "motion/react";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  // top-8 rounded-2xl
   return (
-    <div className="sticky top-8 z-999 overflow-hidden m-8 rounded-2xl shadow border">
-      <div className="w-full h-15 md:h-20 flex shadow bg-white dark:bg-[#06081A] dark:shadow-2xl">
+    <motion.div
+      initial={false}
+      animate={{
+        top: scrolled ? 32 : 0,
+        width: scrolled ? "80%" : "100%",
+        borderRadius: scrolled ? "1rem" : "",
+      }}
+      transition={{ type: "spring", stiffness: 120, damping: 20 }}
+      className={`fixed left-1/2 -translate-x-1/2 z-50
+        bg-white/10 backdrop-blur-2xl shadow-2xl
+        px-6 py-4 flex justify-between items-center dark:shadow-2xl dark:bg-[#000000]/20`}
+    >
+      <div className="w-full h-15 md:h-20 flex">
         <div className="w-[95%] flex justify-between mx-auto items-center">
           <div className="flex gap-5 items-center">
             <div className="flex items-center">
@@ -33,7 +55,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className="hidden md:flex w-full gap-4 text-zinc-600 text-sm font-semibold tracking-wide ">
+            <div className="hidden md:flex w-full gap-4 dark:text-white/90 text-sm font-semibold tracking-wide ">
               <Link
                 className={`${pathname === "/" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
                 href="/"
@@ -107,7 +129,7 @@ const Navbar = () => {
 
         {isOpen && <Search />}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
