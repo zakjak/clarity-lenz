@@ -15,14 +15,14 @@ const roboto = Roboto({
 
 const BannerMainPage = () => {
   return (
-    <div className="w-full lg:h-200 h-100 relative">
+    <div className="w-full lg:h-200 h-100 relative mt-26">
       <Image
         src="/images/dorcas-banner.jpeg"
         fill
         alt="Banner image, lady on a laptop"
         className="w-full h-full object-cover"
       />
-      <div className="absolute bottom-35 lg:bottom-50 text-zinc-100 left-10">
+      <div className="absolute bottom-45 lg:bottom-60 text-zinc-800 left-10">
         <h1 className="text-4xl md:text-4xl lg:text-5xl whitespace-nowrap">
           <span className={roboto.className}>Welcome to</span>{" "}
           <span
@@ -33,7 +33,7 @@ const BannerMainPage = () => {
         </h1>
         <div className="mt-4">
           <h3 className="text-lg">Latest articles, tips, and online events</h3>
-          <p>
+          <p className="text-xs text-zinc-400">
             In-depth articles, powerful stories and meaningful conversations on
             the issues shaping our world
           </p>

@@ -36,7 +36,7 @@ const Navbar = () => {
       transition={{ type: "spring", stiffness: 120, damping: 20 }}
       className={`fixed left-1/2 -translate-x-1/2 z-50
         bg-white/10 backdrop-blur-2xl shadow-2xl
-        px-6 py-4 flex justify-between items-center dark:shadow-2xl dark:bg-[#000000]/20`}
+        px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20`}
     >
       <div className="w-full h-15 md:h-20 flex">
         <div className="w-[95%] flex justify-between mx-auto items-center">
@@ -99,7 +99,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:bg-[#06081A] bg-white pb-2 pt-4">
+      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:bg-[#06081A] pb-2 pt-4">
         <div className="w-full flex justify-center gap-6 text-sm mb-4 pb-3">
           <Link
             href="/"
