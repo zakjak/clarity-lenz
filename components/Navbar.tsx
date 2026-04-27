@@ -80,6 +80,12 @@ const Navbar = () => {
               >
                 Videos
               </Link>
+              <Link
+                href="/consulting"
+                className={`${pathname === "/consulting" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
+              >
+                Consulting
+              </Link>
             </div>
           </div>
 
@@ -124,6 +130,12 @@ const Navbar = () => {
             className={`${pathname === "/videos" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
           >
             Videos
+          </Link>
+          <Link
+            href="/consulting"
+            className={`${pathname === "/consulting" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
+          >
+            Consulting
           </Link>
         </div>
 

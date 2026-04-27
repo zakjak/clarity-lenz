@@ -93,3 +93,7 @@ export const groupNumbers = (num: number) => {
     return `${Math.floor(num / 1_000_000_000)}B`;
   }
 };
+
+export const groupTotalNumbers = (num: number) => {
+  return num.toLocaleString("en-US");
+};

@@ -8,6 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { slugify } from "@/lib/utils/helpers";
 import { LuFilePenLine } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
+import { BsGraphDown } from "react-icons/bs";
 
 const UserNavbarProfile = () => {
   const { data: session } = useSession();
@@ -51,7 +52,13 @@ const UserNavbarProfile = () => {
                   <CgProfile />
                   Profile
                 </Link>
-
+                <Link
+                  href={`/dashboard/${session?.user?.id}`}
+                  className="flex items-center md:gap-2 gap-1 hover:bg-blue-300 w-full  p-2 rounded-md hover:text-white font-semibold tracking-wider"
+                >
+                  <BsGraphDown />
+                  Dashboard
+                </Link>
                 <Link
                   className="flex items-center md:gap-2 gap-1 bg-yellow-100 hover:bg-yellow-50 text-yellow-700 p-1 font-semibold rounded-sm py-2 px-1"
                   href={`/profile/${session?.user?.id}/draft`}
