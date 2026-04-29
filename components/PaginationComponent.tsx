@@ -8,6 +8,7 @@ import { useState } from "react";
 import { getPaginationRange } from "@/lib/utils/helpers";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const PaginationComponent = ({
   pageNumber,
@@ -17,6 +18,8 @@ const PaginationComponent = ({
   query?: string;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const path = usePathname();
+  console.log(path);
 
   const handlePageClick = (page: number) => {
     if (page < 1 || page > pageNumber) return;

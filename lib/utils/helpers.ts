@@ -95,5 +95,5 @@ export const groupNumbers = (num: number) => {
 };
 
 export const groupTotalNumbers = (num: number) => {
-  return num.toLocaleString("en-US");
+  return num?.toLocaleString("en-US");
 };

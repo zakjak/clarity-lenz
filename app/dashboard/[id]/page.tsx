@@ -1,4 +1,4 @@
-import DashboardStats from "@/components/DashboardStats";
+import DashboardSection from "@/components/DashboardSection";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +11,8 @@ const Dashboard = () => {
       <h3 className="mt-4 text-sm text-zinc-700 text-center">
         Manage users and co-authors effectively
       </h3>
-      <DashboardStats />
+
+      <DashboardSection />
     </div>
   );
 };

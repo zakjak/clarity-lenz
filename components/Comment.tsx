@@ -40,8 +40,6 @@ const Comment = ({
 
   const allReplies = replies?.pages?.flatMap((page) => page?.replies) ?? [];
 
-  console.log(replies);
-
   const isExisting =
     allReplies &&
     allReplies?.[allReplies?.length - 1]?.comment?.id !==
