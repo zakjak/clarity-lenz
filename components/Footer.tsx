@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-2 items-center pb-4 text-sm w-full bg-red-50">
+      <div className="flex gap-2 items-center justify-center pb-4 text-sm w-full ">
         <FaRegCopyright />
         <h2>{new Date().getFullYear()}</h2>
         <p>Clarity Lenz. All rights reserved</p>
