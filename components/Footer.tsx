@@ -5,9 +5,9 @@ import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="w-full border-t p-6">
-      <div className="flex">
-        <div className="h-30 w-55 relative ng-trf">
+    <div className="w-full border-t md:p-6">
+      <div className="md:flex">
+        <div className="h-30 w-55 relative">
           <Image
             src="/images/logo.png"
             fill
@@ -15,14 +15,14 @@ const Footer = () => {
             alt="Clarity Lenz Logo"
           />
         </div>
-        <div className="grid grid-cols-2 gap-4 pt-4">
+        <div className="md:grid md:grid-cols-2 gap-10 pt-4 flex justify-center">
           <div className="flex flex-col gap-2">
             <h1 className="font-semibold">Company</h1>
             <Link href="/about-us">About us</Link>
           </div>
           <div className="flex flex-col gap-2">
             <div className="">
-              <h1 className="font-semibold">Contact Us</h1>
+              <h1 className="font-semibold whitespace-nowrap">Contact Us</h1>
             </div>
             <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
               <p>Facebook</p>
@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-2 items-center justify-center pb-4 text-sm w-full ">
+      <div className="flex gap-2 items-center justify-center pb-4 text-sm w-full p-6">
         <FaRegCopyright />
         <h2>{new Date().getFullYear()}</h2>
         <p>Clarity Lenz. All rights reserved</p>
