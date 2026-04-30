@@ -14,29 +14,29 @@ import { motion } from "motion/react";
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  // const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrolled(window.scrollY > 50);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
   // top-8 rounded-2xl
   return (
-    <motion.div
-      initial={false}
-      animate={{
-        top: scrolled ? 32 : 0,
-        width: scrolled ? "80%" : "100%",
-        borderRadius: scrolled ? "1rem" : "",
-      }}
-      transition={{ type: "spring", stiffness: 120, damping: 20 }}
-      className={`sticky  z-50
+    <div
+      // initial={false}
+      // animate={{
+      //   top: scrolled ? 32 : 0,
+      //   width: scrolled ? "80%" : "100%",
+      //   borderRadius: scrolled ? "1rem" : "",
+      // }}
+      // transition={{ type: "spring", stiffness: 120, damping: 20 }}
+      className={`sticky top-0 z-50
         bg-white/10 backdrop-blur-2xl shadow-2xl
-        px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20 mx-auto overflow-hidden`}
+        px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20`}
     >
       <div className="w-full h-15 md:h-20 flex">
         <div className="w-[95%] flex justify-between mx-auto items-center">
@@ -105,8 +105,9 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:text-white pb-2 pt-6 overflow-scroll [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        <div className="w-full flex justify-center gap-6 text-sm mb-4 pb-3">
+      {/* [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden overflow-scroll */}
+      <div className="block md:hidden w-full text-zinc-600 dark:text-white pb-2 pt-6  ">
+        <div className="w-full flex justify-center gap-4 md:gap-6 text-sm mb-4 pb-3">
           <Link
             href="/"
             className={`${pathname === "/" ? "border-b-3 border-[#363384]" : ""}`}
@@ -141,7 +142,7 @@ const Navbar = () => {
 
         {isOpen && <Search />}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
