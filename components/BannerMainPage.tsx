@@ -17,12 +17,12 @@ const BannerMainPage = () => {
   return (
     <div className="w-full lg:h-200 h-100 relative">
       <Image
-        src="/images/dorcas-banner.jpeg"
+        src="/images/ceo.jpeg"
         fill
         alt="Banner image, lady on a laptop"
         className="w-full h-full object-cover"
       />
-      <div className="absolute bottom-45 lg:bottom-60 text-zinc-800 left-10">
+      <div className="absolute bottom-20 md:bottom-45 lg:bottom-60 text-white left-10">
         <h1 className="text-4xl md:text-4xl lg:text-5xl whitespace-nowrap">
           <span className={roboto.className}>Welcome to</span>{" "}
           <span
@@ -31,9 +31,9 @@ const BannerMainPage = () => {
             Clarity Lenz
           </span>
         </h1>
-        <div className="mt-4">
+        <div className="mt-4 flex flex-col gap-2">
           <h3 className="text-lg">Latest articles, tips, and online events</h3>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-zinc-100 w-[80%]">
             In-depth articles, powerful stories and meaningful conversations on
             the issues shaping our world
           </p>

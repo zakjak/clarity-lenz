@@ -96,7 +96,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <IoIosSearch
-              className="block md:hidden dark:text-[#B0B7CE] mr-5 text-zinc-500"
+              className="block md:hidden dark:text-[#B0B7CE] mr-5 text-zinc-100"
               size={23}
               onClick={() => setIsOpen(!isOpen)}
             />
@@ -105,7 +105,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:bg-[#06081A] pb-2 pt-4">
+      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:text-white pb-2 pt-6">
         <div className="w-full flex justify-center gap-6 text-sm mb-4 pb-3">
           <Link
             href="/"
