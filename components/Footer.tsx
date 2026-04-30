@@ -2,11 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaFacebook, FaRegCopyright, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
-import { Button } from "./ui/button";
 
 const Footer = () => {
   return (
-    <div className="w-full border-t">
+    <div className="w-full border-t p-6">
       <div className="flex">
         <div className="h-30 w-55 relative ng-trf">
           <Image
@@ -16,37 +15,44 @@ const Footer = () => {
             alt="Clarity Lenz Logo"
           />
         </div>
-        <div className="grid grid-cols-2 pt-4">
+        <div className="grid grid-cols-2 gap-4 pt-4">
           <div className="flex flex-col gap-2">
             <h1 className="font-semibold">Company</h1>
             <Link href="/about-us">About us</Link>
           </div>
-          <div className="flex gap-4 mb-6 w-ful border-b pb-4">
-            <Button variant="ghost" size="icon-lg" className="rounded-full">
-              <Link href="" target="_blank" className="p-2  rounded-lg">
-                <FaFacebook size={25} />
+          <div className="flex flex-col gap-2">
+            <div className="">
+              <h1 className="font-semibold">Contact Us</h1>
+            </div>
+            <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
+              <p>Facebook</p>
+              <Link href="" target="_blank" className="p-2">
+                <FaFacebook size={15} />
               </Link>
-            </Button>
-            <Button variant="ghost" size="icon-lg" className="rounded-full">
-              <Link href="" target="_blank" className="p-2 rounded-lg">
-                <FaXTwitter size={25} />
+            </div>
+            <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
+              <p>Twitter(X)</p>
+              <Link href="" target="_blank" className="p-2">
+                <FaXTwitter size={15} />
               </Link>
-            </Button>
+            </div>
 
-            <Button variant="ghost" size="icon-lg" className="rounded-full">
+            <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
+              <p>LinkedIn</p>
               <Link href="" target="_blank" className="p-2 rounded-lg">
-                <FaLinkedin size={25} />
+                <FaLinkedin size={15} />
               </Link>
-            </Button>
+            </div>
 
-            <Button variant="ghost" size="icon-lg" className="rounded-full">
+            <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
+              <p>Email</p>
               <Link
                 href="mailto:zakjak456@gmail.com"
                 className="p-2 rounded-lg"
               >
-                <FaEnvelope size={25} />
+                <FaEnvelope size={15} />
               </Link>
-            </Button>
+            </div>
           </div>
         </div>
       </div>

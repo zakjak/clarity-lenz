@@ -36,7 +36,7 @@ const Navbar = () => {
       transition={{ type: "spring", stiffness: 120, damping: 20 }}
       className={`sticky  z-50
         bg-white/10 backdrop-blur-2xl shadow-2xl
-        px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20 mx-auto`}
+        px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20 mx-auto overflow-hidden`}
     >
       <div className="w-full h-15 md:h-20 flex">
         <div className="w-[95%] flex justify-between mx-auto items-center">
@@ -105,7 +105,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:text-white pb-2 pt-6">
+      <div className="block gap-6 md:hidden w-full text-zinc-600 dark:text-white pb-2 pt-6 overflow-scroll [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         <div className="w-full flex justify-center gap-6 text-sm mb-4 pb-3">
           <Link
             href="/"

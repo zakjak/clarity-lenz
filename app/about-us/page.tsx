@@ -34,19 +34,25 @@ const AboutPage = () => {
 
   return (
     <div className="">
-      <div className="lg:max-w-280 mx-auto">
-        <div className="flex flex-col gap-4 p-20 lg:p-24">
+      <div className="lg:max-w-280 mx-auto ">
+        <div className="flex flex-col gap-4 p-6 md:p-20 lg:p-24">
           <h4 className="text-[#E15724] text-[0.7rem]">ABOUT OUR VISION</h4>
           <h1 className="text-3xl md:text-4xl font-semibold text-zinc-800 dark:text-zinc-300">
             Architecture of Purpose
           </h1>
-          <div className="border-l-3 border-l-zinc-600 px-6 lg:w-[70%]">
-            <p>
+          <div className="md:border-l-3 md:border-l-zinc-600 md:px-6 lg:w-[70%]">
+            <p className="md:block hidden">
               Clarity Lenz is more than a platform—it is a movement dedicated to
               helping people find clarity, purpose, and direction in every area
               of life. We believe that when individuals are rightly aligned in
               their mindset, faith, relationships, and career, they become
-              powerful instruments of impact.{" "}
+              powerful instruments of impact.
+            </p>
+            <p className="block md:hidden">
+              Clarity Lenz is a movement helping people find clarity, purpose,
+              and direction. By aligning mindset, faith, relationships, and
+              career, individuals unlock their potential and create meaningful
+              impact.
             </p>
           </div>
           <div className="relative w-full h-55 md:h-88 rounded-sm overflow-hidden mt-6">
@@ -57,18 +63,26 @@ const AboutPage = () => {
               className="object-cover"
             />
           </div>
-          <div className="grid md:grid-cols-2 p-6 items-end">
+          <div className="grid md:grid-cols-2 md:p-6 items-end">
+            <h4 className="text-[#E15724] text-[0.7rem] my-4 md:hidden">
+              THE VISIONARY
+            </h4>
+            <h1 className="text-2xl lg:text-3xl font-semibold text-zinc-800 dark:text-zinc-300 md:hidden mb-5">
+              Dr. Dorcas Eyinla (Drock)
+            </h1>
             <div className="relative h-100 lg:h-120 rounded-sm overflow-hidden">
               <Image
                 src="/images/ceo.jpeg"
                 fill
-                alt=""
+                alt="Ceo Dr. Dorcas Eyinla (Drock)"
                 className="object-cover absolute"
               />
             </div>
             <div className="flex flex-col justify-center gap-4 md:gap-6 pl-8 pt-10 md:pt-0">
-              <h4 className="text-[#E15724] text-[0.7rem]">THE VISIONARY</h4>
-              <h1 className="text-2xl lg:text-3xl font-semibold text-zinc-800 dark:text-zinc-300">
+              <h4 className="text-[#E15724] text-[0.7rem]  hidden md:block">
+                THE VISIONARY
+              </h4>
+              <h1 className="text-2xl lg:text-3xl font-semibold text-zinc-800 dark:text-zinc-300 hidden md:block">
                 Dr. Dorcas Eyinla (Drock)
               </h1>
               <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-300">
