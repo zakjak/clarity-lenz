@@ -2,15 +2,19 @@
 import DashboardStats from "./DashboardStats";
 import TablePanel from "./TablePanel";
 import { useSession } from "next-auth/react";
-import { useDashboard } from "@/hooks/useDashboard";
+import {
+  useDashboardStats,
+  useDashboardUsersTable,
+} from "@/hooks/useDashboard";
 import { useState } from "react";
 
 const DashboardSection = () => {
   const { data: session } = useSession();
   const [currentPage, setCurrentPage] = useState(0);
-  const { data } = useDashboard(session?.user?.id as string, currentPage);
-
-  //   console.log(data);
+  const { data } = useDashboardStats(session?.user?.id as string, currentPage);
+  const { data: allUsers } = useDashboardUsersTable(
+    session?.user?.id as string,
+  );
 
   return (
     <div className="p-14">
@@ -20,7 +24,7 @@ const DashboardSection = () => {
         totalAdminUsers={data?.totalAdminUsers[0]?.count}
       />
       <TablePanel
-        users={data?.users}
+        users={allUsers?.users}
         pageNumber={data?.pageNumber}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

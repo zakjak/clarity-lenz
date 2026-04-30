@@ -8,6 +8,7 @@ import AuthProvider from "@/components/providers";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default function RootLayout({
               <TooltipProvider>
                 <main className="grow">{children}</main>
                 <Toaster />
+                <ReactQueryDevtools />
               </TooltipProvider>
             </QueryClientProvider>
             <Footer />

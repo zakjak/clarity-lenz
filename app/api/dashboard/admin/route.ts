@@ -11,7 +11,7 @@ export async function PUT(req: Request) {
       .update(users)
       .set({ isAdmin: res.admin })
       .where(eq(users.id, res.userId))
-      .returning({ isAdmin: users.isAdmin });
+      .returning({ admin: users.isAdmin });
 
     return NextResponse.json(response);
   } catch (err) {

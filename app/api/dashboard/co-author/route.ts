@@ -9,9 +9,12 @@ export async function PUT(req: Request) {
   try {
     const response = await db
       .update(users)
-      .set({ isAdmin: res.isAdmin })
+      .set({ isOwner: res.isOwner })
       .where(eq(users.id, res.userId))
-      .returning({ isAdmin: users.isAdmin });
+      .returning({ isOwner: users.isOwner });
+
+    console.log(res);
+    console.log(response);
 
     return NextResponse.json(response);
   } catch (err) {
