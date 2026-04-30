@@ -20,7 +20,7 @@ const DashboardStats = ({
   totalAdminUsers,
 }: TotalProps) => {
   return (
-    <div className="grid md:grid-cols-3 gap-4 max-w-280 mx-auto ">
+    <div className="grid md:grid-cols-3 gap-4 ">
       <div className="bg-white shadow-lg p-8 dark:bg-[#1E293B] relative rounded-lg border-zinc-600 border-2">
         <h1 className=" text-blue-950 dark:text-[#516176]">Total Users</h1>
         <h2 className="font-semibold dark:text-yellow-400 lg:text-3xl text-2xl">
@@ -31,7 +31,7 @@ const DashboardStats = ({
           size={80}
         />
       </div>
-      <div className="bg-white shadow-lg p-4 dark:bg-[#1E293B] relative rounded-lg border-zinc-600 border-2">
+      <div className="bg-white shadow-lg p-8 dark:bg-[#1E293B] relative rounded-lg border-zinc-600 border-2">
         <h1 className="text-blue-950 dark:text-[#516176]">Co-Authors</h1>
         <h2 className="font-semibold dark:text-yellow-400 lg:text-3xl text-2xl">
           {groupTotalNumbers(totalCoAuthors)}
@@ -45,7 +45,7 @@ const DashboardStats = ({
           size={50}
         />
       </div>
-      <div className="bg-white shadow-lg p-4 dark:bg-[#1E293B] relative rounded-lg border-zinc-600 border-2">
+      <div className="bg-white shadow-lg p-8 dark:bg-[#1E293B] relative rounded-lg border-zinc-600 border-2">
         <h1 className="text-blue-950 dark:text-[#516176]">Admin Users</h1>
         <h2 className="font-semibold dark:text-yellow-400 lg:text-3xl text-2xl">
           {groupTotalNumbers(totalAdminUsers)}

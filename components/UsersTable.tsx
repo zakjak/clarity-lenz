@@ -100,7 +100,10 @@ const UsersTable = ({ users }: { users: User[] }) => {
                 </TableCell>
                 <TableCell className="">
                   <Select
-                    disabled={user?.id === session?.user?.id}
+                    disabled={
+                      user?.id === session?.user?.id ||
+                      ((user?.isAdmin as boolean) && (user?.isOwner as boolean))
+                    }
                     onValueChange={(val) => {
                       setActiveUserId(null);
                       setActiveUserId(user.id);
@@ -125,7 +128,10 @@ const UsersTable = ({ users }: { users: User[] }) => {
                 </TableCell>
                 <TableCell className="">
                   <Select
-                    disabled={user?.id === session?.user?.id}
+                    disabled={
+                      user?.id === session?.user?.id ||
+                      ((user?.isAdmin as boolean) && (user?.isOwner as boolean))
+                    }
                     onValueChange={(val) => {
                       setActiveUserId(null);
                       setCoAuthor(val === "yes");
@@ -151,7 +157,11 @@ const UsersTable = ({ users }: { users: User[] }) => {
                     <AlertDialogTrigger asChild>
                       <Button
                         variant="destructive"
-                        disabled={user?.id === session?.user?.id}
+                        disabled={
+                          user?.id === session?.user?.id ||
+                          ((user?.isAdmin as boolean) &&
+                            (user?.isOwner as boolean))
+                        }
                       >
                         Delete
                       </Button>
