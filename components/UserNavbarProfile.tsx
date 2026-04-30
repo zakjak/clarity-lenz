@@ -43,7 +43,7 @@ const UserNavbarProfile = () => {
             </Avatar>
           </PopoverTrigger>
           <PopoverContent className="flex flex-col gap-3 mt-2 z-999">
-            {session?.user?.isAdmin && (
+            {session?.user?.isOwner && (
               <>
                 <Link
                   href={`/profile/${session?.user?.id}/${slugify(session?.user?.name as string)}`}
@@ -52,6 +52,7 @@ const UserNavbarProfile = () => {
                   <CgProfile />
                   Profile
                 </Link>
+                {session?.user?.isOwner && session?.user?.isAdmin}
                 <Link
                   href={`/dashboard/${session?.user?.id}`}
                   className="flex items-center md:gap-2 gap-1 hover:bg-blue-300 w-full  p-2 rounded-md hover:text-white font-semibold tracking-wider"

@@ -20,11 +20,28 @@ import {
   SelectValue,
 } from "./ui/select";
 import { useState } from "react";
-import { useToggleAdmin, useToggleCoAuthor } from "@/hooks/useDashboard";
+import {
+  useDeleteUser,
+  useToggleAdmin,
+  useToggleCoAuthor,
+} from "@/hooks/useDashboard";
 import { Skeleton } from "./ui/skeleton";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog";
+import { Badge } from "./ui/badge";
+import { useSession } from "next-auth/react";
 
 const UsersTable = ({ users }: { users: User[] }) => {
   const [admin, setAdmin] = useState(false);
+  const { data: session } = useSession();
   const [coAuthor, setCoAuthor] = useState(false);
   const [activeUserId, setActiveUserId] = useState<string | null>(null);
 
@@ -34,16 +51,18 @@ const UsersTable = ({ users }: { users: User[] }) => {
   const { mutate: mutateCoAuthor, isPending: pendingCoAuthor } =
     useToggleCoAuthor(coAuthor);
 
+  const { mutate: deleteUser } = useDeleteUser();
+
   return (
-    <div>
+    <div className="">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-25">Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Actions: Admin</TableHead>
-            <TableHead>Actions: Co-Author</TableHead>
+            <TableHead className="w-25 font-bold">Name</TableHead>
+            <TableHead className="font-bold">Email</TableHead>
+            <TableHead className="font-bold">Status</TableHead>
+            <TableHead className="font-bold">Actions: Admin</TableHead>
+            <TableHead className="font-bold">Actions: Co-Author</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -63,15 +82,25 @@ const UsersTable = ({ users }: { users: User[] }) => {
                   (pendingCoAuthor && activeUserId === user.id) ? (
                     <Skeleton className="w-full h-4" />
                   ) : user?.isAdmin && user?.isOwner ? (
-                    "Admin (Author)"
+                    <Badge className="bg-yellow-200 text-yellow-900 uppercase">
+                      Admin (Author)
+                    </Badge>
                   ) : !user?.isAdmin && user?.isOwner ? (
-                    "Co-Author"
+                    <Badge
+                      variant="outline"
+                      className="uppercase border-amber-400"
+                    >
+                      Co-Author
+                    </Badge>
                   ) : (
-                    "Subscriber"
+                    <Badge variant="outline" className="opacity-60">
+                      Subscriber
+                    </Badge>
                   )}
                 </TableCell>
                 <TableCell className="">
                   <Select
+                    disabled={user?.id === session?.user?.id}
                     onValueChange={(val) => {
                       setActiveUserId(null);
                       setActiveUserId(user.id);
@@ -96,6 +125,7 @@ const UsersTable = ({ users }: { users: User[] }) => {
                 </TableCell>
                 <TableCell className="">
                   <Select
+                    disabled={user?.id === session?.user?.id}
                     onValueChange={(val) => {
                       setActiveUserId(null);
                       setCoAuthor(val === "yes");
@@ -117,7 +147,36 @@ const UsersTable = ({ users }: { users: User[] }) => {
                   </Select>
                 </TableCell>
                 <TableCell className="">
-                  <Button variant="destructive">Delete</Button>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="destructive"
+                        disabled={user?.id === session?.user?.id}
+                      >
+                        Delete
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogHeader>
+                          Are you absolutely sure?
+                        </AlertDialogHeader>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently
+                          delete the user from our servers.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          variant="destructive"
+                          onClick={() => deleteUser(user?.id)}
+                        >
+                          Continue
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </TableCell>
               </TableRow>
             );

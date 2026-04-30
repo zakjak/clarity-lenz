@@ -10,6 +10,7 @@ declare module "next-auth" {
       id: string;
       image?: string | null;
       isAdmin: boolean;
+      isOwner: boolean;
     } & DefaultSession["user"];
   }
 }

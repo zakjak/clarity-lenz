@@ -4,11 +4,10 @@ import {
   PaginationContent,
   PaginationItem,
 } from "@/components/ui/pagination";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { getPaginationRange } from "@/lib/utils/helpers";
 import { Button } from "./ui/button";
 import { useDashboardUsers } from "@/hooks/useDashboard";
-import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const DashboardPaginationUsers = ({
@@ -22,7 +21,6 @@ const DashboardPaginationUsers = ({
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
 }) => {
-  const { data: session } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
 

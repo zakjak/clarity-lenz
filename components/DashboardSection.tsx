@@ -7,14 +7,23 @@ import {
   useDashboardUsersTable,
 } from "@/hooks/useDashboard";
 import { useState } from "react";
+import { redirect } from "next/navigation";
 
 const DashboardSection = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [currentPage, setCurrentPage] = useState(0);
   const { data } = useDashboardStats(session?.user?.id as string, currentPage);
   const { data: allUsers } = useDashboardUsersTable(
     session?.user?.id as string,
   );
+
+  if (status === "loading") {
+    return null;
+  }
+
+  if (!session?.user?.isAdmin && !session?.user?.isOwner) {
+    redirect("/");
+  }
 
   return (
     <div className="p-14">

@@ -15,7 +15,7 @@ const TablePanel = ({
   setCurrentPage: Dispatch<SetStateAction<number>>;
 }) => {
   return (
-    <div>
+    <div className="max-w-280 mx-auto border">
       <UsersTable users={users} />
       {pageNumber > 1 && (
         <DashboardPaginationUsers

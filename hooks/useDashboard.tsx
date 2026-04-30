@@ -245,3 +245,18 @@ export const useToggleCoAuthor = (admin: boolean) => {
       }),
   });
 };
+
+export const useDeleteUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) =>
+      fetch(`/api/dashboard/users/${id}`, {
+        method: "DELETE",
+      }).then((data) => data.json()),
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["dashboard-allusers"],
+      });
+    },
+  });
+};
