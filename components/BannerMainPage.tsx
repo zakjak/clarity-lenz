@@ -22,11 +22,11 @@ const BannerMainPage = () => {
         alt="Banner image, lady on a laptop"
         className="w-full h-full object-cover"
       />
-      <div className="absolute bottom-20 md:bottom-45 lg:bottom-60 text-white left-10">
+      <div className="absolute bottom-20 md:bottom-30 lg:bottom-60 text-white left-10">
         <h1 className="text-3xl md:text-4xl lg:text-5xl whitespace-nowrap">
           <span className={roboto.className}>Welcome to</span>{" "}
           <span
-            className={`${pacifico.className} bg-linear-to-r from-[#051F31] via-[#085A6E] to-indigo-400 bg-clip-text text-transparent`}
+            className={`${pacifico.className} bg-linear-to-r from-[#D55114] via-[#FE8919] to-[#FEBE1A] bg-clip-text text-transparent`}
           >
             Clarity Lenz
           </span>
