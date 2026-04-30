@@ -7,33 +7,15 @@ import { ModeToggle } from "./ModeToggle";
 import Image from "next/image";
 import Search from "./Search";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import { motion } from "motion/react";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  // const [scrolled, setScrolled] = useState(false);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setScrolled(window.scrollY > 50);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
-  // top-8 rounded-2xl
   return (
     <div
-      // initial={false}
-      // animate={{
-      //   top: scrolled ? 32 : 0,
-      //   width: scrolled ? "80%" : "100%",
-      //   borderRadius: scrolled ? "1rem" : "",
-      // }}
-      // transition={{ type: "spring", stiffness: 120, damping: 20 }}
       className={`sticky top-0 z-50
         bg-white/10 backdrop-blur-2xl shadow-2xl
         px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20`}
@@ -90,13 +72,13 @@ const Navbar = () => {
           </div>
 
           {/* Search */}
-          <div className="hidden md:flex w-full">
+          <div className="hidden lg:flex w-full">
             <Search />
           </div>
 
           <div className="flex items-center gap-4">
             <IoIosSearch
-              className="block md:hidden dark:text-[#B0B7CE] mr-5 text-zinc-100"
+              className="block lg:hidden dark:text-[#B0B7CE] mr-5 text-zinc-100"
               size={23}
               onClick={() => setIsOpen(!isOpen)}
             />
@@ -139,9 +121,8 @@ const Navbar = () => {
             Consulting
           </Link>
         </div>
-
-        {isOpen && <Search />}
       </div>
+      <div className="block lg:hidden">{isOpen && <Search />}</div>
     </div>
   );
 };
