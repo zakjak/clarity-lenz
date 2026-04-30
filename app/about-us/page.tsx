@@ -2,6 +2,8 @@ import Image from "next/image";
 import React from "react";
 import { FaEnvelope, FaPhone } from "react-icons/fa";
 
+export const dynamic = "force-dynamic";
+
 const AboutPage = () => {
   const staffs = [
     {
@@ -56,7 +58,7 @@ const AboutPage = () => {
             />
           </div>
           <div className="grid md:grid-cols-2 p-6 items-end">
-            <div className="relative h-[25rem] lg:h-[30rem] rounded-sm overflow-hidden">
+            <div className="relative h-100 lg:h-120 rounded-sm overflow-hidden">
               <Image
                 src="/images/ceo.jpeg"
                 fill
