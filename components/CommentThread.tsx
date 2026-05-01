@@ -1,7 +1,6 @@
 import { useReplyComments } from "@/hooks/useComments";
 import { CommentProp, ReplyProps } from "@/lib/types/article";
 import { User } from "@/lib/types/users";
-import React from "react";
 import CommentContent from "./CommentContent";
 import { Skeleton } from "./ui/skeleton";
 import { FaArrowDown } from "react-icons/fa6";

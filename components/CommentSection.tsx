@@ -84,12 +84,10 @@ const CommentSection = ({
 
   return (
     <div>
-      <div className="flex items-center gap-2 mb-4">
-        <h2 className="md:text-xl text-lg font-semibold my-2">
-          Comments Section
-        </h2>
-        <span className="dark:bg-zinc-100 dark:text-zinc-800 bg-black text-white text-sm  rounded-md shadow-2xl py-2 px-2 font-bold">
-          {groupNumbers(commentCount)} comments
+      <div className="flex items-center gap-2 mb-4 md:text-2xl text-lg ">
+        <h2 className=" font-semibold my-2">Join the Conversation</h2>
+        <span className="dark:text-white shadow-2xl font-bold">
+          ({groupNumbers(commentCount)} comments )
         </span>
       </div>
       <form
@@ -114,7 +112,7 @@ const CommentSection = ({
                   <span
                     className={`${
                       form.getValues("comment").length < 300
-                        ? "text-white"
+                        ? "dark:text-white"
                         : "text-red-500"
                     }`}
                   >

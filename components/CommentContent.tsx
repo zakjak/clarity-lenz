@@ -267,7 +267,7 @@ const CommentContent = ({
                             <span
                               className={`${
                                 form.getValues("comment").length < 300
-                                  ? "text-white"
+                                  ? "dark:text-white"
                                   : "text-red-500"
                               }`}
                             >
@@ -294,10 +294,10 @@ const CommentContent = ({
             )}
           </div>
         </div>
-        <div className="bg-zinc-200 text-blaxk hover:bg-zinc-500 cursor-pointer w-6 h-6 text-black flex items-center rounded-full justify-center">
+        <div className="bg-zinc-200 text-blaxk hover:bg-zinc-700 hover:text-white cursor-pointer w-6 h-6 text-black flex items-center rounded-full justify-center">
           {comment?.ownerId === ownerId && (
             <Popover>
-              <PopoverTrigger className="cursor-pointer">
+              <PopoverTrigger className="cursor-pointer ">
                 <CiMenuKebab />
               </PopoverTrigger>
               <PopoverContent className="mt-2 flex flex-col items-start mr-4">
