@@ -1,6 +1,6 @@
 import { db } from "@/lib";
 import { comments } from "@/lib/db/articles";
-import { eq } from "drizzle-orm";
+import { count, eq, exists } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function DELETE(
@@ -13,10 +13,19 @@ export async function DELETE(
   const numericId = Number(id);
 
   try {
-    await db.transaction(async (tx) => {
-      await tx.delete(comments).where(eq(comments.id, numericId));
-      await tx.delete(comments).where(eq(comments.parentId, numericId));
-    });
+    const parentComment = await db
+      .select({ count: count() })
+      .from(comments)
+      .where(eq(comments.parentId, numericId));
+
+    const exists = (parentComment[0]?.count ?? 0) > 0;
+
+    if (exists) {
+      await db.delete(comments).where(eq(comments.parentId, numericId));
+      await db.delete(comments).where(eq(comments.id, numericId));
+    } else {
+      await db.delete(comments).where(eq(comments.id, numericId));
+    }
 
     return NextResponse.json("Successfully deleted comment");
   } catch (err) {

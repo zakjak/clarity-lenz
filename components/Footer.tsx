@@ -17,12 +17,12 @@ const Footer = () => {
         </div>
         <div className="md:grid md:grid-cols-2 gap-10 pt-4 flex justify-center">
           <div className="flex flex-col gap-2">
-            <h1 className="font-semibold">Company</h1>
+            <h1 className="font-semibold">Company:</h1>
             <Link href="/about-us">About us</Link>
           </div>
           <div className="flex flex-col gap-2">
             <div className="">
-              <h1 className="font-semibold whitespace-nowrap">Contact Us</h1>
+              <h1 className="font-semibold whitespace-nowrap">Contact Us:</h1>
             </div>
             <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
               <p>Facebook</p>

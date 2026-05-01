@@ -88,8 +88,10 @@ const CommentContent = ({
 
     if (isReply) {
       mutate(commentSection);
+      setIsReply(false);
     } else {
       mutateEdit(commentEdit);
+      setIsEditing(false);
     }
 
     form.reset();
@@ -259,7 +261,6 @@ const CommentContent = ({
                           placeholder="Enter comment..."
                           {...field}
                         />
-
                         <div className="pl-2">
                           <p className="text-sm">
                             Characters:{" "}
@@ -296,7 +297,7 @@ const CommentContent = ({
         <div className="bg-zinc-200 text-blaxk hover:bg-zinc-500 cursor-pointer w-6 h-6 text-black flex items-center rounded-full justify-center">
           {comment?.ownerId === ownerId && (
             <Popover>
-              <PopoverTrigger>
+              <PopoverTrigger className="cursor-pointer">
                 <CiMenuKebab />
               </PopoverTrigger>
               <PopoverContent className="mt-2 flex flex-col items-start mr-4">
