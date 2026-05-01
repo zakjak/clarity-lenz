@@ -21,7 +21,7 @@ const Search = () => {
   }, []);
 
   const handleSearch = (data: string) => {
-    router.push(`/search?q=${data.split(" ").join("+")}&page=${page}`);
+    router.push(`/search?q=${data.split(" ").join("+")}`);
   };
 
   return (
