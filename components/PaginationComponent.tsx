@@ -44,7 +44,7 @@ const PaginationComponent = ({
                   href={
                     query
                       ? `/search?q=${query}&page=${p}`
-                      : `/politics?page=${p}`
+                      : `/articles?page=${p}`
                   }
                 >
                   <Button disabled={p === "..."}>{p}</Button>
