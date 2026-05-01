@@ -31,8 +31,7 @@ const BannerMainPage = () => {
             Clarity Lenz
           </span>
         </h1>
-        <div className="mt-4 flex flex-col gap-2">
-          <h3 className="text-lg">Latest articles, tips, and online events</h3>
+        <div className="mt-2 md:mt-4 flex flex-col gap-2">
           <p className="text-xs text-zinc-100 w-[80%]">
             In-depth articles, powerful stories and meaningful conversations on
             the issues shaping our world

@@ -39,9 +39,9 @@ const DashboardSection = () => {
         setCurrentPage={setCurrentPage}
       />
       <div className="mt-10 flex flex-col gap-4 lg:w-[70%]">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-2">
           <h1 className="font-semibold">Admin:</h1>
-          <p className="text-sm">
+          <p className="text-sm ml-10">
             Maka a user Admin, relative no impact, they cannot edit, but they
             delete items such as articles, videos or events
           </p>

@@ -14,8 +14,10 @@ export const useDeleteArticle = () => {
       fetch(`/api/articles/article/${id}`, {
         method: "DELETE",
       }).then((data) => data.json()),
-    onSettled: () =>
-      queryClient.invalidateQueries({ queryKey: ["created-articles"] }),
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["created-articles"] });
+      queryClient.invalidateQueries({ queryKey: ["created-news"] });
+    },
   });
 };
 

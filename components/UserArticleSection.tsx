@@ -14,7 +14,7 @@ const UserArticleSection = ({ id }: { id: string }) => {
 
   return (
     <div>
-      {session?.user?.isAdmin && (
+      {session?.user?.isOwner && (
         <div className="grid grid-cols-2 my-8 gap-2 ">
           <CreateArticle open={open} setOpen={setOpen} />
           <CreateVideo />

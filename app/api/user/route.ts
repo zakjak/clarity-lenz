@@ -8,7 +8,7 @@ export async function GET(req: Request) {
     const usersAdmin = await db
       .select()
       .from(users)
-      .where(eq(users.isAdmin, true));
+      .where(eq(users.isOwner, true));
 
     return NextResponse.json(usersAdmin);
   } catch (err) {

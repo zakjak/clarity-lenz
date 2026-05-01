@@ -37,8 +37,6 @@ const CreatedVideos = ({
     return <CategoriesPageSkeleton />;
   }
 
-  console.log(createdVideos);
-
   return (
     <div className="">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 md:gap-4 gap-2">

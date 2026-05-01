@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 export const useCreatedNews = (authorsId: string, type: string) => {
   return useInfiniteQuery({
-    queryKey: ["created-articles", authorsId, type],
+    queryKey: ["created-news", authorsId, type],
     queryFn: ({ pageParam }) =>
       fetch(
         `/api/createdNews/${authorsId}?page=${pageParam}&type=${type}`,
