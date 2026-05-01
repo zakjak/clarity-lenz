@@ -26,13 +26,21 @@ const Footer = () => {
             </div>
             <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
               <p>Facebook</p>
-              <Link href="" target="_blank" className="p-2">
+              <Link
+                href="https://www.facebook.com/profile.php?id=61573817962038"
+                target="_blank"
+                className="p-2"
+              >
                 <FaFacebook size={15} />
               </Link>
             </div>
             <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
               <p>Twitter(X)</p>
-              <Link href="" target="_blank" className="p-2">
+              <Link
+                href="https://x.com/claritylenz?s=21"
+                target="_blank"
+                className="p-2"
+              >
                 <FaXTwitter size={15} />
               </Link>
             </div>

@@ -81,13 +81,13 @@ const ConsultingPage = () => {
     {
       id: 1,
       title: "Facebook",
-      method: "https://fb.com",
+      method: "https://www.facebook.com/profile.php?id=61573817962038",
       icon: <FaFacebook size={40} />,
     },
     {
       id: 1,
       title: "X (Twitter)",
-      method: "https://x.com",
+      method: "https://x.com/claritylenz?s=21",
       icon: <FaXTwitter size={40} />,
     },
     {
