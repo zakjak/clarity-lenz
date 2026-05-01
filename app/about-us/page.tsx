@@ -14,7 +14,7 @@ const AboutPage = () => {
     },
     {
       id: 2,
-      image: "/images/ceo.jpeg",
+      image: "/images/executives/boris.jpeg",
       name: "Boris Bate",
       position: "Director of Communications",
     },
