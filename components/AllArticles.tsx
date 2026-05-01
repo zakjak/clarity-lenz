@@ -18,7 +18,7 @@ const AllArticles = ({ page }: { page: string }) => {
   }
 
   return (
-    <div className="w-full pt-6">
+    <div className="w-full py-6">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 lg:gap-6 lg:w-240 md:w-160 w-[70%] mx-auto">
         {articles?.map((story) => (
           <TopCategoryStory key={story.id} topStory={story} />

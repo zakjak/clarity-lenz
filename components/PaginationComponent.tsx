@@ -8,7 +8,7 @@ import { useState } from "react";
 import { getPaginationRange } from "@/lib/utils/helpers";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const PaginationComponent = ({
   pageNumber,
@@ -18,8 +18,8 @@ const PaginationComponent = ({
   query?: string;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const path = usePathname();
-  console.log(path);
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
 
   const handlePageClick = (page: number) => {
     if (page < 1 || page > pageNumber) return;
@@ -47,7 +47,13 @@ const PaginationComponent = ({
                       : `/articles?page=${p}`
                   }
                 >
-                  <Button disabled={p === "..."}>{p}</Button>
+                  <Button
+                    disabled={p === "..."}
+                    variant={`${Number(page) === p ? "secondary" : "outline"}`}
+                    className={`${Number(page) === p ? "border border-white" : ""} cursor-pointer`}
+                  >
+                    {p}
+                  </Button>
                 </Link>
               </div>
             ),
