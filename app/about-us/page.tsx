@@ -113,12 +113,12 @@ const AboutPage = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {staffs.map((staff) => (
                 <div key={staff.id} className="flex flex-col gap-1">
-                  <div className="relative w-full h-50">
+                  <div className="relative w-full h-60 rounded-sm overflow-hidden">
                     <Image
-                      src="/images/ceo.jpeg"
-                      alt=""
+                      src={staff.image}
+                      alt={`${staff.name} image`}
                       fill
-                      className="absolute object-cover"
+                      className="absolute object-cover object-top"
                     />
                   </div>
                   <h2 className="font-semibold">{staff.name}</h2>
