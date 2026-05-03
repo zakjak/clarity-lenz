@@ -1,6 +1,6 @@
 import { db } from "@/lib";
 import { articles } from "@/lib/db/articles";
-import { count, eq } from "drizzle-orm";
+import { count, desc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
@@ -22,7 +22,8 @@ export async function GET(req: Request) {
       .from(articles)
       .where(eq(articles.isDraft, false))
       .limit(10)
-      .offset(calculatePageNumber);
+      .offset(calculatePageNumber)
+      .orderBy(desc(articles.date));
 
     return NextResponse.json({ response, pageNumber });
   } catch (err) {
