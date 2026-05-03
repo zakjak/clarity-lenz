@@ -113,7 +113,7 @@ const AboutPage = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {staffs.map((staff) => (
                 <div key={staff.id} className="flex flex-col gap-1">
-                  <div className="relative w-full h-60 rounded-sm overflow-hidden">
+                  <div className="relative w-full h-55 rounded-sm overflow-hidden">
                     <Image
                       src={staff.image}
                       alt={`${staff.name} image`}

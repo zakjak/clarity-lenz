@@ -20,7 +20,7 @@ const BannerMainPage = () => {
         src="/images/ceo.jpeg"
         fill
         alt="Banner image, lady on a laptop"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover object-center"
       />
       <div className="absolute bottom-16 md:bottom-30 lg:bottom-60 text-white left-10">
         <h1 className="text-3xl md:text-4xl lg:text-5xl whitespace-nowrap">
