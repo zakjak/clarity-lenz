@@ -78,7 +78,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <IoIosSearch
-              className="block lg:hidden dark:text-[#B0B7CE] mr-5 text-zinc-100"
+              className="block lg:hidden dark:text-[#B0B7CE] mr-5 text-zinc-400 cursor-pointer"
               size={23}
               onClick={() => setIsOpen(!isOpen)}
             />

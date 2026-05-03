@@ -5,10 +5,10 @@ import {
   PaginationItem,
 } from "@/components/ui/pagination";
 import { useState } from "react";
-import { getPaginationRange } from "@/lib/utils/helpers";
+import { getPaginationRange, slugify } from "@/lib/utils/helpers";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const PaginationComponent = ({
   pageNumber,
@@ -44,14 +44,14 @@ const PaginationComponent = ({
                   onClick={() => handlePageClick(p as number)}
                   href={
                     query
-                      ? `/search?q=${query}&page=${p}`
+                      ? `/search?q=${slugify(query)}&page=${p}`
                       : `/articles?page=${p}`
                   }
                 >
                   <Button
                     disabled={p === "..."}
                     variant={`${Number(page) === p || isFirstPage ? "secondary" : "outline"}`}
-                    className={`${Number(page) === p ? "border border-white" : ""} cursor-pointer`}
+                    className={`${Number(page) === p ? "border dark:border-white border-amber-800 text-amber-800 dark:text-white" : ""} cursor-pointer`}
                   >
                     {p}
                   </Button>

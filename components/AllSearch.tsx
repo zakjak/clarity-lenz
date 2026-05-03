@@ -35,7 +35,7 @@ const AllSearch = ({ page, q }: { page: string; q: string }) => {
                 ${data?.countRows[0]?.count} for ${q?.replaceAll("+", " ")}`;
     }
   };
-  console.log(articles);
+
   return (
     <div className="p-8 mx-auto lg:w-[60%] md:w-[80%]">
       <div className="">
