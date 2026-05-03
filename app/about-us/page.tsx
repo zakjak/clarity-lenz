@@ -8,7 +8,7 @@ const AboutPage = () => {
   const staffs = [
     {
       id: 1,
-      image: "/images/ceo.jpeg",
+      image: "/images/executives/zak.jpeg",
       name: "Yakubu Zakaria",
       position: "Digital Coordinator",
     },
