@@ -132,7 +132,7 @@ const AboutPage = () => {
 
       <div className="flex flex-col gap-4 bg-[#131A2E] text-white p-8">
         <h1 className="text-3xl font-semibold pt-8">
-          Connect with out Purpose.
+          Connect with our Purpose.
         </h1>
         <p className=" w-[80%] md:w-[60%] lg:w-[40%] text-sm text-zinc-200">
           We are here to support your journey towards clarity. Whether you have
