@@ -20,13 +20,13 @@ const AboutPage = () => {
     },
     {
       id: 3,
-      image: "/images/ceo.jpeg",
+      image: "/images/executives/aman.jpeg",
       name: "Aman Arora",
       position: "Logistics Manager",
     },
     {
       id: 4,
-      image: "/images/ceo.jpeg",
+      image: "/images/executives/wuraola.jpeg",
       name: "Wuraola Ogooluwa",
       position: "Events Manager",
     },
@@ -63,13 +63,16 @@ const AboutPage = () => {
               className="object-cover"
             />
           </div>
-          <div className="grid md:grid-cols-2 md:p-6 items-end">
-            <h4 className="text-[#E15724] text-[0.7rem] my-4 md:hidden">
+          <div className="grid lg:grid-cols-2 md:p-6 items-end">
+            <h4 className="text-[#E15724] text-[0.7rem] my-4 lg:hidden">
               THE VISIONARY
             </h4>
-            <h1 className="text-2xl lg:text-3xl font-semibold text-zinc-800 dark:text-zinc-300 md:hidden mb-5">
+            <h1 className="text-2xl lg:text-3xl font-semibold text-zinc-800 dark:text-zinc-300 lg:hidden mb-2">
               Dr. Dorcas Eyinla (Drock)
             </h1>
+            <p className="mb-2 text-sm block lg:hidden dark:text-zinc-200 text-zinc-700">
+              PhD in Petroleum Engineering
+            </p>
             <div className="relative h-100 lg:h-120 rounded-sm overflow-hidden">
               <Image
                 src="/images/ceo.jpeg"
@@ -78,37 +81,51 @@ const AboutPage = () => {
                 className="object-cover absolute"
               />
             </div>
-            <div className="flex flex-col justify-center gap-4 md:gap-6 pl-8 pt-10 md:pt-0">
-              <h4 className="text-[#E15724] text-[0.7rem]  hidden md:block">
+            <div className="flex flex-col justify-center gap-4 md:gap-6 pl-8 pt-10 lg:pt-0">
+              <h4 className="text-[#E15724] text-[0.7rem]  hidden lg:block">
                 THE VISIONARY
               </h4>
-              <h1 className="text-2xl lg:text-3xl font-semibold text-zinc-800 dark:text-zinc-300 hidden md:block">
+              <h1 className="text-2xl lg:text-3xl font-semibold text-zinc-800 dark:text-zinc-300 hidden lg:block">
                 Dr. Dorcas Eyinla (Drock)
               </h1>
               <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-300">
-                <p className="">PhD in Petroleum Engineering</p>
+                <p className="hidden lg:block">PhD in Petroleum Engineering</p>
                 <p>
-                  Clarity Lenz was founded by Dr. Dorcas Eyinla (Drock), a PhD
-                  graduate in Petroleum Engineering who works in the oil and gas
-                  industry but is called to a greater mission—raising a
-                  generation of whole and purpose-driven individuals. This
-                  vision is expressed
+                  Clarity Lenz was founded by Dr. Dorcas Eyinla (Drock), a
+                  distinguished professional with dual doctorates in Petroleum
+                  Engineering and Petroleum Geoscience. While she actively works
+                  within the oil and gas industry, her calling extends far
+                  beyond her technical career.
                 </p>
                 <p>
-                  Through the{" "}
-                  <span className="font-semibold">Love and Life Clinic</span>,
-                  she has pioneered a mission to raise purpose-driven
-                  individuals who are not just successful in their careers, but
-                  whole in their character and relationships. Her leadership at
-                  Clarity Lenz is the bridge between professional mastery and
-                  spiritual introspection.
+                  Driven by a deep passion for transformation, she is committed
+                  to raising a generation of whole, self-aware, and
+                  purpose-driven individuals. This vision comes to life through
+                  the{" "}
+                  <span className="font-semibold">Love and Life Clinic—a</span>{" "}
+                  mission she pioneered—which has earned her the name “The Love
+                  Doctor.”
+                </p>
+                <p>
+                  At the heart of her work is a clear mandate to nurture
+                  individuals who are not only successful in their careers, but
+                  also grounded in character, emotionally whole, and intentional
+                  in their relationships.
+                </p>
+                <p>
+                  With over <span className="font-semibold">15 years</span> of
+                  continuous coaching and leadership experience, Dr. Dorcas
+                  bridges the gap between professional mastery and spiritual
+                  introspection. Through Clarity Lenz, she equips people to live
+                  with clarity, purpose, and authenticity both in their personal
+                  lives and professional journeys.
                 </p>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-8 pt-8">
             <h1 className="text-3xl md:text-4xl font-semibold text-zinc-800 dark:text-zinc-300">
-              The Management Team
+              The Team
             </h1>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {staffs.map((staff) => (
