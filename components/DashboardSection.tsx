@@ -8,14 +8,31 @@ import {
 } from "@/hooks/useDashboard";
 import { useState } from "react";
 import { redirect } from "next/navigation";
+import DashboardSearch from "./DashboardSearch";
+import { useRouter } from "next/navigation";
+import { useSearchUser } from "@/hooks/useUser";
 
-const DashboardSection = () => {
+const DashboardSection = ({
+  search,
+  page,
+}: {
+  search: string;
+  page: string;
+}) => {
   const { data: session, status } = useSession();
   const [currentPage, setCurrentPage] = useState(0);
-  const { data } = useDashboardStats(session?.user?.id as string, currentPage);
+  const { data: dataStats } = useDashboardStats(
+    session?.user?.id as string,
+    currentPage,
+  );
   const { data: allUsers } = useDashboardUsersTable(
     session?.user?.id as string,
   );
+
+  const { data: dataSearch } = useSearchUser(search, page);
+  console.log(search);
+
+  const router = useRouter();
 
   if (status === "loading") {
     return null;
@@ -25,16 +42,27 @@ const DashboardSection = () => {
     redirect("/");
   }
 
+  const handleSearch = (data: string) => {
+    if (search) {
+      router.push(
+        `/dashboard/${session?.user?.id}?q=${data.split(" ").join("+")}`,
+      );
+    } else {
+      router.push(`/dashboard/${session?.user?.id}`);
+    }
+  };
+
   return (
-    <div className="p-14 max-w-280 mx-auto">
+    <div className="p-14 max-w-280 mx-auto flex flex-col gap-10">
       <DashboardStats
-        totalUsers={data?.totalUsers[0]?.count}
-        totalCoAuthors={data?.totalCoAuthors[0]?.count}
-        totalAdminUsers={data?.totalAdminUsers[0]?.count}
+        totalUsers={dataStats?.totalUsers[0]?.count}
+        totalCoAuthors={dataStats?.totalCoAuthors[0]?.count}
+        totalAdminUsers={dataStats?.totalAdminUsers[0]?.count}
       />
+      <DashboardSearch onSearch={handleSearch} />
       <TablePanel
-        users={allUsers?.users}
-        pageNumber={data?.pageNumber}
+        users={search ? dataSearch?.searchUsers : allUsers?.users}
+        pageNumber={dataStats?.pageNumber}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />

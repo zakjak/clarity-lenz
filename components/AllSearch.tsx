@@ -32,7 +32,7 @@ const AllSearch = ({ page, q }: { page: string; q: string }) => {
       return `Displaying ${(page - 1) * 10 + 1}-${
         data?.countRows[0]?.count
       } results out of ${" "}
-                ${data?.countRows[0]?.count} for ${q?.replaceAll("+", " ")}`;
+        ${data?.countRows[0]?.count} for ${q?.replaceAll("+", " ")}`;
     }
   };
 

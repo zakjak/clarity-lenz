@@ -17,8 +17,6 @@ export async function GET(
     const type = String(searchParams.get("type")) || "articles";
     const calculatePageNumber = (page - 1) * 10;
 
-    console.log(type);
-
     if (type === "articles") {
       const createdArticles = await db
         .select()

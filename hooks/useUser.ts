@@ -70,3 +70,19 @@ export const useUpdateUserProfile = (userId: string) => {
       queryClient.invalidateQueries({ queryKey: ["author", userId] }),
   });
 };
+
+const fetchSearchUser = async (q: string, page: string) => {
+  const res = await fetch(`/api/user/search?q=${q}&page=${page}`);
+  if (!res.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return res.json();
+};
+
+export const useSearchUser = (q: string, page: string) => {
+  return useQuery({
+    queryKey: ["dashboard-allusers", q, page],
+    queryFn: () => fetchSearchUser(q, page),
+    placeholderData: keepPreviousData,
+  });
+};
