@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import CreateArticle from "./CreateArticle";
 import SavedArticles from "./SavedArticles";
 import { useSession } from "next-auth/react";

@@ -139,17 +139,19 @@ export const plateToHtml = (
           titles
         ) {
           components.push(
-            <div
-              key={`img-${imageIndex}`}
-              className="relative w-full h-100 max-w-3xl mx-auto my-6"
-            >
-              <Image
-                src={images[imageIndex]}
-                alt={`Article image ${imageIndex + 1}`}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="rounded-lg object-cover absolute"
-              />
+            <div className="p-4">
+              <div
+                key={`img-${imageIndex}`}
+                className="relative w-full h-100 max-w-3xl  mt-6"
+              >
+                <Image
+                  src={images[imageIndex]}
+                  alt={`Article image ${imageIndex + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="rounded-lg object-cover absolute"
+                />
+              </div>
               <h3 className="text-xs text-zinc-400 mt-2">
                 {titles[imageIndex]}
               </h3>

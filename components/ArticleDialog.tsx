@@ -202,6 +202,7 @@ const ArticleDialog = ({
     values: z.infer<typeof formSchema>,
     isDraft: boolean,
   ) => {
+    setIsSubmitting(true);
     const formData = new FormData();
 
     if (values.image && values.image instanceof File) {
@@ -224,7 +225,6 @@ const ArticleDialog = ({
         throw new Error("Upload failed");
       }
       const resultUploads = await responseUpload.json();
-      console.log(resultUploads);
 
       if (resultUploads) {
         if (imagePreview?.startsWith("https")) {

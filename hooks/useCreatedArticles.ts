@@ -40,8 +40,11 @@ export const useCreateArticle = (userId: string) => {
     mutationFn: (article: Article) => createArticle(article),
 
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["created-articles", userId] });
+      queryClient.invalidateQueries({
+        queryKey: ["created-articles"],
+      });
       queryClient.invalidateQueries({ queryKey: ["draft-articles", userId] });
+      queryClient.invalidateQueries({ queryKey: ["created-news", userId] });
     },
   });
 };
@@ -69,6 +72,9 @@ export const useEditArticle = () => {
     onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: ["created-articles"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["created-news"],
       });
       queryClient.invalidateQueries({
         queryKey: ["draft-articles"],
