@@ -23,16 +23,23 @@ const Navbar = () => {
       <div className="w-full h-15 md:h-20 flex">
         <div className="w-[95%] flex justify-between mx-auto items-center">
           <div className="flex gap-5 items-center">
-            <div className="flex items-center">
-              <Link
-                href="/"
-                className="w-30 h-30 md:w-40 md:h-30 relative mt-5 md:mt-0 "
-              >
+            <div className="items-center overflow-hidden w-30 h-22 md:w-40 relative hidden dark:flex">
+              <Link href="/" className="mt-5 md:mt-0">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo_darkmode.png"
                   fill
                   alt="Clarity Lenz Logo"
-                  className="absolute object-cover"
+                  className="absolute object-cover  object-top"
+                />
+              </Link>
+            </div>
+            <div className="flex items-center overflow-hidden w-30 h-22 md:w-40 relative dark:hidden">
+              <Link href="/" className="mt-5 md:mt-0">
+                <Image
+                  src="/images/logo_lightmode.png"
+                  fill
+                  alt="Clarity Lenz Logo"
+                  className="absolute object-cover  object-top"
                 />
               </Link>
             </div>
