@@ -55,7 +55,7 @@ const Navbar = () => {
                 href="/about-us"
                 className={`${pathname === "/about-us" ? "border-b-3 border-[#363384]" : ""}`}
               >
-                About Us
+                About
               </Link>
               <Link
                 href="/articles"
