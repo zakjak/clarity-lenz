@@ -1,5 +1,5 @@
+"use client";
 import { EventProp } from "@/lib/types/users";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Card, CardFooter } from "./ui/card";
 import Link from "next/link";
@@ -22,18 +22,23 @@ import moment from "moment";
 import { IoCalendarOutline } from "react-icons/io5";
 import { TiTicket } from "react-icons/ti";
 import { useDeleteEvent } from "@/hooks/useEvents";
+import { useSession } from "next-auth/react";
 
 const TopCategoryEvent = ({ event }: { event: EventProp }) => {
   const [openDelete, setOpenDelete] = useState(false);
+  const { data: session } = useSession();
 
   const { mutate } = useDeleteEvent();
-  const pathname = usePathname();
-  const isProfile = pathname.includes("/events");
 
   const start = moment(event?.eventStart);
   const end = moment(event?.eventEnd);
   const duration = moment.duration(end.diff(start));
   const formatted = `${duration.hours()}h ${duration.minutes()}m`;
+
+  const isAdminOwner = session?.user?.isAdmin && session?.user?.isOwner;
+
+  const isAuthor = event?.ownerId === session?.user?.id;
+  const canDelete = isAdminOwner || isAuthor;
 
   return (
     <>
@@ -49,7 +54,7 @@ const TopCategoryEvent = ({ event }: { event: EventProp }) => {
             />
           </Link>
           <div>
-            {isProfile && (
+            {canDelete && (
               <>
                 <div className="flex flex-col gap-2 absolute top-3 right-3">
                   <Button

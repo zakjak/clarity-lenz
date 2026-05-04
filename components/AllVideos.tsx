@@ -17,8 +17,6 @@ const AllVideos = ({ page }: { page: string }) => {
     return <CategoriesPageSkeleton />;
   }
 
-  console.log(videos);
-
   return (
     <div className="w-full pt-6">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 lg:gap-6 lg:w-240 md:w-160 w-[70%] mx-auto">

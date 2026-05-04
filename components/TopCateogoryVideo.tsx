@@ -27,6 +27,11 @@ const TopCateogoryVideo = ({ video }: { video: Video }) => {
 
   const { mutate } = useDeleteVideo();
 
+  const isAdminOwner = session?.user?.isAdmin && session?.user?.isOwner;
+
+  const isAuthor = video?.ownerId === session?.user?.id;
+  const canDelete = isAdminOwner || isAuthor;
+
   return (
     <div className="relative">
       <Dialog>
@@ -86,7 +91,7 @@ const TopCateogoryVideo = ({ video }: { video: Video }) => {
           </div>
         </DialogContent>
       </Dialog>
-      {video?.ownerId === session?.user?.id && (
+      {canDelete && (
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button

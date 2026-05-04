@@ -14,6 +14,7 @@ export const events = table("events", {
   password: t.text("password"),
   eventStart: t.timestamp("event_start", { withTimezone: true }).notNull(),
   eventEnd: t.timestamp("event_end", { withTimezone: true }).notNull(),
+  ownerId: t.text("owner_id").references(() => users.id),
   createdAt: t
     .timestamp("created_at", { withTimezone: true })
     .defaultNow()

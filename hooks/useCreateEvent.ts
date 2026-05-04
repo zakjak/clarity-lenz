@@ -14,13 +14,13 @@ const createEvent = async (formData: FormData) => {
   return res.json();
 };
 
-export const useCreateEvent = (userId: string) => {
+export const useCreateEvent = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (formData: FormData) => createEvent(formData),
 
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["created-events", userId] });
+      queryClient.invalidateQueries({ queryKey: ["created-events"] });
     },
   });
 };

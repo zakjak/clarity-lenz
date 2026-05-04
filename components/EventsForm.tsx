@@ -27,6 +27,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Textarea } from "./ui/textarea";
 import { useCreateEvent } from "@/hooks/useCreateEvent";
 import { User } from "@/lib/types/users";
+import { useSession } from "next-auth/react";
 
 const formSchema = z
   .object({
@@ -70,6 +71,7 @@ const EventsForm = ({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openCalendar, setOpenCalendar] = useState(false);
+  const { data: session } = useSession();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -88,7 +90,7 @@ const EventsForm = ({
     },
   });
 
-  const { mutate } = useCreateEvent(user?.id);
+  const { mutate } = useCreateEvent();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -111,9 +113,7 @@ const EventsForm = ({
     const formData = new FormData();
 
     if (values.image && values.image instanceof File) {
-      const bytes = await values.image.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      formData.append("file", new Blob([buffer]), values?.image.name);
+      formData.append("file", values.image);
     }
 
     formData.append("title", values.title);
@@ -126,6 +126,7 @@ const EventsForm = ({
     formData.append("password", values.password ?? "");
     formData.append("platform", values.platform ?? "");
     formData.append("timezone", values.timezone ?? "");
+    formData.append("ownerId", session?.user?.id ?? "");
 
     try {
       mutate(formData);

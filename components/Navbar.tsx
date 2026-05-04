@@ -52,6 +52,12 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
+                href="/about-us"
+                className={`${pathname === "/about-us" ? "border-b-3 border-[#363384]" : ""}`}
+              >
+                About Us
+              </Link>
+              <Link
                 href="/articles"
                 className={`${pathname === "/articles" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
               >
@@ -102,6 +108,12 @@ const Navbar = () => {
             className={`${pathname === "/" ? "border-b-3 border-[#363384]" : ""}`}
           >
             Home
+          </Link>
+          <Link
+            href="/about-us"
+            className={`${pathname === "/about-us" ? "border-b-3 border-[#363384]" : ""}`}
+          >
+            About Us
           </Link>
           <Link
             href="/articles"

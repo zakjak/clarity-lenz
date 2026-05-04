@@ -17,6 +17,7 @@ export type EventProp = {
   eventEnd: string;
   platform: string;
   timezone: string;
+  ownerId: string;
 };
 
 export type Session = {

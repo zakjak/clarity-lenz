@@ -17,6 +17,7 @@ export async function POST(req: Request) {
   const endTime = formData.get("endTime") as string;
   const eventDate = formData.get("eventDate") as string;
   const timezone = formData.get("timezone") as string;
+  const ownerId = formData.get("ownerId") as string;
 
   try {
     if (image && image instanceof File) {
@@ -40,6 +41,7 @@ export async function POST(req: Request) {
             eventEnd,
             platform,
             timezone,
+            ownerId,
           })
           .returning();
         return NextResponse.json(response);

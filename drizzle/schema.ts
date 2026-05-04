@@ -61,21 +61,6 @@ export const readlist = pgTable("readlist", {
 	articleId: integer(),
 });
 
-export const events = pgTable("events", {
-	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "events_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),
-	title: varchar({ length: 300 }).notNull(),
-	timezone: varchar({ length: 300 }).notNull(),
-	description: text(),
-	image: text().notNull(),
-	link: text(),
-	platform: text(),
-	meetingId: text("meeting_id"),
-	password: text(),
-	eventStart: timestamp("event_start", { withTimezone: true, mode: 'string' }).notNull(),
-	eventEnd: timestamp("event_end", { withTimezone: true, mode: 'string' }).notNull(),
-	createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
-});
-
 export const eventsRegister = pgTable("events_register", {
 	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "events_register_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),
 	userId: uuid("user_id"),
@@ -119,6 +104,22 @@ export const authenticator = pgTable("authenticator", {
 }, (table) => [
 	unique("authenticator_credentialID_unique").on(table.credentialId),
 ]);
+
+export const events = pgTable("events", {
+	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "events_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),
+	title: varchar({ length: 300 }).notNull(),
+	timezone: varchar({ length: 300 }).notNull(),
+	description: text(),
+	image: text().notNull(),
+	link: text(),
+	platform: text(),
+	meetingId: text("meeting_id"),
+	password: text(),
+	eventStart: timestamp("event_start", { withTimezone: true, mode: 'string' }).notNull(),
+	eventEnd: timestamp("event_end", { withTimezone: true, mode: 'string' }).notNull(),
+	createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	ownerId: text("owner_id"),
+});
 
 export const session = pgTable("session", {
 	sessionToken: text().primaryKey().notNull(),

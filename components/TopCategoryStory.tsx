@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Card } from "./ui/card";
-import { Separator } from "./ui/separator";
 import Link from "next/link";
 import { calculateTime, slugify } from "@/lib/utils/helpers";
 import { Article } from "@/lib/types/article";
@@ -36,11 +35,15 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
 
   const { mutate } = useDeleteArticle();
   const pathname = usePathname();
-  const isProfile = pathname.includes("/profile");
 
   const handleEdit = () => {
     setOpen(true);
   };
+
+  const isAdminOwner = session?.user?.isAdmin && session?.user?.isOwner;
+
+  const isAuthor = topStory?.authors?.includes(session?.user?.id as string);
+  const canDelete = isAdminOwner || isAuthor;
 
   return (
     <>
@@ -61,19 +64,21 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
             </div>
           </Link>
           <div>
-            {isProfile && (
+            {canDelete && (
               <>
                 <div className="flex flex-col gap-2 absolute top-3 right-3">
-                  {topStory?.authors?.includes(session?.user?.id as string) && (
-                    <Button
-                      variant="destructive"
-                      onClick={() => setOpenDelete(true)}
-                      className="rounded-full cursor-pointer hover:bg-red-600 font-semibold"
-                    >
-                      <AiOutlineDelete />
-                      Delete
-                    </Button>
-                  )}
+                  {/* {topStory?.authors?.includes(
+                      session?.user?.id as string,
+                    ) && ( */}
+                  <Button
+                    variant="destructive"
+                    onClick={() => setOpenDelete(true)}
+                    className="rounded-full cursor-pointer hover:bg-red-600 font-semibold"
+                  >
+                    <AiOutlineDelete />
+                    Delete
+                  </Button>
+                  {/* )} */}
 
                   <Dialog
                     open={open}
