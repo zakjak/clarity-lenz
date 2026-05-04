@@ -33,7 +33,7 @@ const Navbar = () => {
                 />
               </Link>
             </div>
-            <div className="flex items-center overflow-hidden w-30 h-22 md:w-40 relative dark:hidden">
+            <div className="flex items-center overflow-hidde w-30 h-23 md:w-40 relative dark:hidden">
               <Link href="/" className="mt-5 md:mt-0">
                 <Image
                   src="/images/logo_lightmode.png"
