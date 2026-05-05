@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebook, FaRegCopyright, FaEnvelope } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaRegCopyright,
+  FaEnvelope,
+  FaYoutube,
+} from "react-icons/fa";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 
 const Footer = () => {
@@ -27,13 +32,15 @@ const Footer = () => {
           <div className="md:grid md:grid-cols-2 gap-10 pt-4 flex justify-center">
             <div className="flex flex-col gap-2">
               <h1 className="font-semibold">Company:</h1>
-              <Link href="/about-us">About us</Link>
+              <Link href="/about-us" className="hover:underline">
+                About us
+              </Link>
             </div>
             <div className="flex flex-col gap-2">
               <div className="">
                 <h1 className="font-semibold whitespace-nowrap">Contact Us:</h1>
               </div>
-              <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
+              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
                 <p>Facebook</p>
                 <Link
                   href="https://www.facebook.com/profile.php?id=61573817962038"
@@ -43,7 +50,7 @@ const Footer = () => {
                   <FaFacebook size={15} />
                 </Link>
               </div>
-              <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
+              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
                 <p>Twitter(X)</p>
                 <Link
                   href="https://x.com/claritylenz?s=21"
@@ -54,14 +61,21 @@ const Footer = () => {
                 </Link>
               </div>
 
-              <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
+              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
                 <p>LinkedIn</p>
                 <Link href="" target="_blank" className="p-2 rounded-lg">
                   <FaLinkedin size={15} />
                 </Link>
               </div>
 
-              <div className="flex items-center cursor-pointer hover:bg-zinc-950 p-1 rounded-lg">
+              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
+                <p>Youtube</p>
+                <Link href="" target="_blank" className="p-2 rounded-lg">
+                  <FaYoutube size={15} />
+                </Link>
+              </div>
+
+              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
                 <p>Email</p>
                 <Link
                   href="mailto:zakjak456@gmail.com"
