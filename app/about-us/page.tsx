@@ -36,7 +36,6 @@ const AboutPage = () => {
     <div className="">
       <div className="lg:max-w-280 mx-auto ">
         <div className="flex flex-col gap-4 p-6 md:p-20 lg:p-24">
-          <h4 className="text-[#E15724] text-[0.7rem]">ABOUT OUR VISION</h4>
           <h1 className="text-3xl md:text-4xl font-semibold text-zinc-800 dark:text-zinc-300">
             Architecture of Purpose
           </h1>
