@@ -141,7 +141,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-      <div className="block lg:hidden">{isOpen && <Search />}</div>
+      <div className="block lg:hidden md:mt-5">{isOpen && <Search />}</div>
     </div>
   );
 };
