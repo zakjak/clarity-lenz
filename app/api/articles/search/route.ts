@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   try {
     const page = Number(searchParams.get("page")) || 1;
     const q = String(searchParams.get("q"));
-    const query = q.replaceAll("+", " ");
+    const query = q.replaceAll("-", " ");
 
     const calculatePageNumber = (page - 1) * 10;
 
