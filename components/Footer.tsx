@@ -68,12 +68,16 @@ const Footer = () => {
                 </Link>
               </div>
 
-              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
-                <p>Youtube</p>
-                <Link href="" target="_blank" className="p-2 rounded-lg">
+              <Link
+                href="https://youtube.com/@claritylenz?si=K05VCKQUVMUk4zfL"
+                target="_blank"
+                className="rounded-lg"
+              >
+                <div className="flex gap-2 items-center cursor-pointer hover:underline ">
+                  <p>Youtube</p>
                   <FaYoutube size={15} />
-                </Link>
-              </div>
+                </div>
+              </Link>
 
               <div className="flex items-center cursor-pointer hover:underline rounded-lg">
                 <p>Email</p>
