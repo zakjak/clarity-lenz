@@ -1,10 +1,9 @@
 import BannerMainPage from "@/components/BannerMainPage";
 import LatestArticlesComponent from "@/components/LatestArticlesComponent";
 import UpcomingEventsComponent from "@/components/UpcomingEventsComponent";
-
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       {/* Home Banner */}

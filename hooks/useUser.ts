@@ -86,3 +86,31 @@ export const useSearchUser = (q: string, page: string) => {
     placeholderData: keepPreviousData,
   });
 };
+
+const fetchSignUpUser = async (
+  name: string,
+  email: string,
+  password: string,
+) => {
+  const res = await fetch(`/api/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password }),
+  });
+  if (!res.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return res.json();
+};
+
+export const useSignUpUser = (
+  name: string,
+  email: string,
+  password: string,
+) => {
+  return useQuery({
+    queryKey: ["signUp"],
+    queryFn: () => fetchSignUpUser(name, email, password),
+    placeholderData: keepPreviousData,
+  });
+};

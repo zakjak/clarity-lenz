@@ -135,6 +135,7 @@ export const user = pgTable("user", {
 	isAdmin: boolean("is_admin").default(false),
 	isOwner: boolean("is_owner").default(false),
 	image: text(),
+	password: text(),
 }, (table) => [
 	unique("user_email_unique").on(table.email),
 ]);

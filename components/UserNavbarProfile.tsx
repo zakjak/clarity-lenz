@@ -86,7 +86,9 @@ const UserNavbarProfile = () => {
           </PopoverContent>
         </Popover>
       ) : (
-        <Button onClick={() => signIn("google")}>Sign in</Button>
+        <Button>
+          <Link href="/sign-in">Sign in</Link>
+        </Button>
       )}
     </>
   );
