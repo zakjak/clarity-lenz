@@ -40,26 +40,23 @@ const Footer = () => {
               <div className="">
                 <h1 className="font-semibold whitespace-nowrap">Contact Us:</h1>
               </div>
-              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
-                <p>Facebook</p>
-                <Link
-                  href="https://www.facebook.com/profile.php?id=61573817962038"
-                  target="_blank"
-                  className="p-2"
-                >
+
+              <Link
+                href="https://www.facebook.com/profile.php?id=61573817962038"
+                target="_blank"
+              >
+                <div className="flex items-center gap-2 cursor-pointer hover:underline rounded-lg">
+                  <p>Facebook</p>
                   <FaFacebook size={15} />
-                </Link>
-              </div>
-              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
-                <p>Twitter(X)</p>
-                <Link
-                  href="https://x.com/claritylenz?s=21"
-                  target="_blank"
-                  className="p-2"
-                >
+                </div>
+              </Link>
+
+              <Link href="https://x.com/claritylenz?s=21" target="_blank">
+                <div className="flex items-center gap-2 cursor-pointer hover:underline rounded-lg">
+                  <p>Twitter(X)</p>
                   <FaXTwitter size={15} />
-                </Link>
-              </div>
+                </div>
+              </Link>
 
               <div className="flex items-center cursor-pointer hover:underline rounded-lg">
                 <p>LinkedIn</p>
@@ -79,15 +76,15 @@ const Footer = () => {
                 </div>
               </Link>
 
-              <div className="flex items-center cursor-pointer hover:underline rounded-lg">
-                <p>Email</p>
-                <Link
-                  href="mailto:zakjak456@gmail.com"
-                  className="p-2 rounded-lg"
-                >
+              <Link
+                href="mailto:info@claritylenz.com"
+                className="p-2 rounded-lg "
+              >
+                <div className="cursor-pointer hover:underline rounded-lg flex items-center gap-2">
+                  <p>Email</p>
                   <FaEnvelope size={15} />
-                </Link>
-              </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

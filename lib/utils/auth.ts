@@ -122,6 +122,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async jwt({ token, account, profile, user }) {
       // Runs first when user signs in
       if (user) token.id = user.id;
+
       if (account && profile) {
         token.id = profile.sub; // Google user ID
         token.picture = profile.picture; // Google profile image
@@ -129,11 +130,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      // Attach custom fields to session
       if (token) {
-        session.user.id = token.id as string;
-        session.user.image = token.picture as string;
+        const [user] = await db
+          .select()
+          .from(users)
+          .where(eq(users.id, token.id as string))
+          .limit(1);
+
+        if (user) {
+          session.user.id = user.id;
+          session.user.image = user.image;
+          session.user.name = user.name;
+          session.user.email = user.email || "";
+          session.user.isAdmin = user.isAdmin as boolean;
+          session.user.isOwner = user.isOwner as boolean;
+        }
       }
+
       return session;
     },
   },

@@ -8,6 +8,8 @@ import { useState } from "react";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { Input } from "./ui/input";
 import { User } from "@/lib/types/users";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   profilePicture: z.union([
@@ -19,6 +21,8 @@ const formSchema = z.object({
 const AboutUser = ({ user }: { user: User }) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { update } = useSession();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -30,8 +34,6 @@ const AboutUser = ({ user }: { user: User }) => {
   const handleIconClick = () => {
     fileInputRef.current?.click();
   };
-
-  console.log(user);
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -63,11 +65,14 @@ const AboutUser = ({ user }: { user: User }) => {
         });
 
         if (responseProfile.ok) {
+          await update();
           await responseProfile.json();
         }
       }
     }
   };
+
+  console.log(user);
 
   return (
     <>

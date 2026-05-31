@@ -28,6 +28,7 @@ export async function POST(
 ): Promise<NextResponse> {
   const { id } = await params;
   const body = await req.json();
+
   const {
     profileImage,
     username,

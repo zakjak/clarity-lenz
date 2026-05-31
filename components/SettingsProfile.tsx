@@ -57,7 +57,6 @@ const SettingsProfile = () => {
     try {
       const res = await fetch(`/api/user/${session?.user?.id}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: values.name, email: values.email }),
       });
 

@@ -156,11 +156,11 @@ const AboutPage = () => {
         </p>
         <div className="flex items-center gap-2">
           <FaEnvelope />
-          <span className="text-sm">contact@mail.com</span>
+          <span className="text-sm">info@claritylenz.com</span>
         </div>
         <div className="flex items-center gap-2">
           <FaPhone className="rotate-90" />
-          <span className="text-sm">+1 (434) 5435 5642</span>
+          <span className="text-sm">+1 (832) 873 0353</span>
         </div>
       </div>
     </div>
