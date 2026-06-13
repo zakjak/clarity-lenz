@@ -1,7 +1,15 @@
-import { pgTable, index, foreignKey, integer, text, varchar, timestamp, boolean, uuid, unique, serial } from "drizzle-orm/pg-core"
+import { pgTable, text, timestamp, index, foreignKey, integer, varchar, boolean, uuid, unique, serial } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 
+
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+	id: text().primaryKey().notNull(),
+	email: text().notNull(),
+	token: text().notNull(),
+	expiresAt: timestamp("expires_at", { mode: 'string' }).notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow(),
+});
 
 export const videos = pgTable("videos", {
 	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "videos_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),
@@ -136,6 +144,7 @@ export const user = pgTable("user", {
 	isOwner: boolean("is_owner").default(false),
 	image: text(),
 	password: text(),
+	isCredentials: boolean("is_credentials").default(false),
 }, (table) => [
 	unique("user_email_unique").on(table.email),
 ]);

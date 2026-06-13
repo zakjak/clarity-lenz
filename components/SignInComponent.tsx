@@ -45,7 +45,7 @@ const SignInComponent = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      await signIn("credentials", {
+      const response = await signIn("credentials", {
         email: data.email,
         password: data.password,
         mode: "signin",
@@ -136,13 +136,20 @@ const SignInComponent = () => {
           </Button>
         </form>
 
-        <div className="text-xs text-zinc-500 dark:text-white text-center py-4">
-          {"Don't have an account?"}{" "}
-          <Link
-            href="/sign-up"
-            className="hover:underline font-bold text-blue-600 dark:text-white"
-          >
-            Sign up
+        <div className="flex flex-col gap-2 text-xs text-zinc-500 dark:text-white py-4">
+          <div className="">
+            {"Don't have an account?"}{" "}
+            <Link
+              href="/sign-up"
+              className="hover:underline font-bold text-blue-600 dark:text-white"
+            >
+              Sign up
+            </Link>
+          </div>
+          <Link href="/forgot-password">
+            <span className="cursor-pointer hover:underline">
+              Forgotten password?
+            </span>
           </Link>
         </div>
       </CardContent>

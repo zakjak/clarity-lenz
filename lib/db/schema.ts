@@ -17,9 +17,20 @@ export const users = pgTable("user", {
   email: text("email").unique(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   password: text("password"),
+  isCredentials: boolean("is_credentials").default(false),
   isAdmin: boolean("is_admin").default(false),
   isOwner: boolean("is_owner").default(false),
   image: text("image"),
+});
+
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  email: text("email").notNull(),
+  token: text("token").notNull(),
+  expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const about = pgTable("about", {

@@ -141,6 +141,27 @@
       "when": 1779969275440,
       "tag": "0019_nostalgic_silk_fever",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1780244194312,
+      "tag": "0020_tough_red_hulk",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1780570821382,
+      "tag": "0021_curly_cyclops",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1780840181579,
+      "tag": "0022_goofy_maria_hill",
+      "breakpoints": true
     }
   ]
 }

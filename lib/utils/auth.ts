@@ -82,12 +82,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
           const [user] = await db
             .insert(users)
-            .values({ name, email, password: hash })
+            .values({ name, email, password: hash, isCredentials: true })
             .returning({
               id: users.id,
               name: users.name,
               image: users.image,
               email: users.email,
+              isCredentials: users.isCredentials,
             });
 
           return user;
@@ -102,6 +103,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           .limit(1);
 
         if (!user || !user.password) return null;
+
+        if (!user.isCredentials) return null;
 
         const passwordMatch = await bcrypt.compare(password, user.password);
 
