@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Field, FieldError, FieldLabel } from "./ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
@@ -62,22 +62,29 @@ const ResetPassWordCard = () => {
                 <FieldLabel htmlFor="form-rhf-reset-password">
                   Password:
                 </FieldLabel>
-                <Input
-                  {...field}
-                  type={showPassword ? "text" : "password"}
-                  aria-invalid={fieldState.invalid}
-                  placeholder="Enter your reset password"
-                  autoComplete="off"
-                />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                <div className="flex gap-2">
+                  <Input
+                    {...field}
+                    type={showPassword ? "text" : "password"}
+                    aria-invalid={fieldState.invalid}
+                    placeholder="Enter your reset password"
+                    autoComplete="off"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                  <Button
+                    variant="ghost"
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="cursor-pointer"
+                  >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  </Button>
+                </div>
               </Field>
             )}
           />
-          <Button type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
-          </Button>
 
           <span className="text-xs">
             After changing your password,{" "}
