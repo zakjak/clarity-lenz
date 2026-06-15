@@ -26,6 +26,8 @@ const UserNavbarProfile = () => {
     }
   };
 
+  console.log(session);
+
   return (
     <>
       {session ? (

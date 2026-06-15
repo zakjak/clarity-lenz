@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import Link from "next/link";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Spinner } from "./ui/spinner";
 
 const formSchema = z.object({
   password: z
@@ -21,6 +22,7 @@ const formSchema = z.object({
 
 const ResetPassWordCard = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const params = useSearchParams();
   const token = params.get("token");
   const email = params.get("email");
@@ -32,15 +34,24 @@ const ResetPassWordCard = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    const res = await fetch("/api/reset-password", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token, email, password: data.password }),
-    });
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, email, password: data.password }),
+      });
 
-    const submittedData = await res.json();
-    form.reset({ password: "" });
-    toast(submittedData?.message);
+      const submittedData = await res.json();
+      form.reset({ password: "" });
+      toast(submittedData?.message);
+      setIsSubmitting(false);
+    } catch (err) {
+      console.log(err);
+      setIsSubmitting(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -95,8 +106,19 @@ const ResetPassWordCard = () => {
               Sign in
             </Link>
           </span>
-          <Button className="cursor-pointer" type="submit">
-            Submit
+          <Button
+            disabled={isSubmitting}
+            className="cursor-pointer"
+            type="submit"
+          >
+            {!isSubmitting ? (
+              <span className="flex items-center gap-2">
+                <Spinner />
+                Submitting...{" "}
+              </span>
+            ) : (
+              "Submit"
+            )}
           </Button>
         </form>
       </CardContent>

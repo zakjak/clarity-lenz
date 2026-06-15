@@ -123,13 +123,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async jwt({ token, account, profile, user }) {
-      // Runs first when user signs in
-      if (user) token.id = user.id;
-
-      if (account && profile) {
-        token.id = profile.sub; // Google user ID
-        token.picture = profile.picture; // Google profile image
+      if (user) {
+        token.id = user.id;
       }
+
       return token;
     },
     async session({ session, token }) {

@@ -13,16 +13,14 @@ import {
 import { Field, FieldError, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { useState } from "react";
-import { toast } from "sonner";
+import { Spinner } from "./ui/spinner";
 
 const formSchema = z.object({
   email: z.email().min(1, { message: "Field Cannot be empty" }),
 });
 
 const ForgotPasswordCard = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { mutate, data: submittedData } = useForgotPassword();
+  const { mutate, data: submittedData, isPending } = useForgotPassword();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -32,15 +30,10 @@ const ForgotPasswordCard = () => {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    setIsSubmitting(true);
     try {
       mutate(data.email);
-      toast(submittedData?.message);
     } catch (err) {
       console.log(err);
-      setIsSubmitting(false);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -78,12 +71,14 @@ const ForgotPasswordCard = () => {
               </Field>
             )}
           />
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className="cursor-pointer"
-          >
-            Submit
+          <Button type="submit" disabled={isPending} className="cursor-pointer">
+            {isPending ? (
+              <span className="flex items-center gap-2">
+                <Spinner /> Submitting...
+              </span>
+            ) : (
+              "Submit"
+            )}
           </Button>
         </form>
       </CardContent>
