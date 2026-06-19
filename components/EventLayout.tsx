@@ -114,7 +114,7 @@ const EventLayout = ({ event }: { event: EventProp }) => {
               <div className="flex gap-2">
                 <h1>{moment.utc(event?.eventStart).format("h:mm")}</h1>
                 <span>
-                  {Number(moment.utc(event?.eventStart).format("H")) > 12
+                  {Number(moment.utc(event?.eventStart).format("H")) >= 12
                     ? "PM"
                     : "AM"}
                 </span>
@@ -132,7 +132,7 @@ const EventLayout = ({ event }: { event: EventProp }) => {
               <div className="flex gap-2">
                 <h1>{moment.utc(event?.eventEnd).format("h:mm")}</h1>
                 <span>
-                  {Number(moment.utc(event?.eventStart).format("H")) > 12
+                  {Number(moment.utc(event?.eventStart).format("H")) >= 12
                     ? "PM"
                     : "AM"}
                 </span>
