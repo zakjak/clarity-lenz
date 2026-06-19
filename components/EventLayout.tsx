@@ -74,8 +74,6 @@ const EventLayout = ({ event }: { event: EventProp }) => {
     setOpen(false);
   };
 
-  console.log(moment.utc(event?.eventStart).format("H"));
-
   return (
     <div className="w-full mt-8">
       <Image
