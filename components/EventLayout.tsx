@@ -74,6 +74,8 @@ const EventLayout = ({ event }: { event: EventProp }) => {
     setOpen(false);
   };
 
+  console.log(moment.utc(event?.eventStart).format("H"));
+
   return (
     <div className="w-full mt-8">
       <Image
@@ -112,9 +114,9 @@ const EventLayout = ({ event }: { event: EventProp }) => {
             <h3>STARTS AT</h3>
             <div className="">
               <div className="flex gap-2">
-                <h1>{moment(event?.eventStart).format("h:mm")}</h1>
+                <h1>{moment.utc(event?.eventStart).format("h:mm")}</h1>
                 <span>
-                  {Number(moment(event?.eventStart).format("h")) > 12
+                  {Number(moment.utc(event?.eventStart).format("H")) > 12
                     ? "PM"
                     : "AM"}
                 </span>
@@ -130,9 +132,9 @@ const EventLayout = ({ event }: { event: EventProp }) => {
             <h3>ENDS AT</h3>
             <div className="">
               <div className="flex gap-2">
-                <h1>{moment(event?.eventEnd).format("h:mm")}</h1>
+                <h1>{moment.utc(event?.eventEnd).format("h:mm")}</h1>
                 <span>
-                  {Number(moment(event?.eventEnd).format("h")) > 12
+                  {Number(moment.utc(event?.eventStart).format("H")) > 12
                     ? "PM"
                     : "AM"}
                 </span>

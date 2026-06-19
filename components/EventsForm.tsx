@@ -129,19 +129,21 @@ const EventsForm = ({
     formData.append("ownerId", session?.user?.id ?? "");
 
     try {
+      console.log(values.startTime);
+      console.log(values.endTime);
       mutate(formData);
-      form.reset({
-        title: "",
-        description: "",
-        startTime: "",
-        link: "",
-        meetingId: "",
-        endTime: "",
-        eventDate: new Date(),
-        password: "",
-        image: "",
-        platform: "",
-      });
+      // form.reset({
+      //   title: "",
+      //   description: "",
+      //   startTime: "",
+      //   link: "",
+      //   meetingId: "",
+      //   endTime: "",
+      //   eventDate: new Date(),
+      //   password: "",
+      //   image: "",
+      //   platform: "",
+      // });
       setIsSubmitting(false);
       setImagePreview(null);
     } catch (err) {
@@ -149,7 +151,7 @@ const EventsForm = ({
       setIsSubmitting(false);
     } finally {
       setIsSubmitting(false);
-      setOpen(false);
+      // setOpen(false);
     }
   };
 
