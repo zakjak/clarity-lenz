@@ -1,6 +1,6 @@
 import { db } from "@/lib";
 import { events } from "@/lib/db/events";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, gt, lt } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -29,6 +29,13 @@ export async function GET(
       .from(events)
       .orderBy(desc(events.createdAt))
       .where(eq(events.id, eventId));
+
+    const now = new Date();
+
+    const eventNow = await db
+      .select()
+      .from(events)
+      .where(gt(events.eventEnd, now));
 
     if (!event.length) return NextResponse.json({ error: "Event not found" });
 

@@ -2,7 +2,7 @@ import { db } from "@/lib";
 import { events, register } from "@/lib/db/events";
 import { htmlEmail } from "@/lib/utils/send-event";
 import { sendMail } from "@/lib/utils/send-mail";
-import { eq } from "drizzle-orm";
+import { eq, lt } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(
