@@ -21,6 +21,7 @@ type EmailProp = {
   image_url: string;
   meeting_id: string;
   password: string;
+  timezone: string;
   platform: string;
 };
 
@@ -33,6 +34,7 @@ export function EventEmail({
   image_url,
   meeting_id,
   password,
+  timezone,
   platform,
 }: EmailProp) {
   const eventDate = moment(formattedEnd).format("YYYY-MM-DD");
@@ -77,14 +79,32 @@ export function EventEmail({
         <Heading as="h2">About This Event: </Heading>
         <Text>{description}</Text>
 
+        <Text
+          style={{
+            backgroundColor: "#000",
+            padding: "10px",
+            fontWeight: "bold",
+            color: "white",
+            fontSize: "20px",
+          }}
+        >
+          Note: All time are in {timezone}
+        </Text>
+
         <Heading as="h2">Date:</Heading>
         <Text>{eventDate}</Text>
 
         <Heading as="h2">Starts At:</Heading>
-        <Text>{startEvent}</Text>
+        <Text>
+          {startEvent}{" "}
+          {Number(moment.utc(startEvent).format("H")) >= 12 ? "PM" : "AM"}
+        </Text>
 
         <Heading as="h2">Ends At</Heading>
-        <Text>{endEvent}</Text>
+        <Text>
+          {endEvent}{" "}
+          {Number(moment.utc(endEvent).format("H")) >= 12 ? "PM" : "AM"}
+        </Text>
 
         <Heading as="h2">Duration: </Heading>
         <Text>{formattedDuration}</Text>
@@ -159,6 +179,7 @@ export const htmlEmail = ({
   password,
   meeting_id,
   platform,
+  timezone,
 }: EmailProp) => {
   return render(
     <EventEmail
@@ -171,6 +192,7 @@ export const htmlEmail = ({
       password={password}
       meeting_id={meeting_id}
       platform={platform}
+      timezone={timezone}
     />,
   );
 };

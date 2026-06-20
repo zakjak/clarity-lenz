@@ -74,6 +74,7 @@ export async function PUT(
       meeting_id: savedEvent[0]?.meetingId as string,
       password: savedEvent[0]?.password as string,
       platform: savedEvent[0]?.platform as string,
+      timezone: savedEvent[0]?.timezone,
     });
 
     console.log();
