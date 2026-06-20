@@ -108,10 +108,16 @@ const TopCategoryEvent = ({ event }: { event: EventProp }) => {
               <span className="font-bold">Duration: {formatted}</span>
               <div className="flex gap-2">
                 <span className="font-bold">
-                  Starts at: {moment(event?.eventStart).format("h:mm")}
+                  Starts at: {moment.utc(event?.eventStart).format("h:mm")}{" "}
+                  {Number(moment.utc(event?.eventStart).format("H")) >= 12
+                    ? "PM"
+                    : "AM"}
                 </span>
                 <span className="font-bold">
-                  Ends at: {moment(event?.eventEnd).format("h:mm")}
+                  Ends at: {moment.utc(event?.eventEnd).format("h:mm")}{" "}
+                  {Number(moment.utc(event?.eventStart).format("H")) >= 12
+                    ? "PM"
+                    : "AM"}
                 </span>
               </div>
             </div>
