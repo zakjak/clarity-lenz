@@ -23,6 +23,8 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { TiTicket } from "react-icons/ti";
 import { useDeleteEvent } from "@/hooks/useEvents";
 import { useSession } from "next-auth/react";
+import { formatInTimeZone } from "date-fns-tz";
+import { formattedTime } from "@/lib/utils/helpers";
 
 const TopCategoryEvent = ({ event }: { event: EventProp }) => {
   const [openDelete, setOpenDelete] = useState(false);
@@ -39,6 +41,13 @@ const TopCategoryEvent = ({ event }: { event: EventProp }) => {
 
   const isAuthor = event?.ownerId === session?.user?.id;
   const canDelete = isAdminOwner || isAuthor;
+
+  // console.log(
+  //   event?.eventStart?.split("T")[0],
+  //   event?.eventStart?.split("T")[1].replace("Z", ""),
+  //   event?.timezone,
+  // );"MMMM d, yyyy h:mm a zzz"
+  // 2026-06-20 12:45:00+00
 
   return (
     <>
@@ -108,16 +117,10 @@ const TopCategoryEvent = ({ event }: { event: EventProp }) => {
               <span className="font-bold">Duration: {formatted}</span>
               <div className="flex gap-2">
                 <span className="font-bold">
-                  Starts at: {moment.utc(event?.eventStart).format("h:mm")}{" "}
-                  {Number(moment.utc(event?.eventStart).format("H")) >= 12
-                    ? "PM"
-                    : "AM"}
+                  Starts at: {formattedTime(event?.eventStart)}
                 </span>
                 <span className="font-bold">
-                  Ends at: {moment.utc(event?.eventEnd).format("h:mm")}{" "}
-                  {Number(moment.utc(event?.eventStart).format("H")) >= 12
-                    ? "PM"
-                    : "AM"}
+                  Ends at: {formattedTime(event?.eventEnd)}
                 </span>
               </div>
             </div>

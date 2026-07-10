@@ -4,7 +4,7 @@ import { EventProp } from "@/lib/types/users";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
-import { formatted } from "@/lib/utils/helpers";
+import { formatted, formattedTime } from "@/lib/utils/helpers";
 import { IoPlayCircle } from "react-icons/io5";
 import { FaBookmark, FaStopCircle } from "react-icons/fa";
 import moment from "moment";
@@ -103,7 +103,7 @@ const EventLayout = ({ event }: { event: EventProp }) => {
         ))}
       </div>
       <div className="w-full bg-zinc-900 p-4 rounded-md font-semibold text-lg text-white">
-        <h1>Note: All time are in {event?.timezone}</h1>
+        <h1>Note: All time are in your local time</h1>
       </div>
       <div className="p-6">
         <div className="flex items-center gap-4 mb-4">
@@ -112,12 +112,7 @@ const EventLayout = ({ event }: { event: EventProp }) => {
             <h3>STARTS AT</h3>
             <div className="">
               <div className="flex gap-2">
-                <h1>{moment.utc(event?.eventStart).format("h:mm")}</h1>
-                <span>
-                  {Number(moment.utc(event?.eventStart).format("H")) >= 12
-                    ? "PM"
-                    : "AM"}
-                </span>
+                <h1>{formattedTime(event?.eventStart).split(",")[1]}</h1>
               </div>
               <p>{moment(event?.eventEnd).format("YYYY-MM-DD")}</p>
             </div>
@@ -130,12 +125,7 @@ const EventLayout = ({ event }: { event: EventProp }) => {
             <h3>ENDS AT</h3>
             <div className="">
               <div className="flex gap-2">
-                <h1>{moment.utc(event?.eventEnd).format("h:mm")}</h1>
-                <span>
-                  {Number(moment.utc(event?.eventStart).format("H")) >= 12
-                    ? "PM"
-                    : "AM"}
-                </span>
+                <h1>{formattedTime(event?.eventStart).split(",")[1]}</h1>
               </div>
               <p>{moment(event?.eventEnd).format("YYYY-MM-DD")}</p>
             </div>

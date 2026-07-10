@@ -1,3 +1,5 @@
+import { formatInTimeZone } from "date-fns-tz";
+
 export const formatted = (text?: string) => {
   return text?.split("\n") ?? [];
 };
@@ -93,7 +95,25 @@ export const groupNumbers = (num: number) => {
     return `${Math.floor(num / 1_000_000_000)}B`;
   }
 };
-
 export const groupTotalNumbers = (num: number) => {
   return num?.toLocaleString("en-US");
+};
+
+export const formattedTime = (eventStart: string) => {
+  const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const formattedTime = formatInTimeZone(
+    eventStart,
+    userTimeZone,
+    "MMMM d, yyyy h:mm a zzz",
+  );
+
+  const date = new Date(formattedTime);
+
+  const time = date.toLocaleDateString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  return time;
 };

@@ -13,6 +13,7 @@ export async function GET(req: Request) {
       image: events.image,
       description: events.description,
       platform: events.platform,
+      timezone: events.timezone,
     })
     .from(events)
     .limit(3)
