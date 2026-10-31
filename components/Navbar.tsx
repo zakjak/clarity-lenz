@@ -9,6 +9,7 @@ import Search from "./Search";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -96,6 +97,11 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
             />
             <UserNavbarProfile />
+            <Link href="/booking">
+              <Button className="bg-violet-800 cursor-pointer hover:bg-violet-700 text-white font-semibold">
+                Book Appointment
+              </Button>
+            </Link>
             <ModeToggle />
           </div>
         </div>
