@@ -1,6 +1,7 @@
-import { pgTable, text, timestamp, index, foreignKey, integer, varchar, boolean, uuid, unique, serial } from "drizzle-orm/pg-core"
+import { pgTable, text, timestamp, index, foreignKey, integer, varchar, uuid, boolean, unique, serial, pgEnum } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
+export const bookingStatus = pgEnum("booking_status", ['pending', 'confirmed', 'cancelled'])
 
 
 export const passwordResetTokens = pgTable("password_reset_tokens", {
@@ -27,6 +28,18 @@ export const videos = pgTable("videos", {
 			name: "videos_owner_id_user_id_fk"
 		}),
 ]);
+
+export const services = pgTable("services", {
+	id: uuid().defaultRandom().primaryKey().notNull(),
+	name: text().notNull(),
+	ownerId: uuid("owner_id"),
+	title: varchar({ length: 300 }),
+	description: text(),
+	price: integer(),
+	duration: integer(),
+	createdAt: timestamp({ mode: 'string' }).defaultNow(),
+	expiredAt: timestamp({ mode: 'string' }),
+});
 
 export const articles = pgTable("articles", {
 	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "articles_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),

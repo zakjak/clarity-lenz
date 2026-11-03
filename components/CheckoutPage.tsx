@@ -8,16 +8,30 @@ import {
 import convertToSubcurrency from "@/lib/convertToSubcurrency";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { useSession } from "next-auth/react";
+import {
+  useBookingStore,
+  useDateStore,
+  useSelectTimeStore,
+  useTimezoneStore,
+} from "@/hooks/useBooking";
 
 const CheckoutPage = ({ amount }: { amount: number }) => {
+  const { data: session } = useSession();
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [clientSecret, setClientSecret] = useState("");
+  const [paymentIntentId, setPaymentIntentId] = useState("");
   const [loading, setLoading] = useState(false);
+  const booking = useBookingStore();
+  const timezoneChange = useTimezoneStore((state) => state.addAll);
+  const timezone = useTimezoneStore((state) => state.timezone);
+  const time = useSelectTimeStore((state) => state.time);
+  const expiredAt = useDateStore((state) => state.expiredAt);
 
   useEffect(() => {
-    fetch("/api/payment", {
+    fetch(`/api/payment/${session?.user?.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,8 +39,11 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       body: JSON.stringify({ amount: convertToSubcurrency(amount) }),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, [amount]);
+      .then((data) => {
+        setClientSecret(data.clientSecret);
+        setPaymentIntentId(data.paymentIntentId);
+      });
+  }, [amount, session?.user?.id]);
 
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,27 +53,55 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       return;
     }
 
-    const { error: submitError } = await elements.submit();
+    timezoneChange(time, expiredAt as string);
 
-    if (submitError) {
-      setErrorMessage(submitError.message!);
-      setLoading(false);
-      return;
-    }
-
-    const { error } = await stripe.confirmPayment({
-      elements,
-      clientSecret,
-      confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success=${amount}`,
+    const bookedSession = await fetch(`/api/booking/${session?.user?.id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    });
+      body: JSON.stringify({
+        title: booking.title,
+        description: booking.description,
+        price: booking.price,
+        expiredAt: timezone,
+        duration: booking.duration,
+        owner: session?.user?.id,
+        name: session?.user?.name,
+      }),
+    }).then((data) => data.json());
+    console.log(bookedSession);
+    setLoading(false); // to be removed
 
-    if (error) {
-      setErrorMessage(error.message!);
+    if (bookedSession && session?.user) {
+      const { error: submitError } = await elements.submit();
+
+      if (submitError) {
+        setErrorMessage(submitError.message!);
+        setLoading(false);
+        return;
+      }
+
+      const { error } = await stripe.confirmPayment({
+        elements,
+        clientSecret,
+        confirmParams: {
+          return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        },
+      });
+
+      if (error) {
+        setErrorMessage(error.message!);
+      }
+
+      setLoading(false);
+    } else if (session?.user) {
+      setLoading(false);
+      setErrorMessage("User must be logged in");
+    } else {
+      setLoading(false);
+      setErrorMessage("Your previous booking has not elapsed.");
     }
-
-    setLoading(false);
   };
 
   if (!clientSecret || !stripe || !elements) {
@@ -74,7 +119,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       {clientSecret && <PaymentElement />}
       <Button
         disabled={!stripe || loading}
-        className="w-full mt-4 bg-blue-800 text-md py-6 disabled:opacity-50 disabled:animate-pulse"
+        className="w-full mt-4 bg-blue-800 text-md py-6 disabled:opacity-50 disabled:animate-pulse cursor-pointer"
       >
         {!loading ? `Pay $${amount}` : "Processing"}
       </Button>

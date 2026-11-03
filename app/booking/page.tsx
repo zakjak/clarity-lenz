@@ -1,8 +1,7 @@
 import BookingUserDetails from "@/components/BookingUserDetails";
-import SelectDateComponent from "@/components/SelectDateComponent";
 import SelectedService from "@/components/SelectedService";
 import SelectedServicesComponent from "@/components/SelectedServicesComponent";
-import SelectedTime from "@/components/SelectedTime";
+import TimeComponent from "@/components/TimeComponent";
 import Image from "next/image";
 
 const Booking = () => {
@@ -40,8 +39,7 @@ const Booking = () => {
           <div className="border border-blue-100 p-4 rounded-lg">
             <h1 className="text-blue-900 font-black">Booking Details</h1>
             <SelectedService />
-            <SelectDateComponent />
-            <SelectedTime />
+            <TimeComponent />
             <BookingUserDetails />
           </div>
         </div>

@@ -39,3 +39,51 @@ export const useBookingStore = create<Services & Action>((set) => ({
       duration: duration,
     })),
 }));
+
+export type DateProp = {
+  expiredAt: string | undefined;
+};
+
+type DateAction = {
+  changeDate: (expiredAt: DateProp["expiredAt"]) => void;
+};
+
+export const useDateStore = create<DateProp & DateAction>((set) => ({
+  expiredAt: "",
+  changeDate: (expiredAt) =>
+    set(() => ({
+      expiredAt: expiredAt,
+    })),
+}));
+
+export type TimeProp = {
+  time: string;
+};
+
+type TimeAction = {
+  changeTime: (time: TimeProp["time"]) => void;
+};
+
+export const useSelectTimeStore = create<TimeProp & TimeAction>((set) => ({
+  time: "",
+  changeTime: (time) => set(() => ({ time: time })),
+}));
+
+export type TimezoneProp = {
+  date: string;
+  time: string;
+  timezone: string;
+};
+
+type TimezoneAction = {
+  addAll: (date: TimezoneProp["date"], time: TimezoneProp["time"]) => void;
+};
+
+export const useTimezoneStore = create<TimezoneProp & TimezoneAction>(
+  (set) => ({
+    date: "",
+    time: "",
+    timezone: "",
+    addAll: (date, time) => set(() => ({ timezone: `${time} ${date} ` })),
+  }),
+);
