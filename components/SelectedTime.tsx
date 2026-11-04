@@ -102,11 +102,9 @@ const isTimeBooked = (selectTime: string, bookings, expires) => {
 const SelectedTime = () => {
   const selectTime = useSelectTimeStore((state) => state.changeTime);
   const timeRef: React.RefObject<HTMLDivElement | null> = useRef(null);
-  const time = useSelectTimeStore((state) => state.time);
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
   const { data: bookings, isLoading } = useBookings();
   const expires = useDateStore((state) => state.expiredAt);
-  console.log(bookings);
 
   const selectedDay = switchDays(
     new Date(expires as string).getDay(),

@@ -83,7 +83,6 @@ const SelectDateComponent = () => {
   const changeDate = useDateStore((state) => state.changeDate);
   const expires = useDateStore((state) => state.expiredAt);
   const [date, setDate] = useState<Date | undefined>(new Date(new Date()));
-  const { data: bookings, isLoading } = useBookings();
 
   const bookedDates = Array.from(
     { length: 15 },

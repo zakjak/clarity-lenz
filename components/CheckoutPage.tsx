@@ -24,9 +24,11 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [paymentIntentId, setPaymentIntentId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isSelectedTime, setIsSelectedTime] = useState(false);
   const booking = useBookingStore();
   const timezoneChange = useTimezoneStore((state) => state.addAll);
   const timezone = useTimezoneStore((state) => state.timezone);
+  const selectedDay = useDateStore((state) => state.expiredAt);
   const time = useSelectTimeStore((state) => state.time);
   const expiredAt = useDateStore((state) => state.expiredAt);
 
@@ -43,17 +45,18 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
         setClientSecret(data.clientSecret);
         setPaymentIntentId(data.paymentIntentId);
       });
-  }, [amount, session?.user?.id]);
+    timezoneChange(time, expiredAt as string);
+  }, [amount, session?.user?.id, expiredAt, timezone, time, timezoneChange]);
 
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
-    if (!stripe || !elements) {
+    if (!stripe && !elements && !selectedDay) {
       return;
     }
 
-    timezoneChange(time, expiredAt as string);
+    // if(!time && )
 
     const bookedSession = await fetch(`/api/booking/${session?.user?.id}`, {
       method: "POST",
@@ -70,18 +73,17 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
         name: session?.user?.name,
       }),
     }).then((data) => data.json());
-    console.log(bookedSession);
+
+    setIsSelectedTime(false);
     setLoading(false); // to be removed
 
     if (bookedSession && session?.user) {
       const { error: submitError } = await elements.submit();
-
       if (submitError) {
         setErrorMessage(submitError.message!);
         setLoading(false);
         return;
       }
-
       const { error } = await stripe.confirmPayment({
         elements,
         clientSecret,
@@ -89,11 +91,9 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
           return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
         },
       });
-
       if (error) {
         setErrorMessage(error.message!);
       }
-
       setLoading(false);
     } else if (session?.user) {
       setLoading(false);
@@ -118,7 +118,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     <form onSubmit={handleSubmit}>
       {clientSecret && <PaymentElement />}
       <Button
-        disabled={!stripe || loading}
+        disabled={!stripe || loading || isSelectedTime}
         className="w-full mt-4 bg-blue-800 text-md py-6 disabled:opacity-50 disabled:animate-pulse cursor-pointer"
       >
         {!loading ? `Pay $${amount}` : "Processing"}
