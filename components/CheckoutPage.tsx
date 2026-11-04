@@ -78,6 +78,10 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     setLoading(false); // to be removed
 
     if (bookedSession && session?.user) {
+      if (!elements || !stripe) {
+        return;
+      }
+
       const { error: submitError } = await elements.submit();
       if (submitError) {
         setErrorMessage(submitError.message!);

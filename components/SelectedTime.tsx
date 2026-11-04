@@ -1,6 +1,7 @@
 "use client";
 import { useDateStore, useSelectTimeStore } from "@/hooks/useBooking";
 import { useBookings } from "@/hooks/useBookings";
+import { BookingProp } from "@/lib/types/bookings";
 import React, { useRef, useState } from "react";
 import { ImBlocked } from "react-icons/im";
 
@@ -18,10 +19,10 @@ const availability = {
     { id: 8, time: "5:00 PM" },
   ],
   wednesday: [
-    { id: 9, time: "09:00 AM" },
+    { id: 9, time: "01:00 AM" },
     { id: 10, time: "10:00 AM" },
     { id: 11, time: "11:00 AM" },
-    { id: 12, time: "1:00 PM" },
+    { id: 12, time: "2:00 PM" },
   ],
   thursday: [
     { id: 13, time: "2:00 PM" },
@@ -85,7 +86,11 @@ function convertTo24Hour(time: string) {
   return `${String(selectedHours).padStart(2, "0")}:${minutes}`;
 }
 
-const isTimeBooked = (selectTime: string, bookings, expires) => {
+const isTimeBooked = (
+  selectTime: string,
+  bookings: BookingProp[],
+  expires: string,
+) => {
   return bookings?.some((booking) => {
     const bookingDate = booking.expiredAt.slice(0, 10);
 
@@ -103,7 +108,7 @@ const SelectedTime = () => {
   const selectTime = useSelectTimeStore((state) => state.changeTime);
   const timeRef: React.RefObject<HTMLDivElement | null> = useRef(null);
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
-  const { data: bookings, isLoading } = useBookings();
+  const { data: bookings } = useBookings();
   const expires = useDateStore((state) => state.expiredAt);
 
   const selectedDay = switchDays(
@@ -115,7 +120,10 @@ const SelectedTime = () => {
     : [];
 
   const handleTime = (select: { id: number; time: string }) => {
-    if (isTimeBooked(select.time, bookings, expires) && timeRef.current) {
+    if (
+      isTimeBooked(select.time, bookings, expires as string) &&
+      timeRef.current
+    ) {
       setSelectedTime(null);
       selectTime("");
 
@@ -135,27 +143,48 @@ const SelectedTime = () => {
       <h2 className="text-sm text-cyan-950 font-semibold my-3">
         2. Select Time
       </h2>
-      <div className="grid grid-cols-3 gap-2">
-        {availableTimes.map((select) => (
-          <div
-            ref={timeRef}
-            key={select.id}
-            className={`border p-4 text-xs ${isTimeBooked(select.time, bookings, expires) ? "bg-zinc-100 dark:bg-zinc-900" : "bg-white dark:bg-black"} font-black rounded-lg mt-2 cursor-pointer ${selectedTime === select.id && !isTimeBooked(select.time, bookings, expires) ? "border-violet-800 bg-blue-600 text-white" : "border-zinc-400 text-zinc-700"}`}
-            onClick={() => handleTime({ id: select.id, time: select.time })}
-          >
-            <h1
-              className={`${isTimeBooked(select.time, bookings, expires) && " text-[#6e6c8a] text-xl"}`}
-            >
-              {select.time}
-            </h1>
+      <div className="flex gap-2 flex-wrap">
+        {availableTimes.map((select) => {
+          const now = new Date();
+          const fullTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
 
-            {isTimeBooked(select.time, bookings, expires) && (
-              <span className="flex mt-2 gap-2 items-center ">
-                <ImBlocked size={14} /> Booked
-              </span>
-            )}
-          </div>
-        ))}
+          const isOver = convertTo24Hour(select.time) > fullTime;
+          return (
+            <div key={select.id} className="">
+              {isOver && (
+                <div
+                  ref={timeRef}
+                  className={`border p-4 text-xs ${
+                    isTimeBooked(select.time, bookings, expires as string)
+                      ? "bg-zinc-100 dark:bg-zinc-900"
+                      : "bg-white dark:bg-black"
+                  } font-black rounded-lg mt-2 
+                    cursor-pointer ${
+                      selectedTime === select.id &&
+                      !isTimeBooked(select.time, bookings, expires as string)
+                        ? "border-violet-800 bg-blue-600 text-white"
+                        : "border-zinc-400 text-zinc-700"
+                    }`}
+                  onClick={() =>
+                    handleTime({ id: select.id, time: select.time })
+                  }
+                >
+                  <h1
+                    className={`${isTimeBooked(select.time, bookings, expires as string) && " text-[#6e6c8a] text-xl"}`}
+                  >
+                    {select.time}
+                  </h1>
+
+                  {isTimeBooked(select.time, bookings, expires as string) && (
+                    <span className="flex mt-2 gap-2 items-center ">
+                      <ImBlocked size={14} /> Booked
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
