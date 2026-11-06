@@ -1,7 +1,7 @@
 import { db } from "@/lib";
 import { NextResponse } from "next/server";
 import { combineDateAndTime, uploadToCloudflare } from "../utils/helpers";
-import { events } from "@/lib/db/events";
+import { events } from "@/drizzle/schema";
 
 export async function POST(req: Request) {
   const formData = await req.formData();
@@ -37,11 +37,11 @@ export async function POST(req: Request) {
             link,
             password,
             meetingId,
-            eventStart,
-            eventEnd,
             platform,
             timezone,
             ownerId,
+            eventStart: new Date(eventStart).toISOString(),
+            eventEnd: new Date(eventEnd).toISOString(),
           })
           .returning();
         return NextResponse.json(response);
