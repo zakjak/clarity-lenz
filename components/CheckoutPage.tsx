@@ -56,8 +56,6 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       return;
     }
 
-    // if(!time && )
-
     const bookedSession = await fetch(`/api/booking/${session?.user?.id}`, {
       method: "POST",
       headers: {
@@ -69,15 +67,29 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
         price: booking.price,
         expiredAt: timezone,
         duration: booking.duration,
-        owner: session?.user?.id,
         name: session?.user?.name,
       }),
     }).then((data) => data.json());
 
-    setIsSelectedTime(false);
-    setLoading(false); // to be removed
+    const sentMail = await fetch(`/api/booking/send-email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: booking.title,
+        description: booking.description,
+        price: booking.price,
+        date: timezone.split(" ")[0],
+        duration: booking.duration,
+        email: session?.user?.email,
+        time: timezone.split(" ")[1],
+      }),
+    }).then((data) => data.json());
 
-    if (bookedSession && session?.user) {
+    setIsSelectedTime(false);
+
+    if (sentMail && bookedSession && session?.user) {
       if (!elements || !stripe) {
         return;
       }
@@ -92,12 +104,15 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+          return_url: `${process.env.NEXT_PUBLIC_API_URL}/payment-success?amount=${amount}`,
         },
       });
       if (error) {
         setErrorMessage(error.message!);
+        setLoading(false);
+        return;
       }
+
       setLoading(false);
     } else if (session?.user) {
       setLoading(false);

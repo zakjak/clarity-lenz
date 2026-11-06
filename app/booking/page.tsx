@@ -1,4 +1,5 @@
 import BookingUserDetails from "@/components/BookingUserDetails";
+import EmailTemplate from "@/components/email-template";
 import SelectedService from "@/components/SelectedService";
 import SelectedServicesComponent from "@/components/SelectedServicesComponent";
 import TimeComponent from "@/components/TimeComponent";

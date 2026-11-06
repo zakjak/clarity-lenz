@@ -104,6 +104,14 @@ const isTimeBooked = (
   });
 };
 
+const isOverCompare = (time: string, expires: string) => {
+  const now = new Date();
+  const fullDateTime = `${String(now.getFullYear())}-${String(now.getMonth())}-${String(now.getDay())} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+
+  const selectedDateTime = `${expires}T${convertTo24Hour(time)}`;
+  return fullDateTime < selectedDateTime;
+};
+
 const SelectedTime = () => {
   const selectTime = useSelectTimeStore((state) => state.changeTime);
   const timeRef: React.RefObject<HTMLDivElement | null> = useRef(null);
@@ -145,10 +153,8 @@ const SelectedTime = () => {
       </h2>
       <div className="flex gap-2 flex-wrap">
         {availableTimes.map((select) => {
-          const now = new Date();
-          const fullTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+          const isOver = isOverCompare(select.time, expires as string);
 
-          const isOver = convertTo24Hour(select.time) > fullTime;
           return (
             <div key={select.id} className="">
               {isOver && (
