@@ -11,6 +11,7 @@
   "dependencies": {
     "@ai-sdk/react": "^4.0.168",
     "@ariakit/react": "^0.4.42",
+    "@auth/core": "^0.41.3",
     "@auth/drizzle-adapter": "^1.11.3",
     "@auth/pg-adapter": "^1.11.3",
     "@emoji-mart/data": "^1.2.1",
