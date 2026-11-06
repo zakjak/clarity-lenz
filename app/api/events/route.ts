@@ -1,6 +1,6 @@
 import { db } from "@/lib";
 import { events } from "@/lib/db/events";
-import { count, lt } from "drizzle-orm";
+import { count } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {

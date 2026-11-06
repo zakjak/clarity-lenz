@@ -15,8 +15,8 @@ import moment from "moment";
 type EmailProp = {
   title: string;
   description: string;
-  formattedStart: Date;
-  formattedEnd: Date;
+  formattedStart: string;
+  formattedEnd: string;
   zoom_link: string;
   image_url: string;
   meeting_id: string;
