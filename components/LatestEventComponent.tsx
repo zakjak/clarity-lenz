@@ -61,7 +61,7 @@ const LatestEventComponent = ({ event }: { event: EventProp }) => {
       <Image
         width={200}
         height={200}
-        src={event?.image}
+        src={event?.image ?? ""}
         alt={`${event?.title}`}
         className="w-full h-32 rounded-sm object-cover"
       />
