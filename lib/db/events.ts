@@ -12,7 +12,9 @@ export const events = table("events", {
   platform: t.text("platform"),
   meetingId: t.text("meeting_id"),
   password: t.text("password"),
-  eventStart: t.timestamp("event_start", { withTimezone: true }).notNull(),
+  eventStart: t
+    .timestamp("event_start", { withTimezone: true, mode: "string" })
+    .notNull(),
   eventEnd: t
     .timestamp("event_end", { withTimezone: true, mode: "string" })
     .notNull(),

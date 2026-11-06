@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import LatestArticles from "./LatestArticles";
+import { FaArrowRight } from "react-icons/fa6";
 
 const LatestArticlesComponent = () => {
   return (
@@ -14,6 +15,7 @@ const LatestArticlesComponent = () => {
             className="cursor-pointer text-[#632CE5] dark:text-white text-xs"
           >
             Explore More
+            <FaArrowRight />
           </Button>
         </Link>
       </div>

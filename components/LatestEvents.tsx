@@ -1,12 +1,12 @@
 "use client";
 import { EventProp } from "@/lib/types/users";
-import TopCategoryEvent from "./TopCategoryEvent";
+import LatestEventComponent from "./LatestEventComponent";
 
 const LatestEvents = ({ events }: { events: EventProp[] }) => {
   return (
-    <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
+    <div className="flex flex-col gap-4">
       {events?.map((event: EventProp) => (
-        <TopCategoryEvent key={event?.id} event={event} />
+        <LatestEventComponent key={event?.id} event={event} />
       ))}
     </div>
   );

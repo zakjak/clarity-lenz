@@ -28,6 +28,7 @@ export async function GET(req: Request) {
           date: articles.date,
           title: articles.title,
           category: articles.category,
+          story: articles.story,
         })
         .from(articles)
         .where(eq(articles.isDraft, false))
