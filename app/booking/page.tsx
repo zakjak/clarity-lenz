@@ -29,14 +29,14 @@ const Booking = () => {
           />
         </div>
       </div>
-      <div className="p-6">
-        <h1 className="text-zinc-800 font-semibold">
+      <div className="p-6 max-w-7xl mx-auto">
+        <h1 className="text-zinc-800 font-semibold text-2xl md:text-4xl">
           Our Consultation Services
         </h1>
         <p className="text-xs text-zinc-500 mt-2 mb-4">
           Select a category below to book your session
         </p>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           <SelectedServicesComponent />
           <div className="border border-blue-100 p-4 rounded-lg">
             <h1 className="text-blue-900 font-black">Booking Details</h1>
