@@ -35,11 +35,11 @@ const SelectDateComponent = () => {
   }, [date, changeDate]);
 
   return (
-    <div className="lg:h-[42vh]">
+    <div>
       <h2 className="text-sm my-4 text-cyan-950 font-semibold ">
         1. Select Date
       </h2>
-      <Card className="h-full">
+      <Card>
         <Calendar
           mode="single"
           defaultMonth={date}
