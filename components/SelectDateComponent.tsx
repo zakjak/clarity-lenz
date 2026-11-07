@@ -39,18 +39,19 @@ const SelectDateComponent = () => {
       <h2 className="text-sm my-4 text-cyan-950 font-semibold ">
         1. Select Date
       </h2>
-      <Card className="w-[80%] ">
+      <Card className="lg:h-[42vh] bg-red-400">
         <Calendar
           mode="single"
           defaultMonth={date}
           selected={date}
           onSelect={handleSelect}
-          // startMonth={date}
+          startMonth={date}
           disabled={{ before: new Date() }}
           modifiers={{ booked: bookedDates }}
           modifiersClassNames={{
             booked: "npm dlx shadcn@latest add calendar",
           }}
+          className="h-full w-full"
         />
       </Card>
     </div>
