@@ -4,6 +4,7 @@ import { useBookings } from "@/hooks/useBookings";
 import { BookingProp } from "@/lib/types/bookings";
 import React, { useRef, useState } from "react";
 import { ImBlocked } from "react-icons/im";
+import { Button } from "./ui/button";
 
 const availability = {
   monday: [
@@ -114,7 +115,7 @@ const isOverCompare = (time: string, expires: string) => {
 
 const SelectedTime = () => {
   const selectTime = useSelectTimeStore((state) => state.changeTime);
-  const timeRef: React.RefObject<HTMLDivElement | null> = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
   const { data: bookings } = useBookings();
   const expires = useDateStore((state) => state.expiredAt);
@@ -130,7 +131,7 @@ const SelectedTime = () => {
   const handleTime = (select: { id: number; time: string }) => {
     if (
       isTimeBooked(select.time, bookings, expires as string) &&
-      timeRef.current
+      buttonRef.current
     ) {
       setSelectedTime(null);
       selectTime("");
@@ -147,46 +148,53 @@ const SelectedTime = () => {
   };
 
   return (
-    <div>
+    <div className="w-full min-w-0">
       <h2 className="text-sm text-cyan-950 font-semibold my-3">
         2. Select Time
       </h2>
-      <div className="flex gap-2 flex-wrap">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-3 w-full">
         {availableTimes.map((select) => {
           const isOver = isOverCompare(select.time, expires as string);
+          const isBooked = isTimeBooked(
+            select.time,
+            bookings ?? [],
+            expires as string,
+          );
 
           return (
             <div key={select.id} className="">
               {isOver && (
-                <div
-                  ref={timeRef}
-                  className={`border p-4 text-xs ${
-                    isTimeBooked(select.time, bookings, expires as string)
-                      ? "bg-zinc-100 dark:bg-zinc-900"
-                      : "bg-white dark:bg-black"
-                  } font-black rounded-lg mt-2 
+                <Button
+                  type="button"
+                  ref={buttonRef}
+                  className={`w-full min-w-0 min-h-16.25 flex flex-col 
+                    items-center justify-center gap-2 p-3 rounded-lg border
+                    text-xs font-semibold transition-all duration-200 ${
+                      isBooked
+                        ? "bg-zinc-100! dark:bg-zinc-900!"
+                        : "bg-white! dark:bg-black!"
+                    } font-black rounded-lg mt-2
                     cursor-pointer ${
-                      selectedTime === select.id &&
-                      !isTimeBooked(select.time, bookings, expires as string)
-                        ? "border-violet-800 bg-blue-600 text-white"
-                        : "border-zinc-400 text-zinc-700"
+                      selectedTime === select.id && !isBooked
+                        ? "border-violet-800! bg-blue-600! text-white!"
+                        : "border-zinc-400! text-zinc-700!  bg-white! dark:bg-black! dark:text-zinc-200!"
                     }`}
                   onClick={() =>
                     handleTime({ id: select.id, time: select.time })
                   }
                 >
                   <h1
-                    className={`${isTimeBooked(select.time, bookings, expires as string) && " text-[#6e6c8a] text-xl"}`}
+                    className={`${isBooked && " text-[#6e6c8a] text-[1rem]"}`}
                   >
                     {select.time}
                   </h1>
 
                   {isTimeBooked(select.time, bookings, expires as string) && (
-                    <span className="flex mt-2 gap-2 items-center ">
+                    <span className="flex gap-1 items-center ">
                       <ImBlocked size={14} /> Booked
                     </span>
                   )}
-                </div>
+                </Button>
               )}
             </div>
           );
