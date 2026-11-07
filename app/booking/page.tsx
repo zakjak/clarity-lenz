@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 const Booking = () => {
   return (
     <div>
-      <div className="grid md:grid-cols-2 h-80 md:h-120">
+      <div className="grid md:grid-cols-2">
         <div className="flex flex-col justify-center font-semibold pl-10 bg-[#FAF9FD]">
           <h1 className="lg:text-6xl md:text-4xl text-zinc-700">
             Book Appointment
