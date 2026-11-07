@@ -7,9 +7,9 @@ import { useDateStore } from "@/hooks/useBooking";
 import { OnSelectHandler } from "react-day-picker";
 
 const formatDate = (date: Date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
+  const year = date?.getFullYear();
+  const month = String(date?.getMonth() + 1).padStart(2, "0");
+  const day = String(date?.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 };
@@ -35,25 +35,23 @@ const SelectDateComponent = () => {
   }, [date, changeDate]);
 
   return (
-    <div>
+    <div className="h-full w-full">
       <h2 className="text-sm my-4 text-cyan-950 font-semibold ">
         1. Select Date
       </h2>
-      <Card>
-        <Calendar
-          mode="single"
-          defaultMonth={date}
-          selected={date}
-          onSelect={handleSelect}
-          startMonth={date}
-          disabled={{ before: new Date() }}
-          modifiers={{ booked: bookedDates }}
-          modifiersClassNames={{
-            booked: "npm dlx shadcn@latest add calendar",
-          }}
-          className="h-full w-full"
-        />
-      </Card>
+      <Calendar
+        mode="single"
+        defaultMonth={date}
+        selected={date}
+        onSelect={handleSelect}
+        startMonth={date}
+        disabled={{ before: new Date() }}
+        modifiers={{ booked: bookedDates }}
+        modifiersClassNames={{
+          booked: "npm dlx shadcn@latest add calendar",
+        }}
+        className="shadow"
+      />
     </div>
   );
 };

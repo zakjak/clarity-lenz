@@ -5,9 +5,13 @@ import SelectedTime from "./SelectedTime";
 
 const TimeComponent = () => {
   return (
-    <div>
-      <SelectDateComponent />
-      <SelectedTime />
+    <div className="w-full">
+      <div className="w-full">
+        <SelectDateComponent />
+      </div>
+      <div className="">
+        <SelectedTime />
+      </div>
     </div>
   );
 };

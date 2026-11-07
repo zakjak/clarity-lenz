@@ -147,7 +147,7 @@ const SelectedTime = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <h2 className="text-sm text-cyan-950 font-semibold my-3">
         2. Select Time
       </h2>
