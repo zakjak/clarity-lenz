@@ -63,7 +63,7 @@ const SelectedServicesComponent = () => {
   >(null);
   const changeServices = useBookingStore((state) => state.changeServices);
 
-  const handleSection = (select: Services) => {
+  const handleSelection = (select: Services) => {
     setSelectedService(select.id);
     changeServices(
       select.title,
@@ -85,7 +85,7 @@ const SelectedServicesComponent = () => {
           <div
             key={select.id}
             className={`flex gap-2 border p-4 rounded-lg mt-2 cursor-pointer relative ${isSelected ? "border-blue-600 bg-blue-50 dark:bg-zinc-800" : "border-zinc-400"}`}
-            onClick={() => handleSection(select)}
+            onClick={() => handleSelection(select)}
           >
             <div className={`${select.color} self-start p-2 rounded-full`}>
               {select.icon}
@@ -105,13 +105,6 @@ const SelectedServicesComponent = () => {
                 <span className="text-sm font-bold">${select.price}</span>
               </div>
             </div>
-            {isSelected ? (
-              <div className="h-6 w-6 border border-blue-600 rounded-full absolute flex items-center justify-center top-4 right-4">
-                <div className="h-4 w-4 bg-blue-600 rounded-full" />
-              </div>
-            ) : (
-              <div className="h-6 w-6 border border-zinc-400 rounded-full absolute flex items-center justify-center top-4 right-4" />
-            )}
           </div>
         );
       })}

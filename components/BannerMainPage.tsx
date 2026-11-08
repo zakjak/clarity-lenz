@@ -20,13 +20,13 @@ const BannerMainPage = () => {
           Our Blog
         </Badge>
         <div className="mt-2 md:mt-4 flex flex-col gap-2">
-          <h2 className="text-6xl w-[70%]">
+          <h2 className="text-3xl md:text-4xl lg:text-6xl w-[70%]">
             Insights. Ideas.{" "}
-            <span className="text  bg-linear-to-r from-[#D55114] via-[#FE8919] to-[#FEBE1A] bg-clip-text text-transparent">
+            <span className="text bg-linear-to-r from-[#D55114] via-[#FE8919] to-[#FEBE1A] bg-clip-text text-transparent">
               Innovation.
             </span>
           </h2>
-          <p className="text-sm text-zinc-100 w-[70%]">
+          <p className="text-xs md:text-sm text-zinc-100 w-[70%]">
             Stay updated with the latest news, tech insights and events from{" "}
             <span className="font-black">Clarity Lenz</span>
           </p>
