@@ -9,7 +9,7 @@ const LatestArticleSmallComponent = ({ article }: { article: Article }) => {
   return (
     <Card className="p-1">
       <Link
-        href={`${process.env.NEXT_PUBLIC_API_URL}/${slugify(article?.category)}/${article?.id}/${
+        href={`${process.env.API_URL}/${slugify(article?.category)}/${article?.id}/${
           article && article?.title?.replaceAll(" ", "-")
         }`}
         className="flex items-center gap-2"

@@ -11,7 +11,7 @@ export async function generateMetadata({
   const { id, slug } = await params;
 
   const article = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/articles/article/${id}`,
+    `${process.env.API_URL}/api/articles/article/${id}`,
     {
       cache: "no-store",
     },
@@ -37,7 +37,7 @@ export async function generateMetadata({
     openGraph: {
       title: article[0]?.title,
       description: desc,
-      url: `${process.env.NEXT_PUBLIC_API_URL}/${article[0]?.category}/${id}/${slug}`,
+      url: `${process.env.API_URL}/${article[0]?.category}/${id}/${slug}`,
       images: [
         {
           url: article[0]?.image,
@@ -55,7 +55,7 @@ export async function generateMetadata({
       images: [article[0]?.image],
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_API_URL}/${article[0]?.category}/${id}/${slug}`,
+      canonical: `${process.env.API_URL}/${article[0]?.category}/${id}/${slug}`,
     },
   };
 }

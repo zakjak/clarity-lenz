@@ -17,7 +17,7 @@ const LatestArticleComponent = ({ article }: { article: Article }) => {
   return (
     <Card className="relative rounded-sm">
       <Link
-        href={`${process.env.NEXT_PUBLIC_API_URL}/${slugify(article?.category)}/${article?.id}/${
+        href={`${process.env.API_URL}/${slugify(article?.category)}/${article?.id}/${
           article && article?.title?.replaceAll(" ", "-")
         }`}
       >

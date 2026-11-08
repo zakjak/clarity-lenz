@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       expiresAt,
     });
 
-    const resetLink = `${process.env.NEXT_PUBLIC_API_URL}/reset-password?token=${rawToken}&email=${email}`;
+    const resetLink = `${process.env.API_URL}/reset-password?token=${rawToken}&email=${email}`;
 
     console.log(email);
 

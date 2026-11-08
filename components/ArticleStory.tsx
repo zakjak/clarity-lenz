@@ -31,7 +31,7 @@ const ArticleStory = ({
   const { data: session } = useSession();
   const [copied, setCopied] = useState(false);
 
-  const articleUrl = `${process.env.NEXT_PUBLIC_API_URL}/${
+  const articleUrl = `${process.env.API_URL}/${
     articleStory?.article[0]?.category
   }/${
     articleStory?.article[0]?.id

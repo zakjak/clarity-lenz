@@ -50,7 +50,7 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
       <Card className="mt-2">
         <div className="relative">
           <Link
-            href={`${process.env.NEXT_PUBLIC_API_URL}/${slugify(topStory?.category)}/${topStory?.id}/${
+            href={`${process.env.API_URL}/${slugify(topStory?.category)}/${topStory?.id}/${
               topStory && topStory?.title?.replaceAll(" ", "-")
             }`}
           >
@@ -150,7 +150,7 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
           </div>
 
           <Link
-            href={`${process.env.NEXT_PUBLIC_API_URL}/${topStory?.category}/${
+            href={`${process.env.API_URL}/${topStory?.category}/${
               topStory?.id
             }/${topStory?.title?.replaceAll(" ", "-")}`}
           >

@@ -6,12 +6,10 @@ import { useBookingStore } from "@/hooks/useBooking";
 import convertToSubcurrency from "@/lib/convertToSubcurrency";
 import CheckoutPage from "./CheckoutPage";
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
-);
-
 const BookingUserDetails = () => {
   const amount = useBookingStore((state) => state.price);
+
+  const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY!);
 
   return (
     <div className="mt-6">
