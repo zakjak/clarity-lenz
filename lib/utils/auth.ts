@@ -1,5 +1,5 @@
 import NextAuth, { DefaultSession } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import Google from "next-auth/providers/google";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { accounts, sessions, users } from "@/lib/db/schema";
 import { db } from "..";
@@ -29,7 +29,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     strategy: "jwt",
   },
   providers: [
-    GoogleProvider({
+    Google({
       clientId: process.env.AUTH_GOOGLE_ID!,
       clientSecret: process.env.AUTH_GOOGLE_SECRET!,
       authorization: {
@@ -93,8 +93,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
           return user;
         }
-
-        // SIGN IN
 
         const [user] = await db
           .select()
