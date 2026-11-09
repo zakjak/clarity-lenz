@@ -50,7 +50,11 @@ const SelectDateComponent = () => {
         modifiersClassNames={{
           booked: "npm dlx shadcn@latest add calendar",
         }}
-        className="shadow"
+        className="shadow w-full"
+        classNames={{
+          month: "w-full space-y-4",
+          month_grid: "w-full border-collapse",
+        }}
       />
     </div>
   );
