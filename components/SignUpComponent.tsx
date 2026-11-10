@@ -76,11 +76,15 @@ const SignUpComponent = () => {
     }
   };
 
-  const socialSignIn = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+  const socialSignUp = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch (error) {
+      console.error("Google sign-in failed:", error);
+    }
   };
 
   return (
@@ -233,7 +237,7 @@ const SignUpComponent = () => {
         <hr className="w-[45%]" />
       </div>
 
-      <Button type="button" onClick={signUp} className="cursor-pointer">
+      <Button type="button" onClick={socialSignUp} className="cursor-pointer">
         <FaGoogle /> Sign up with Google
       </Button>
     </Card>

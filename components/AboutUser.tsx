@@ -8,7 +8,7 @@ import { useState } from "react";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { Input } from "./ui/input";
 import { User } from "@/lib/types/users";
-import { useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 
 const formSchema = z.object({
   profilePicture: z.union([
@@ -20,7 +20,7 @@ const formSchema = z.object({
 const AboutUser = ({ user }: { user: User }) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const { update } = useSession();
+  const { data: session } = authClient.useSession();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -63,7 +63,7 @@ const AboutUser = ({ user }: { user: User }) => {
         });
 
         if (responseProfile.ok) {
-          await update();
+          // await update();
           await responseProfile.json();
         }
       }

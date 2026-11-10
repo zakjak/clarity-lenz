@@ -1,6 +1,5 @@
 "use client";
 
-import { signOut, useSession } from "next-auth/react";
 import { User } from "@/lib/types/users";
 import { Button } from "./ui/button";
 import { FiEdit } from "react-icons/fi";
@@ -21,6 +20,7 @@ import z from "zod";
 import { useEffect, useState } from "react";
 import AboutUser from "./AboutUser";
 import { Field, FieldError, FieldLabel } from "./ui/field";
+import { authClient } from "@/lib/auth-client";
 
 const formSchema = z.object({
   name: z
@@ -31,7 +31,8 @@ const formSchema = z.object({
 });
 
 const SettingsProfile = () => {
-  const { data: session, update } = useSession();
+  // const { data: session, update } = useSession();
+  const { data: session } = authClient.useSession();
   const [open, setOpen] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -60,9 +61,9 @@ const SettingsProfile = () => {
         body: JSON.stringify({ username: values.name, email: values.email }),
       });
 
-      if (res.ok) {
-        await update();
-      }
+      // if (res.ok) {
+      //   await update();
+      // }
 
       setSaving(false);
       setOpen(false);
@@ -80,7 +81,7 @@ const SettingsProfile = () => {
     });
 
     if (res.ok) {
-      await signOut({ callbackUrl: "/" });
+      // await signOut({ callbackUrl: "/" });
     } else {
       console.log("Failed to delete account");
     }

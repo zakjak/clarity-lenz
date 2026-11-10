@@ -1,6 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
+import { isAPIError } from "better-auth/api";
 import { headers } from "next/headers";
 
 export const signIn = async ({
@@ -10,22 +11,35 @@ export const signIn = async ({
   email: string;
   password: string;
 }) => {
-  await auth.api.signInEmail({
-    body: {
-      email: email,
-      password: password,
-    },
-  });
+  try {
+    await auth.api.signInEmail({
+      body: {
+        email: email,
+        password: password,
+      },
+      headers: await headers(),
+    });
+  } catch (error) {
+    if (isAPIError(error)) {
+      console.log(error.message, error.status);
+    }
+  }
 };
 
 export const signUp = async () => {
-  await auth.api.signUpEmail({
-    body: {
-      email: "zak111@gmail.com",
-      password: "asdfafdsgretyrtyret",
-      name: "ZakJak YakZak",
-    },
-  });
+  try {
+    await auth.api.signUpEmail({
+      body: {
+        email: "zak111@gmail.com",
+        password: "asdfafdsgretyrtyret",
+        name: "ZakJak YakZak",
+      },
+    });
+  } catch (error) {
+    if (isAPIError(error)) {
+      console.log(error.message, error.status);
+    }
+  }
 };
 
 export const signOut = async () => {
