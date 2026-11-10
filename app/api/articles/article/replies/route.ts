@@ -1,6 +1,6 @@
 import { db } from "@/lib";
-import { comments } from "@/lib/db/articles";
-import { users } from "@/lib/db/schema";
+import { comments } from "@/db/articles";
+import { users } from "@/db/schema";
 import { asc, count, desc, eq, sql } from "drizzle-orm";
 
 export async function GET(request: Request) {

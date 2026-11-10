@@ -1,6 +1,6 @@
 import { db } from "@/lib";
-import { articles, comments } from "@/lib/db/articles";
-import { users } from "@/lib/db/schema";
+import { articles, comments } from "@/db/articles";
+import { users } from "@/db/schema";
 import { and, asc, count, desc, eq, inArray, isNull, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 

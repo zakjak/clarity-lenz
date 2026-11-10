@@ -1,6 +1,6 @@
 import { db } from "@/lib";
 import { generateResetToken } from "@/lib/auth/reset-token";
-import { passwordResetTokens, users } from "@/lib/db/schema";
+import { passwordResetTokens, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
@@ -33,14 +33,12 @@ export async function POST(req: Request) {
     const expiresAt = new Date(Date.now() + 1000 * 60 * 10);
 
     await db.insert(passwordResetTokens).values({
-      email,
+      email: email,
       token: hashedToken,
-      expiresAt,
+      expiresAt: expiresAt,
     });
 
     const resetLink = `${process.env.API_URL}/reset-password?token=${rawToken}&email=${email}`;
-
-    console.log(email);
 
     const { data, error } = await resend.emails.send({
       from: "ClarityLenz <info@claritylenz.com>",

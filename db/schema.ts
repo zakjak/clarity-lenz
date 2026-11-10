@@ -2,7 +2,9 @@ import { relations } from "drizzle-orm";
 import { pgTable, text, timestamp, boolean, index } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
-  id: text("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").default(false).notNull(),
@@ -14,6 +16,22 @@ export const users = pgTable("users", {
     .notNull(),
   isAdmin: boolean("is_admin").default(false),
   isOwner: boolean("is_owner").default(false),
+  password: text("password"),
+});
+
+export const about = pgTable("about", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  position: text("position"),
+  bio: text("bio"),
+  fb: text("fb"),
+  twitter: text("twitter"),
+  linkedIn: text("linkedIn"),
+  instagram: text("instagram"),
+  ownerId: text("id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
 });
 
 export const session = pgTable(
@@ -74,6 +92,15 @@ export const verification = pgTable(
   },
   (table) => [index("verification_identifier_idx").on(table.identifier)],
 );
+
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  email: text("email").notNull(),
+  token: text("token").notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+});
 
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(session),

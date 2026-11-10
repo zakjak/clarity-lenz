@@ -45,17 +45,29 @@ const SignInComponent = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const response = signIn({
+      const response = await signIn({
         email: data.email,
         password: data.password,
       });
-      console.log(response);
-      setIsLoading(false);
+
       router.push("/");
+      router.refresh();
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const socialSignUp = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch (error) {
+      console.error("Google sign-in failed:", error);
     }
   };
 
@@ -158,9 +170,9 @@ const SignInComponent = () => {
         <hr className="w-[45%]" />
       </div>
 
-      {/* <Button onClick={signIn} className="cursor-pointer">
+      <Button onClick={socialSignUp} className="cursor-pointer">
         <FaGoogle /> Sign in with Google
-      </Button> */}
+      </Button>
     </Card>
   );
 };

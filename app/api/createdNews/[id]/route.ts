@@ -1,6 +1,6 @@
 import { db } from "@/lib";
-import { articles } from "@/lib/db/articles";
-import { videos } from "@/lib/db/videos";
+import { articles } from "@/db/articles";
+import { videos } from "@/db/videos";
 import { and, arrayContains, desc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 

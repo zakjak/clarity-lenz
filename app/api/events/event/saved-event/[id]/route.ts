@@ -1,5 +1,5 @@
 import { db } from "@/lib";
-import { events, register } from "@/lib/db/events";
+import { events, register } from "@/db/events";
 import { htmlEmail } from "@/lib/utils/send-event";
 import { sendMail } from "@/lib/utils/send-mail";
 import { eq, lt } from "drizzle-orm";

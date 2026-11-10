@@ -1,5 +1,5 @@
 import { db } from "@/lib";
-import { videos } from "@/lib/db/videos";
+import { videos } from "@/db/videos";
 import { count, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 

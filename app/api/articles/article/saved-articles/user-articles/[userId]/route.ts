@@ -1,5 +1,5 @@
 import { db } from "@/lib";
-import { articles, readList } from "@/lib/db/articles";
+import { articles, readList } from "@/db/articles";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 

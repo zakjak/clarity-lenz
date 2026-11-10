@@ -1,5 +1,5 @@
 import { db } from "@/lib";
-import { users } from "@/lib/db/schema";
+import { users } from "@/db/schema";
 import { count, desc, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 

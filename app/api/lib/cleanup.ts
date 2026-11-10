@@ -1,5 +1,5 @@
 import { db } from "@/lib";
-import { events } from "@/lib/db/events";
+import { events } from "@/db/events";
 import { gt } from "drizzle-orm";
 
 export const deleteExpiredEvents = async () => {

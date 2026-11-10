@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import { db } from "@/lib";
 import { NextResponse } from "next/server";
-import { passwordResetTokens, users } from "@/lib/db/schema";
+import { passwordResetTokens, users } from "@/db/schema";
 import { and, eq, gt } from "drizzle-orm";
 
 export async function POST(req: Request) {

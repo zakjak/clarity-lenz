@@ -70,8 +70,6 @@ const AboutUser = ({ user }: { user: User }) => {
     }
   };
 
-  console.log(user);
-
   return (
     <>
       <div className="flex flex-col items-center mt-8">

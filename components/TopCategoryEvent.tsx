@@ -22,13 +22,12 @@ import moment from "moment";
 import { IoCalendarOutline } from "react-icons/io5";
 import { TiTicket } from "react-icons/ti";
 import { useDeleteEvent } from "@/hooks/useEvents";
-import { useSession } from "next-auth/react";
-import { formatInTimeZone } from "date-fns-tz";
 import { formattedTime } from "@/lib/utils/helpers";
+import { authClient } from "@/lib/auth-client";
 
 const TopCategoryEvent = ({ event }: { event: EventProp }) => {
   const [openDelete, setOpenDelete] = useState(false);
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
 
   const { mutate } = useDeleteEvent();
 

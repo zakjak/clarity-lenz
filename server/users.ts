@@ -16,6 +16,7 @@ export const signIn = async ({
       body: {
         email: email,
         password: password,
+        callbackURL: "/",
       },
       headers: await headers(),
     });
@@ -26,14 +27,18 @@ export const signIn = async ({
   }
 };
 
-export const signUp = async () => {
+export const signUp = async ({
+  email,
+  password,
+  name,
+}: {
+  email: string;
+  password: string;
+  name: string;
+}) => {
   try {
     await auth.api.signUpEmail({
-      body: {
-        email: "zak111@gmail.com",
-        password: "asdfafdsgretyrtyret",
-        name: "ZakJak YakZak",
-      },
+      body: { email, password, name, callbackURL: "/sign-in" },
     });
   } catch (error) {
     if (isAPIError(error)) {

@@ -27,7 +27,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Textarea } from "./ui/textarea";
 import { useCreateEvent } from "@/hooks/useCreateEvent";
 import { User } from "@/lib/types/users";
-import { useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 
 const formSchema = z
   .object({
@@ -71,7 +71,7 @@ const EventsForm = ({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openCalendar, setOpenCalendar] = useState(false);
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

@@ -60,15 +60,13 @@ const SignUpComponent = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const res = await authClient.signUp.email({
+      const res = await signUp({
         name: data.name,
         email: data.email,
         password: data.password,
-        callbackURL: "/",
       });
-      console.log(res);
       setIsLoading(false);
-      router.push("/");
+      router.push("/sign-in");
     } catch (err) {
       console.log(err);
     } finally {
