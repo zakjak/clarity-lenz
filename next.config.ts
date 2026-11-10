@@ -36,6 +36,8 @@ const nextConfig: NextConfig = {
     ZOOM_LINK: process.env.ZOOM_LINK,
     PASSWORD: process.env.PASSWORD,
     AUTH_RESEND_KEY: process.env.AUTH_RESEND_KEY,
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
   },
   experimental: {
     globalNotFound: true,

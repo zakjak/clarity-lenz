@@ -1,17 +1,17 @@
 "use client";
 
 import { useArticle, useRelatedArticles } from "@/hooks/useArticle";
-import { useSession } from "next-auth/react";
 import { useInView } from "react-intersection-observer";
 import ArticleComponentSkeleton from "./ArticleComponentSkeleton";
 import ArticleStory from "./ArticleStory";
 import RelatedArticles from "./RelatedArticles";
 import CommentSection from "./CommentSection";
+import { authClient } from "@/lib/auth-client";
 
-const ArticleComponent = ({ id }: { id: number }) => {
+const ArticleComponent = async ({ id }: { id: number }) => {
   const { data, isFetching, isLoading } = useArticle(id);
-  const { data: session } = useSession();
   const { ref, inView } = useInView({ threshold: 0 });
+  const { data: session } = await authClient.getSession();
 
   const { data: relatedArticles } = useRelatedArticles(
     data && data?.article[0]?.category,

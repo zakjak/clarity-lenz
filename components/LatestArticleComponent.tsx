@@ -33,7 +33,7 @@ const LatestArticleComponent = ({ article }: { article: Article }) => {
             {article?.title}
           </CardTitle>
           <CardDescription className="line-clamp-2 md:w-[80%]">
-            {plateToHtml(JSON.parse(article?.story))}
+            {article && plateToHtml(JSON.parse(article?.story))}
           </CardDescription>
         </CardHeader>
         <CardFooter className="p-4">

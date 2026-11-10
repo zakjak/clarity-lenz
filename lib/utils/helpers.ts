@@ -36,7 +36,7 @@ export const nameFallback = (name: string) => {
 };
 
 export const slugify = (username: string) => {
-  return username.toLowerCase().trim().replace(/\s+/g, "-");
+  return username?.toLowerCase().trim().replace(/\s+/g, "-");
 };
 
 // PAGINATION

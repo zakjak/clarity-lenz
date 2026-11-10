@@ -1,7 +1,7 @@
 import { Article } from "@/lib/types/article";
 import { User } from "@/lib/types/users";
 import { plateToHtml } from "@/lib/utils/plateToHtml";
-import { useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { notFound } from "next/navigation";
 import { useState } from "react";
 import { FaFacebookF, FaLinkedinIn, FaShareAlt } from "react-icons/fa";
@@ -23,12 +23,12 @@ import { TiTick } from "react-icons/ti";
 import { Button } from "./ui/button";
 import { FaRegCopy, FaXTwitter } from "react-icons/fa6";
 
-const ArticleStory = ({
+const ArticleStory = async ({
   articleStory,
 }: {
   articleStory: { article: [Article, User[]] };
 }) => {
-  const { data: session } = useSession();
+  const { data: session } = await authClient.useSession();
   const [copied, setCopied] = useState(false);
 
   const articleUrl = `${process.env.API_URL}/${

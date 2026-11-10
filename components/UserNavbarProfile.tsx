@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "./ui/button";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Link from "next/link";
@@ -11,13 +11,17 @@ import { CgProfile } from "react-icons/cg";
 import { BsGraphDown } from "react-icons/bs";
 
 const UserNavbarProfile = () => {
-  const { data: session } = useSession();
   const pathname = usePathname();
   const router = useRouter();
+  const { data: session } = authClient.useSession();
 
-  const handleSignOut = () => {
-    signOut({
-      redirect: false,
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/");
+        },
+      },
     });
     const isProfileRouter = pathname.startsWith("/profiles");
 

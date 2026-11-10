@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { signIn, useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { FaGoogle } from "react-icons/fa";
 import {
   Card,
@@ -21,6 +21,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { Spinner } from "./ui/spinner";
 import { useRouter } from "next/navigation";
+import { signUp } from "@/server/users";
 
 const formSchema = z
   .object({
@@ -43,7 +44,6 @@ const formSchema = z
 const SignUpComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { data: session } = useSession();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -60,12 +60,13 @@ const SignUpComponent = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      await signIn("credentials", {
+      const res = await authClient.signUp.email({
         name: data.name,
         email: data.email,
         password: data.password,
-        mode: "signup",
+        callbackURL: "/",
       });
+      console.log(res);
       setIsLoading(false);
       router.push("/");
     } catch (err) {
@@ -75,7 +76,12 @@ const SignUpComponent = () => {
     }
   };
 
-  if (session?.user) router.push("/");
+  const socialSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  };
 
   return (
     <Card className="w-full max-[70%] lg:max-w-xl flex flex-col gap-4 p-4 shadow-xl rounded-lg">
@@ -227,7 +233,7 @@ const SignUpComponent = () => {
         <hr className="w-[45%]" />
       </div>
 
-      <Button onClick={() => signIn("google")} className="cursor-pointer">
+      <Button type="button" onClick={signUp} className="cursor-pointer">
         <FaGoogle /> Sign up with Google
       </Button>
     </Card>

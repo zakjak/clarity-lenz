@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/utils/auth";
+import { auth } from "@/lib/auth";
 import { db } from "@/lib";
 import { users } from "@/lib/db/schema";
 import { readList } from "@/lib/db/articles";

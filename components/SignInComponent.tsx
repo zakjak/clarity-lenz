@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { signIn, useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import {
   Card,
@@ -19,6 +19,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Spinner } from "./ui/spinner";
+import { signIn } from "@/server/users";
 
 const formSchema = z.object({
   email: z.email(),
@@ -30,7 +31,6 @@ const formSchema = z.object({
 const SignInComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { data: session } = useSession();
 
   const router = useRouter();
 
@@ -45,11 +45,11 @@ const SignInComponent = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const response = await signIn("credentials", {
+      const response = signIn({
         email: data.email,
         password: data.password,
-        mode: "signin",
       });
+      console.log(response);
       setIsLoading(false);
       router.push("/");
     } catch (err) {
@@ -58,8 +58,6 @@ const SignInComponent = () => {
       setIsLoading(false);
     }
   };
-
-  if (session?.user) router.push("/");
 
   return (
     <Card className="w-full max-[70%] lg:max-w-xl flex flex-col gap-4 p-4">
@@ -160,9 +158,9 @@ const SignInComponent = () => {
         <hr className="w-[45%]" />
       </div>
 
-      <Button onClick={() => signIn("google")} className="cursor-pointer">
+      {/* <Button onClick={signIn} className="cursor-pointer">
         <FaGoogle /> Sign in with Google
-      </Button>
+      </Button> */}
     </Card>
   );
 };
