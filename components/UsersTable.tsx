@@ -37,11 +37,11 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { Badge } from "./ui/badge";
-import { useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 
 const UsersTable = ({ users }: { users: User[] }) => {
   const [admin, setAdmin] = useState(false);
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const [coAuthor, setCoAuthor] = useState(false);
   const [activeUserId, setActiveUserId] = useState<string | null>(null);
 

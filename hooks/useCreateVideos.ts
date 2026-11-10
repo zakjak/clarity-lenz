@@ -22,8 +22,11 @@ export const useCreateVideo = (userId: string) => {
     mutationFn: (video: Video) => createVideo(video),
 
     onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["created-videos"],
+      });
       queryClient.invalidateQueries({ queryKey: ["created-news", userId] });
-      queryClient.invalidateQueries({ queryKey: ["created-videos"] });
+      queryClient.invalidateQueries({ queryKey: ["created-videos", userId] });
     },
   });
 };

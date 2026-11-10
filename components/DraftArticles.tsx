@@ -1,17 +1,17 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import TopCategoryStory from "./TopCategoryStory";
 import CategoriesPageSkeleton from "./CategoriesPageSkeleton";
 import { useDraft } from "@/hooks/useCreatedArticles";
+import { authClient } from "@/lib/auth-client";
 
 const DraftArticles = () => {
   const [visiblePageCount, setVisiblePageCount] = useState(2);
   const { ref, inView } = useInView({ threshold: 0 });
 
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useDraft(
     session?.user?.id as string,
   );

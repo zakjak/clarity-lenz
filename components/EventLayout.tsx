@@ -10,7 +10,6 @@ import { FaBookmark, FaStopCircle } from "react-icons/fa";
 import moment from "moment";
 import { Button } from "./ui/button";
 import { FaClock } from "react-icons/fa6";
-import { useSession } from "next-auth/react";
 import { useSavedEvent, useToggleEvent } from "@/hooks/useEvents";
 import { Spinner } from "./ui/spinner";
 import { IoTicketOutline } from "react-icons/io5";
@@ -30,6 +29,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 const formSchema = z.object({
   email: z.email(),
@@ -37,7 +37,7 @@ const formSchema = z.object({
 
 const EventLayout = ({ event }: { event: EventProp }) => {
   const [open, setOpen] = useState(false);
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const start = moment(event?.eventStart);
   const end = moment(event?.eventEnd);
   const duration = moment.duration(end.diff(start));

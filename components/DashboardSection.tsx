@@ -1,7 +1,6 @@
 "use client";
 import DashboardStats from "./DashboardStats";
 import TablePanel from "./TablePanel";
-import { useSession } from "next-auth/react";
 import {
   useDashboardStats,
   useDashboardUsersTable,
@@ -11,6 +10,7 @@ import { redirect } from "next/navigation";
 import DashboardSearch from "./DashboardSearch";
 import { useRouter } from "next/navigation";
 import { useSearchUser } from "@/hooks/useUser";
+import { authClient } from "@/lib/auth-client";
 
 const DashboardSection = ({
   search,
@@ -19,7 +19,7 @@ const DashboardSection = ({
   search: string;
   page: string;
 }) => {
-  const { data: session, status } = useSession();
+  const { data: session } = authClient.useSession();
   const [currentPage, setCurrentPage] = useState(0);
   const { data: dataStats } = useDashboardStats(
     session?.user?.id as string,

@@ -8,16 +8,16 @@ import {
 import convertToSubcurrency from "@/lib/convertToSubcurrency";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { useSession } from "next-auth/react";
 import {
   useBookingStore,
   useDateStore,
   useSelectTimeStore,
   useTimezoneStore,
 } from "@/hooks/useBooking";
+import { authClient } from "@/lib/auth-client";
 
 const CheckoutPage = ({ amount }: { amount: number }) => {
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string>("");

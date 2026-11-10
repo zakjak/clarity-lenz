@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import TopCategoryStory from "./TopCategoryStory";
 import { useInView } from "react-intersection-observer";
 import CategoriesPageSkeleton from "./CategoriesPageSkeleton";
-import { useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 
 const SavedArticlesComponent = () => {
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const [visiblePageCount, setVisiblePageCount] = useState(2);
   const { ref, inView } = useInView({ threshold: 0 });
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =

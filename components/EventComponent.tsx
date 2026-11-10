@@ -2,11 +2,11 @@
 
 import { useEvent } from "@/hooks/useEvents";
 import EventLayout from "./EventLayout";
-import { useSession } from "next-auth/react";
 import LatestArticlesSkeleton from "./LatestArticlesSkeleton";
+import { authClient } from "@/lib/auth-client";
 
 const EventComponent = ({ id }: { id: number }) => {
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const { data, isFetching, isLoading } = useEvent(
     id,
     session?.user?.id as string,
