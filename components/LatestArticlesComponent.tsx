@@ -8,7 +8,11 @@ const LatestArticlesComponent = () => {
   return (
     <div className="">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-2xl">Latest Articles</h2>
+        <div className="flex items-center relative">
+          <h2 className="font-semibold text-2xl pl-4">Latest Articles</h2>
+          <div className="w-1 h-full bg-[#5a20e0] absolute left-0 top-0" />
+        </div>
+
         <Link href="/articles">
           <Button
             variant="link"

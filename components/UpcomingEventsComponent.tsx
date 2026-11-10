@@ -14,8 +14,12 @@ const UpcomingEventsComponent = () => {
   return (
     <div className="">
       {events && events?.length >= 1 && (
-        <div className="flex items-center justify-between">
-          <h2 className="font-semibold my-6 md:my-0">Upcoming Events</h2>
+        <div className="flex items-center justify-between mt-8 mb-4">
+          <div className="flex items-center relative">
+            <h2 className="font-semibold text-2xl pl-4">Upcoming Events</h2>
+            <div className="w-1 h-full bg-[#5a20e0] absolute left-0 top-0" />
+          </div>
+
           <Link href="/events">
             <Button
               variant="link"

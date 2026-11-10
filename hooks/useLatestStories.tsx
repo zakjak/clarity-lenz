@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useLatestStories = () => {
   return useQuery({
-    queryKey: ["latestArticles"],
+    queryKey: ["created-news"],
     queryFn: async () => {
       const res = await fetch(`/api/articles/latest-articles`);
 

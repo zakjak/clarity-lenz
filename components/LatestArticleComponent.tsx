@@ -15,34 +15,39 @@ import Link from "next/link";
 
 const LatestArticleComponent = ({ article }: { article: Article }) => {
   return (
-    <Card className="relative rounded-sm">
+    <Card className="rounded-sm w-full relative">
       <Link
         href={`${process.env.API_URL}/${slugify(article?.category)}/${article?.id}/${
           article && article?.title?.replaceAll(" ", "-")
         }`}
       >
-        <Image
-          src={article?.image}
-          width={200}
-          height={200}
-          alt={`${article?.title}`}
-          className="w-full h-40 object-cover"
-        />
-        <CardHeader className="py-2">
-          <CardTitle className="md:w-[70%] line-clamp-2">
-            {article?.title}
+        <div className="relative w-full h-40">
+          <Image
+            src={article?.image}
+            alt={`${article?.title}`}
+            className="w-full h-[50%] object-cover rounded-sm object-center opacity-90 hover:opacity-95 transition-opacity"
+            fill
+          />
+        </div>
+
+        <CardHeader className="pt-2">
+          <CardTitle className=" line-clamp-2 font-black text-sm">
+            {article?.title
+              ?.split(" ")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")}
           </CardTitle>
-          <CardDescription className="line-clamp-2 md:w-[80%]">
+          <CardDescription className="line-clamp-2 md:w-[90%] -mt-2">
             {article && plateToHtml(JSON.parse(article?.story))}
           </CardDescription>
         </CardHeader>
-        <CardFooter className="p-4">
-          <div className="flex items-center text-[.6rem] gap-1 text-zinc-300">
+        <CardFooter className="py-2">
+          <div className="flex items-center text-[.6rem] gap-1 text-zinc-600">
             <HiMiniCalendar size={15} />
             <span>{calculateTime(article?.date)}</span>
           </div>
         </CardFooter>
-        <Badge className="absolute top-1 left-1 text-[.6rem] bg-violet-800 text-zinc-100">
+        <Badge className="top-1 left-1 text-[.6rem] bg-violet-800 text-zinc-100 absolute">
           {article?.category}
         </Badge>
       </Link>

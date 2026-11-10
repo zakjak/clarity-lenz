@@ -9,7 +9,7 @@ export default async function Home() {
       {/* Home Banner */}
       <BannerMainPage />
 
-      <div className="my-6 w-[90%] lg:w-5xl mx-auto md:grid md:grid-cols-2 gap-6">
+      <div className="my-6 w-[90%] lg:w-5xl mx-auto  gap-6">
         {/* Latest Articles */}
         <LatestArticlesComponent />
 
