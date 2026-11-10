@@ -124,7 +124,7 @@ const ArticleDialog = ({
 
   const convertDbImages = (urls: string[], titles: string[]) => {
     return urls.map((url, i) => ({
-      file: url, // <-- URL, not File
+      file: url,
       title: titles?.[i] || "",
     }));
   };
@@ -223,6 +223,8 @@ const ArticleDialog = ({
         body: formData,
       });
 
+      console.log(responseUpload);
+
       if (!responseUpload.ok) {
         throw new Error("Upload failed");
       }
@@ -266,19 +268,19 @@ const ArticleDialog = ({
             };
 
             mutate(article as Article);
-            form.reset({
-              title: "",
-              image: undefined,
-              category: "",
-              authors: [],
-              imageTitle: "",
-              story: "",
-              tags: [],
-              images: [],
-            });
+            // form.reset({
+            //   title: "",
+            //   image: undefined,
+            //   category: "",
+            //   authors: [],
+            //   imageTitle: "",
+            //   story: "",
+            //   tags: [],
+            //   images: [],
+            // });
 
-            setIsSubmitting(false);
-            setOpenEdit(false);
+            // setIsSubmitting(false);
+            // setOpenEdit(false);
           } else {
             const { title, imageTitle, category, tags, authors, image, story } =
               values;

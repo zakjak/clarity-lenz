@@ -3,15 +3,15 @@
 import { useState } from "react";
 import { Dialog, DialogTrigger } from "./ui/dialog";
 import VideoDialog from "./VideoDialog";
-import { useSession } from "next-auth/react";
 import { User } from "@/lib/types/users";
 import { MdOutlineSmartDisplay } from "react-icons/md";
 import { Button } from "./ui/button";
 import { FaChevronRight } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
 
 const CreateVideo = () => {
   const [open, setOpen] = useState(false);
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
 
   return (
     <div className="w-full flex justify-end">

@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import ArticleDialog from "./ArticleDialog";
 import { User } from "@/lib/types/users";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -8,6 +7,7 @@ import { Dialog, DialogTrigger } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { FaRegFileAlt } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa6";
+import { authClient } from "@/lib/auth-client";
 
 const CreateArticle = ({
   setOpen,
@@ -16,7 +16,7 @@ const CreateArticle = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const [openEdit, setOpenEdit] = useState(false);
 
   return (

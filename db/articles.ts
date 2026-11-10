@@ -27,7 +27,7 @@ export const articles = table(
       .array()
       .default(sql`'{}'::text[]`),
     authors: t
-      .uuid("authors_id")
+      .text("authors_id")
       .array()
       .default(sql`'{}'::uuid[]`)
       .references(() => users.id),

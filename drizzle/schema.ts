@@ -1,24 +1,8 @@
-import { pgTable, integer, varchar, text, timestamp, boolean, uuid, unique, serial, index, foreignKey, pgEnum } from "drizzle-orm/pg-core"
+import { pgTable, unique, serial, integer, uuid, timestamp, text, varchar, index, foreignKey, boolean, pgEnum } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 export const bookingStatus = pgEnum("booking_status", ['pending', 'confirmed', 'cancelled'])
 
-
-export const articles = pgTable("articles", {
-	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "articles_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),
-	title: varchar({ length: 300 }),
-	image: text().notNull(),
-	imageTitle: text("image_title"),
-	category: varchar({ length: 100 }),
-	date: timestamp({ mode: 'string' }).defaultNow().notNull(),
-	isDraft: boolean("is_draft"),
-	story: text().notNull(),
-	tags: text().array().default([""]),
-	images: text().array().default([""]),
-	imagesTitle: text("images_title").array().default([""]),
-	authorsId: uuid("authors_id").array().default([""]),
-	views: integer().default(0),
-});
 
 export const commentVotes = pgTable("comment_votes", {
 	id: serial().primaryKey().notNull(),
@@ -179,3 +163,19 @@ export const users = pgTable("users", {
 }, (table) => [
 	unique("users_email_unique").on(table.email),
 ]);
+
+export const articles = pgTable("articles", {
+	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "articles_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),
+	title: varchar({ length: 300 }),
+	image: text().notNull(),
+	imageTitle: text("image_title"),
+	category: varchar({ length: 100 }),
+	date: timestamp({ mode: 'string' }).defaultNow().notNull(),
+	isDraft: boolean("is_draft"),
+	story: text().notNull(),
+	tags: text().array().default([""]),
+	images: text().array().default([""]),
+	imagesTitle: text("images_title").array().default([""]),
+	authorsId: text("authors_id").array().default([""]),
+	views: integer().default(0),
+});

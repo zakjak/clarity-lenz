@@ -18,10 +18,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
-import { useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 
 const TopCateogoryVideo = ({ video }: { video: Video }) => {
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const videoId = new URL(video?.videoUrl).searchParams.get("v");
   const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 

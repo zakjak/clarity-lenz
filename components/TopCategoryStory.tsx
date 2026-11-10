@@ -21,17 +21,18 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import { User } from "@/lib/types/users";
 import { Dialog } from "./ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Badge } from "./ui/badge";
 import { useDeleteArticle } from "@/hooks/useArticle";
 import ArticleDialog from "./ArticleDialog";
+import { authClient } from "@/lib/auth-client";
+
 const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
   const [openDelete, setOpenDelete] = useState(false);
   const [open, setOpen] = useState(false);
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
 
   const { mutate } = useDeleteArticle();
   const pathname = usePathname();

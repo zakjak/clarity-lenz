@@ -1,6 +1,5 @@
 "use client";
 import { useAuthor } from "@/hooks/useUser";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { Separator } from "./ui/separator";
 import EditProfileComponent from "./EditProfileComponent";
@@ -11,9 +10,10 @@ import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import UserInfoBanner from "./UserInfoBanner";
 import { FaEnvelope } from "react-icons/fa6";
+import { authClient } from "@/lib/auth-client";
 
 const UserProfileBanner = ({ id }: { id: string }) => {
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
 
   const { data } = useAuthor(id as string);
 

@@ -3,14 +3,14 @@
 import { useState } from "react";
 import CreateArticle from "./CreateArticle";
 import SavedArticles from "./SavedArticles";
-import { useSession } from "next-auth/react";
 import CreateVideo from "./CreateVideo";
 import SavedVideos from "./SavedVideos";
+import { authClient } from "@/lib/auth-client";
 
 const UserArticleSection = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState("articles");
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
 
   return (
     <div>
