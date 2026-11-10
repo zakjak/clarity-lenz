@@ -8,10 +8,10 @@ import RelatedArticles from "./RelatedArticles";
 import CommentSection from "./CommentSection";
 import { authClient } from "@/lib/auth-client";
 
-const ArticleComponent = async ({ id }: { id: number }) => {
+const ArticleComponent = ({ id }: { id: number }) => {
+  const { data: session } = authClient.useSession();
   const { data, isFetching, isLoading } = useArticle(id);
   const { ref, inView } = useInView({ threshold: 0 });
-  const { data: session } = await authClient.getSession();
 
   const { data: relatedArticles } = useRelatedArticles(
     data && data?.article[0]?.category,

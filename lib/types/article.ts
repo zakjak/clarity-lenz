@@ -32,5 +32,5 @@ export type CommentProp = {
 
 export type ReplyProps = {
   comment: CommentProp;
-  user: User;
+  users: User;
 };

@@ -23,12 +23,12 @@ import { TiTick } from "react-icons/ti";
 import { Button } from "./ui/button";
 import { FaRegCopy, FaXTwitter } from "react-icons/fa6";
 
-const ArticleStory = async ({
+const ArticleStory = ({
   articleStory,
 }: {
   articleStory: { article: [Article, User[]] };
 }) => {
-  const { data: session } = await authClient.useSession();
+  const { data: session } = authClient.useSession();
   const [copied, setCopied] = useState(false);
 
   const articleUrl = `${process.env.API_URL}/${

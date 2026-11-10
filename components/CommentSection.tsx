@@ -139,13 +139,13 @@ const CommentSection = ({
       <div className="my-2 pb-5 mt-8">
         {allComments?.map((item) => {
           if (!item) return null;
-          const { comment, user }: { comment: CommentProp; user: User } = item;
-
+          const { comment, users }: { comment: CommentProp; users: User } =
+            item;
           return (
             <Comment
               key={comment?.id}
               comment={comment}
-              users={user}
+              users={users}
               ownerId={ownerId}
               postId={comment?.postId}
             />

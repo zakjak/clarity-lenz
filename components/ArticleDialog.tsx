@@ -268,19 +268,19 @@ const ArticleDialog = ({
             };
 
             mutate(article as Article);
-            // form.reset({
-            //   title: "",
-            //   image: undefined,
-            //   category: "",
-            //   authors: [],
-            //   imageTitle: "",
-            //   story: "",
-            //   tags: [],
-            //   images: [],
-            // });
+            form.reset({
+              title: "",
+              image: undefined,
+              category: "",
+              authors: [],
+              imageTitle: "",
+              story: "",
+              tags: [],
+              images: [],
+            });
 
-            // setIsSubmitting(false);
-            // setOpenEdit(false);
+            setIsSubmitting(false);
+            setOpenEdit(false);
           } else {
             const { title, imageTitle, category, tags, authors, image, story } =
               values;

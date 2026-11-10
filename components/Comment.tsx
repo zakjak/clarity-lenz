@@ -82,7 +82,7 @@ const Comment = ({
                 <CommentThread
                   comment={reply?.comment}
                   ownerId={ownerId}
-                  users={reply?.user}
+                  users={reply?.users}
                   depth={0}
                 />
               </div>
