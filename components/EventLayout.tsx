@@ -76,13 +76,14 @@ const EventLayout = ({ event }: { event: EventProp }) => {
 
   return (
     <div className="w-full mt-8">
-      <Image
-        src={event?.image ?? ""}
-        alt={`${event?.title}`}
-        width={240}
-        height={240}
-        className="w-full h-100 object-cover rounded-xl"
-      />
+      <div className="relative w-full h-88">
+        <Image
+          src={event?.image ?? ""}
+          alt={`${event?.title}`}
+          className="w-full h-100 object-cover object-center rounded-xl absolute"
+          fill
+        />
+      </div>
 
       <div className="mt-4 flex flex-col items-start">
         <Badge className="font-semibold text-sm md:text-md ">Online</Badge>
