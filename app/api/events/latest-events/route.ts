@@ -4,18 +4,7 @@ import { desc, gt } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  const now = new Date();
-
-  const cdtDateTime = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "America/Chicago",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hourCycle: "h23",
-  }).format(now);
+  const now = new Date().toISOString();
 
   const latestArticles = await db
     .select({
@@ -29,7 +18,7 @@ export async function GET(req: Request) {
       timezone: events.timezone,
     })
     .from(events)
-    .where(gt(events.eventEnd, cdtDateTime))
+    .where(gt(events.eventEnd, now))
     .limit(3)
     .orderBy(desc(events.createdAt));
 

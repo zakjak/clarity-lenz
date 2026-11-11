@@ -1,12 +1,13 @@
 import { db } from "@/lib";
 import { events } from "@/db/events";
-import { count } from "drizzle-orm";
+import { count, gt } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
   try {
+    const now = new Date().toISOString();
     const page = Number(searchParams.get("page")) || 1;
 
     const calculatePageNumber = (page - 1) * 10;
@@ -23,7 +24,7 @@ export async function GET(req: Request) {
         eventEnd: events.eventEnd,
       })
       .from(events)
-      // .where(lt(events.eventEnd, events.eventStart))
+      .where(gt(events.eventEnd, now))
       .limit(10)
       .offset(calculatePageNumber);
 

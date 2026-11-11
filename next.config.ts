@@ -42,6 +42,7 @@ const nextConfig: NextConfig = {
     AUTH_RESEND_KEY: process.env.AUTH_RESEND_KEY,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+    CRON_SECRET: process.env.CRON_SECRET,
   },
   experimental: {
     globalNotFound: true,
