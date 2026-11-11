@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { Button } from "./ui/button";
+import MenuList from "./MenuList";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -24,13 +25,13 @@ const Navbar = () => {
       <div className="w-full h-15 md:h-20 flex">
         <div className="w-[95%] flex justify-between mx-auto items-center">
           <div className="flex gap-5 items-center">
-            <div className="items-center overflow-hidden w-30 h-22 md:w-40 relative hidden dark:flex">
+            <div className="items-center overflow-hidden w-20 h-20 md:w-35 relative hidden dark:flex">
               <Link href="/" className="mt-5 md:mt-0">
                 <Image
                   src="/images/logo_darkmode.png"
                   fill
                   alt="Clarity Lenz Logo"
-                  className="absolute object-cover  object-top"
+                  className="absolute object-cover object-top"
                 />
               </Link>
             </div>
@@ -103,50 +104,12 @@ const Navbar = () => {
               </Button>
             </Link>
             <ModeToggle />
+            <MenuList />
           </div>
         </div>
       </div>
       {/* [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden overflow-scroll */}
-      <div className="block md:hidden w-full text-zinc-600 dark:text-white pb-2 pt-6  ">
-        <div className="w-full flex justify-center gap-4 md:gap-6 text-sm mb-4 pb-3">
-          <Link
-            href="/"
-            className={`${pathname === "/" ? "border-b-3 border-[#363384]" : ""}`}
-          >
-            Home
-          </Link>
-          <Link
-            href="/about-us"
-            className={`${pathname === "/about-us" ? "border-b-3 border-[#363384]" : ""}`}
-          >
-            About
-          </Link>
-          <Link
-            href="/articles"
-            className={`${pathname === "/articles" ? "border-b-3 border-[#363384]" : ""}`}
-          >
-            Articles
-          </Link>
-          <Link
-            href="/events"
-            className={`${pathname === "/events" ? "border-b-3 border-[#363384]" : ""}`}
-          >
-            Events
-          </Link>
-          <Link
-            href="/videos"
-            className={`${pathname === "/videos" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
-          >
-            Videos
-          </Link>
-          <Link
-            href="/consulting"
-            className={`${pathname === "/consulting" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
-          >
-            Consulting
-          </Link>
-        </div>
-      </div>
+
       <div className="block lg:hidden md:mt-5">{isOpen && <Search />}</div>
     </div>
   );
