@@ -89,14 +89,15 @@ const ArticleStory = ({
             <span>{calculateTime(articleStory?.article[0]?.date)}</span>
           </div>
         </div>
+        <div className="relative w-full h-90">
+          <Image
+            src={articleStory?.article[0]?.image || ""}
+            alt={`${articleStory?.article[0]?.imageTitle}` || "image"}
+            className="absolute w-full h-80 md:h-100 lg:h-120 object-cover object-center rounded-lg"
+            fill
+          />
+        </div>
 
-        <Image
-          src={articleStory?.article[0]?.image || ""}
-          alt={`${articleStory?.article[0]?.imageTitle}` || "image"}
-          className="w-full h-80 md:h-100 lg:h-120 object-cover rounded-lg"
-          width={250}
-          height={250}
-        />
         <h3 className="text-xs text-zinc-400 mt-2">
           {articleStory?.article[0]?.imageTitle}
         </h3>

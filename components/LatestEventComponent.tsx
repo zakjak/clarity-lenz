@@ -31,17 +31,19 @@ function convertTo12Hour(time: string) {
 }
 
 const LatestEventComponent = ({ event }: { event: EventProp }) => {
-  console.log();
   return (
     <Card className="shadow-xl">
       <Link href={`/events/${event?.id}`}>
         <div className="flex gap-4 p-3">
-          <div className="flex flex-col text-xs bg-violet-900 self-start rounded-md px-4 py-1  text-white">
+          <div className="flex flex-col gap-1 text-xs text-center bg-violet-100 self-start rounded-md px-4 py-1  text-black">
             <span className="font-medium text-[.6rem]">
               {moment(new Date(event?.eventStart)).format("MMM")?.toUpperCase()}
             </span>
-            <span className="font-black text-center">
-              {moment(new Date(event?.eventStart)).format("Do")}
+            <span className="font-black text-[1rem] text-center">
+              {moment(new Date(event?.eventStart)).format("D")}
+            </span>
+            <span className="text-center text-[.6rem]">
+              {moment(new Date(event?.eventStart)).format("YYYY")}
             </span>
           </div>
           <div className="md:w-[80%] flex flex-col gap-2">
