@@ -22,9 +22,11 @@ export async function GET(req: Request) {
         image: events.image,
         eventStart: events.eventStart,
         eventEnd: events.eventEnd,
+        description: events.description,
+        platform: events.platform,
       })
       .from(events)
-      .where(gt(events.eventEnd, now))
+      // .where(gt(events.eventEnd, now))
       .limit(10)
       .offset(calculatePageNumber);
 
