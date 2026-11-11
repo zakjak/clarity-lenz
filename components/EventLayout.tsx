@@ -5,11 +5,9 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
 import { formatted, formattedTime } from "@/lib/utils/helpers";
-import { IoPlayCircle } from "react-icons/io5";
-import { FaBookmark, FaStopCircle } from "react-icons/fa";
+import { FaBookmark } from "react-icons/fa";
 import moment from "moment";
 import { Button } from "./ui/button";
-import { FaClock } from "react-icons/fa6";
 import { useSavedEvent, useToggleEvent } from "@/hooks/useEvents";
 import { Spinner } from "./ui/spinner";
 import { IoTicketOutline } from "react-icons/io5";
@@ -30,6 +28,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { CiCalendar } from "react-icons/ci";
+import { LuClock5 } from "react-icons/lu";
+import { BsCameraVideo } from "react-icons/bs";
 
 const formSchema = z.object({
   email: z.email(),
@@ -86,10 +87,6 @@ const EventLayout = ({ event }: { event: EventProp }) => {
       </div>
 
       <div className="mt-4 flex flex-col items-start">
-        <Badge className="font-semibold text-sm md:text-md ">Online</Badge>
-        <h2 className="font-bold mt-2 bg-zinc-900 py-2 px-4 rounded-xl text-white">
-          {event?.platform}
-        </h2>
         <h1 className="lg:text-3xl lg:font-semibold font-bold md:text-xl text-lg my-2">
           {event?.title}
         </h1>
@@ -103,47 +100,81 @@ const EventLayout = ({ event }: { event: EventProp }) => {
           </p>
         ))}
       </div>
-      <div className="w-full bg-zinc-900 p-4 rounded-md font-semibold text-lg text-white">
-        <h1>Note: All time are in your local time</h1>
+      <div className="w-full bg-blue-100 dark:bg-zinc-900 dark:text-white p-4 rounded-md font-semibold text-lg text-black">
+        <h1>Note: All time are in {event?.timezone}</h1>
       </div>
-      <div className="p-6">
-        <div className="flex items-center gap-4 mb-4">
-          <IoPlayCircle size={40} />
-          <div className="w-full">
-            <h3>STARTS AT</h3>
-            <div className="">
-              <div className="flex gap-2">
-                <h1>{formattedTime(event?.eventStart).split(",")[1]}</h1>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 p-6">
+        <div className="md:flex  mb-4 w-full">
+          <div className="flex justify-between w-[90%] gap-3">
+            <CiCalendar className="text-blue-800" size={40} />
+            <div className="w-full">
+              <h3 className="text-xs font-bold">Start Date:</h3>
+              <div className="text-xs">
+                <p>{moment(event?.eventEnd).format("ddd, MMM  D, YYYY")}</p>
               </div>
-              <p>{moment(event?.eventEnd).format("YYYY-MM-DD")}</p>
+              <div className="text-xs">
+                <h3 className="font-bold text-xs">End Date:</h3>
+                <div className="flex gap-2"></div>
+                <p>{moment(event?.eventEnd).format("ddd, MMM  D, YYYY")}</p>
+              </div>
             </div>
-            <Separator className="mt-1" />
+            <Separator
+              className="mt-1 hidden md:block w-[.02rem]! h-13!"
+              orientation="vertical"
+            />
           </div>
+
+          <Separator className="mt-1 md:hidden" orientation="horizontal" />
         </div>
-        <div className="flex items-center gap-4 mb-4">
-          <FaStopCircle size={40} />
-          <div className="w-full">
-            <h3>ENDS AT</h3>
-            <div className="">
-              <div className="flex gap-2">
-                <h1>{formattedTime(event?.eventStart).split(",")[1]}</h1>
+
+        <div className="md:flex">
+          <div className="flex w-[90%] justify-between gap-3">
+            <LuClock5 className="text-blue-800" size={40} />
+            <div className="w-full">
+              <h3 className="text-xs font-bold">Duration:</h3>
+              <div className="">
+                <div className="flex gap-2">
+                  <h1 className="text-xs">
+                    {formattedTime(event?.eventStart).split(",")[1]} -{" "}
+                    {formattedTime(event?.eventEnd).split(",")[1]}
+                  </h1>
+                </div>
               </div>
-              <p>{moment(event?.eventEnd).format("YYYY-MM-DD")}</p>
             </div>
-            <Separator className="mt-1" />
+            <Separator
+              className="mt-1 hidden lg:block w-[.02rem]! h-13!"
+              orientation="vertical"
+            />
           </div>
+
+          <Separator className="mt-1 md:hidden" orientation="horizontal" />
         </div>
-        <div className="flex items-center gap-4">
-          <FaClock size={40} />
-          <div className="w-full">
-            <h3>DURATION</h3>
-            <div className="">
-              <div className="flex gap-2">
-                <span>{formattedDuration}</span>
+
+        <div className="md:flex gap-3">
+          <div className="flex w-[90%] justify-between gap-3">
+            <BsCameraVideo className="text-blue-800" size={40} />
+            <div className="w-full">
+              <h3 className="text-xs font-bold">Platform:</h3>
+              <div className="">
+                <div className="flex gap-2">
+                  <h1 className="text-xs">{event?.platform}</h1>
+                </div>
               </div>
             </div>
-            <Separator className="mt-1" />
+            <Separator
+              className="mt-1 hidden md:block w-[.02rem]! h-13!"
+              orientation="vertical"
+            />
           </div>
+
+          <Separator className="mt-1 md:hidden" orientation="horizontal" />
+        </div>
+
+        <div className="text-sm">
+          <p>
+            <span className="font-bold">Note:</span> all time are in{" "}
+            {event?.timezone}
+          </p>
         </div>
       </div>
       {session?.user ? (

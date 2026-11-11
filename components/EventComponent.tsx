@@ -17,7 +17,7 @@ const EventComponent = ({ id }: { id: number }) => {
   }
 
   return (
-    <div className="lg:w-[50%] md:w-[70%] w-[80%] mx-auto">
+    <div className="lg:w-5xl md:w-[70%] w-[80%] mx-auto">
       {data && <EventLayout event={data[0]} />}
     </div>
   );
