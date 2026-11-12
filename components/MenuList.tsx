@@ -13,7 +13,7 @@ import Link from "next/link";
 
 const MenuList = () => {
   return (
-    <Menubar>
+    <Menubar className="block md:hidden">
       <MenubarMenu>
         <MenubarTrigger>
           <IoMenuOutline />

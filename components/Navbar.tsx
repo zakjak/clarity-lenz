@@ -99,7 +99,7 @@ const Navbar = () => {
             />
             <UserNavbarProfile />
             <Link href="/booking">
-              <Button className="bg-violet-800 cursor-pointer hover:bg-violet-700 text-white font-semibold">
+              <Button className="bg-violet-800 text-xs cursor-pointer hover:bg-violet-700 text-white font-semibold">
                 Book Appointment
               </Button>
             </Link>
