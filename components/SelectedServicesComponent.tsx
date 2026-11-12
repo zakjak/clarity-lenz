@@ -12,7 +12,7 @@ const services = [
     title: "Educational Consulting",
     description:
       "Academy planning, study strategies and school/program selection.",
-    price: 750,
+    price: 2,
     icon: <FaGraduationCap size={30} />,
     color: "bg-blue-100 text-blue-600",
     duration: 60,
