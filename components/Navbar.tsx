@@ -20,12 +20,12 @@ const Navbar = () => {
     <div
       className={`sticky top-0 z-50
         bg-white/10 backdrop-blur-2xl shadow-2xl
-        px-6 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20`}
+        px-4 py-4 items-center dark:shadow-2xl dark:bg-[#000000]/20`}
     >
-      <div className="w-full h-15 md:h-20 flex">
+      <div className="w-full h-15 flex">
         <div className="w-[95%] flex justify-between mx-auto items-center">
           <div className="flex gap-5 items-center">
-            <div className="items-center overflow-hidden w-20 h-20 md:w-35 relative hidden dark:flex">
+            <div className="items-center overflow-hidden w-20 h-20 lg:w-35 relative hidden dark:flex">
               <Link href="/" className="mt-5 md:mt-0">
                 <Image
                   src="/images/logo_darkmode.png"
@@ -46,7 +46,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className="hidden md:flex w-full gap-4 dark:text-white/90 text-sm font-semibold tracking-wide ">
+            <div className="hidden lg:flex w-full gap-4 dark:text-white/90 text-xs lg:text-sm font-semibold tracking-wide ">
               <Link
                 className={`${pathname === "/" ? "border-b-3 border-[#9790EF] text-[#645BD2]" : ""}`}
                 href="/"
