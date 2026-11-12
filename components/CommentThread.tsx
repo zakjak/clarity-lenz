@@ -38,6 +38,8 @@ const CommentThread = ({
       0,
     ) ?? 0;
 
+  console.log(allReplies);
+
   return (
     <div className="mt-3 relative overflow-hidden ">
       {/* {!!replies?.pages[0]?.replies?.length && (
@@ -71,7 +73,7 @@ const CommentThread = ({
           <div className={`${depth >= 1 ? "" : "ml-2"}`}>
             <CommentThread
               comment={reply?.comment}
-              users={reply?.user}
+              users={reply?.users}
               ownerId={ownerId}
               depth={depth + 1}
             />
