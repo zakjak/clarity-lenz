@@ -10,7 +10,6 @@ import { calculateTime } from "@/lib/utils/helpers";
 import PaginationComponent from "./PaginationComponent";
 
 const AllSearch = ({ page, q }: { page: string; q: string }) => {
-  const [] = useState(1);
   const pageNumber = Number(page) || 1;
 
   const { data } = useSearch(q, pageNumber);
@@ -60,7 +59,7 @@ const AllSearch = ({ page, q }: { page: string; q: string }) => {
                       src={article?.image}
                       fill
                       alt={`${article?.title}`}
-                      className="w-full h-full object-cover absolute"
+                      className="w-full h-full object-cover absolute rounded-sm"
                     />
                   </div>
                 </Link>
@@ -75,7 +74,7 @@ const AllSearch = ({ page, q }: { page: string; q: string }) => {
                     </h2>
                   </Link>
                   <div className="text-xs text-gray-400 mt-2">
-                    <span className="text-black md:line-clamp-2 my-2 lg:line-clamp-3 dark:text-zinc-400 text-[.79rem] hidden">
+                    <span className="text-black line-clamp-2 my-2 lg:line-clamp-3 dark:text-zinc-400 text-[.79rem]">
                       {JSON.parse(article.story)[0]?.children[0]?.text +
                         " " +
                         JSON.parse(article.story)[1]?.children[0]?.text +
