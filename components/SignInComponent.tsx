@@ -170,7 +170,7 @@ const SignInComponent = () => {
         <hr className="w-[45%]" />
       </div>
 
-      <Button onClick={socialSignUp} className="cursor-pointer">
+      <Button type="button" onClick={socialSignUp} className="cursor-pointer">
         <FaGoogle /> Sign in with Google
       </Button>
     </Card>
