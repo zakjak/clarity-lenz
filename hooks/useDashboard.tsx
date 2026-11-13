@@ -201,8 +201,6 @@ export const useToggleCoAuthor = (admin: boolean) => {
       const previousUsers =
         queryClient.getQueryData<DashboardUser[]>(["dashboard-allusers"]) || [];
 
-      console.log(previousUsers);
-
       queryClient.setQueryData<DashboardUser[]>(
         ["dashboard-user", userId],
         (old = []) =>
