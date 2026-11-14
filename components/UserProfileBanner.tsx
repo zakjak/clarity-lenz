@@ -46,12 +46,12 @@ const UserProfileBanner = ({ id }: { id: string }) => {
         <div className="">
           <div className="flex flex-col md:flex md:flex-row gap-4 mx-auto mt-6 p-10 items-center md:items-start rounded-xl overflow-hidden shadow">
             {data?.user[0]?.image ? (
-              <div className="relative md:rounded-lg w-35 h-35 md:h-30 md:w-50 lg:w-70 lg:h-60">
+              <div className="relative w-40 h-40 md:w-60 md:h-60">
                 <Image
                   src={data?.user[0].image}
                   alt={`Profile of ${data?.user[0].name}`}
                   fill
-                  className="rounded-full border-3 border-white shadow-xl object-cover"
+                  className="border-3 border-white shadow-xl object-cover absolute rounded-full"
                 />
               </div>
             ) : (

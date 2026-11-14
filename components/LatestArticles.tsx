@@ -11,7 +11,7 @@ const LatestArticles = () => {
   if (isLoading) return <LatestArticlesSkeleton />;
 
   return (
-    <div className="mt-4 flex-col gap-2 grid md:grid-cols-2 lg:grid-cols-3 md:gap-2 lg:gap-4">
+    <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
       {articles?.map((article: Article) => (
         <LatestArticleComponent article={article} />
       ))}
