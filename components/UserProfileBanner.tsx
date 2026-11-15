@@ -44,9 +44,9 @@ const UserProfileBanner = ({ id }: { id: string }) => {
     <div className="w-full">
       {data?.user?.length > 0 && (
         <div className="">
-          <div className="flex flex-col md:flex md:flex-row gap-4 mx-auto mt-6 p-10 items-center md:items-start rounded-xl overflow-hidden shadow">
+          <div className="flex flex-col md:grid md:grid-cols-3 col-span-1 gap-4 mx-auto mt-6 items-center md:items-start rounded-xl overflow-hidden shadow">
             {data?.user[0]?.image ? (
-              <div className="relative w-40 h-40">
+              <div className="relative w-50 h-50 whitespace-nowrap">
                 <Image
                   src={data?.user[0].image}
                   alt={`Profile of ${data?.user[0].name}`}
@@ -60,7 +60,7 @@ const UserProfileBanner = ({ id }: { id: string }) => {
                 <p>{data?.user[0]?.name?.slice(0, 1)}</p>
               </div>
             )}
-            <div className="grow md:flex md:justify-between text-center md:text-left gap-4">
+            <div className="md:flex col-span-2 md:justify-between text-center md:text-left gap-4">
               <div className="w-full">
                 <h2 className="text-2xl md:text-[1.2rem] lg:text-4xl font-semibold ">
                   {data?.user[0]?.name}
@@ -68,18 +68,16 @@ const UserProfileBanner = ({ id }: { id: string }) => {
                 <h3 className="text-center md:text-left text-xsfont-semibold">
                   {data?.aboutUser[0]?.position}
                 </h3>
-                <Separator className="w-full my-2" />
-                <div className="">
-                  <div className="line-clamp-3 w-[80%]">
-                    {formatted(data?.aboutUser[0]?.bio)[0]}
-                  </div>
-                  {formatted(data?.aboutUser[0]?.bio)?.length > 1 && (
-                    <UserInfoBanner
-                      user={data?.user[0]}
-                      userInfo={data?.aboutUser[0]}
-                    />
-                  )}
+                <Separator className="my-2" />
+                <div className="line-clamp-3 md:w-[80%] ">
+                  {formatted(data?.aboutUser[0]?.bio)[0]}
                 </div>
+                {formatted(data?.aboutUser[0]?.bio)?.length > 1 && (
+                  <UserInfoBanner
+                    user={data?.user[0]}
+                    userInfo={data?.aboutUser[0]}
+                  />
+                )}
                 <div className="my-2">
                   {socials?.map(
                     (social) =>
@@ -101,7 +99,7 @@ const UserProfileBanner = ({ id }: { id: string }) => {
                 </div>
               </div>
               {session?.user?.id === data?.user[0]?.id && (
-                <div className="flex items-center justify-center">
+                <div className="flex pb-4 items-center justify-center">
                   <EditProfileComponent
                     userId={session?.user?.id as string}
                     userInfo={data?.aboutUser[0]}
