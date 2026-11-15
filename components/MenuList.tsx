@@ -26,10 +26,31 @@ import { FiPlayCircle } from "react-icons/fi";
 import { PiBagSimple } from "react-icons/pi";
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { slugify } from "@/lib/utils/helpers";
+import { RxDashboard } from "react-icons/rx";
+import { usePathname, useRouter } from "next/navigation";
+import { VscSignOut } from "react-icons/vsc";
 
 const MenuList = () => {
   const { data: session } = authClient.useSession();
   const { setTheme, theme } = useTheme();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/");
+        },
+      },
+    });
+    const isProfileRouter = pathname.startsWith("/profiles");
+
+    if (!isProfileRouter) {
+      router.push("/");
+    }
+  };
+
   return (
     <Menubar className="block md:hidden">
       <MenubarMenu>
@@ -73,30 +94,32 @@ const MenuList = () => {
             </Link>
           </div>
           <Separator className="mt-2" />
-          <Link
-            className="flex items-center pt-2 px-3 gap-2 relative hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            href={`/profile/${session?.user?.id}/${slugify(session?.user?.name as string)}`}
-          >
-            <Avatar
-              size="lg"
-              className="cursor-pointer border-2 border-violet-300"
+          {session?.user && (
+            <Link
+              className="flex items-center pt-2 px-3 gap-2 relative hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              href={`/profile/${session?.user?.id}/${slugify(session?.user?.name as string)}`}
             >
-              <AvatarImage
-                src={session?.user?.image as string}
-                alt={`Profile of ${session?.user?.name}`}
-                className="grayscale"
-              />
-              <AvatarFallback className="font-bold text-md">
-                {session?.user?.name?.slice(0, 1)}
-              </AvatarFallback>
-            </Avatar>
-            <div className="">
-              <h2 className="text-sm font-semibold">{session?.user.name}</h2>
-              <span className="text-xs">{session?.user?.email}</span>
-            </div>
-            <FaChevronRight className="absolute right-2" />
-          </Link>
-          <Separator className="mt-1" />
+              <Avatar
+                size="lg"
+                className="cursor-pointer border-2 border-violet-300"
+              >
+                <AvatarImage
+                  src={session?.user?.image as string}
+                  alt={`Profile of ${session?.user?.name}`}
+                  className="grayscale"
+                />
+                <AvatarFallback className="font-bold text-md">
+                  {session?.user?.name?.slice(0, 1)}
+                </AvatarFallback>
+              </Avatar>
+              <div className="">
+                <h2 className="text-sm font-semibold">{session?.user.name}</h2>
+                <span className="text-xs">{session?.user?.email}</span>
+              </div>
+              <FaChevronRight className="absolute right-2" />
+            </Link>
+          )}
+          {session?.user && <Separator className="mt-1" />}
           <MenubarGroup>
             <MenubarItem className="cursor-pointer">
               <Link href="/">
@@ -155,7 +178,22 @@ const MenuList = () => {
             </MenubarRadioGroup>
 
             <MenubarItem>
-              <Link href={`/dashboard/${session?.user?.id}`}>Dashboard</Link>
+              <Link
+                className="flex items-center gap-2"
+                href={`/dashboard/${session?.user?.id}`}
+              >
+                <RxDashboard /> Dashboard
+              </Link>
+            </MenubarItem>
+            <MenubarItem>
+              <div
+                onClick={handleSignOut}
+                className="w-full hover:text-red-400 flex justify-start items-center gap-2 text-red-500 cursor-pointer font-bold"
+                // variant="ghost"
+              >
+                <VscSignOut className="text-red-500" />
+                Sign Out
+              </div>
             </MenubarItem>
             <MenubarItem>
               <Link href="/booking" className="w-full">
