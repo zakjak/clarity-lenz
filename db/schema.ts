@@ -29,7 +29,7 @@ export const about = pgTable("about", {
   twitter: text("twitter"),
   linkedIn: text("linkedIn"),
   instagram: text("instagram"),
-  ownerId: text("id")
+  ownerId: text("owner_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
 });

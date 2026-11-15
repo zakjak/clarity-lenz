@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import QueryClientProvider from "@/components/QueryClientProvider";
-import AuthProvider from "@/components/providers";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
@@ -44,17 +43,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <Navbar />
-            <QueryClientProvider>
-              <TooltipProvider>
-                <main className="grow">{children}</main>
-                <Toaster />
-                <ReactQueryDevtools />
-              </TooltipProvider>
-            </QueryClientProvider>
-            <Footer />
-          </AuthProvider>
+          <Navbar />
+          <QueryClientProvider>
+            <TooltipProvider>
+              <main className="grow">{children}</main>
+              <Toaster />
+              <ReactQueryDevtools />
+            </TooltipProvider>
+          </QueryClientProvider>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

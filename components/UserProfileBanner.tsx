@@ -46,12 +46,12 @@ const UserProfileBanner = ({ id }: { id: string }) => {
         <div className="">
           <div className="flex flex-col md:flex md:flex-row gap-4 mx-auto mt-6 p-10 items-center md:items-start rounded-xl overflow-hidden shadow">
             {data?.user[0]?.image ? (
-              <div className="relative w-40 h-40 md:w-45 md:h-45 lg:w-60 lg:h-60">
+              <div className="relative w-40 h-40">
                 <Image
                   src={data?.user[0].image}
                   alt={`Profile of ${data?.user[0].name}`}
                   fill
-                  className="border-3 border-white shadow-xl object-cover absolute rounded-full"
+                  className="border-3 w-full h-full border-white shadow-xl object-cover absolute rounded-full"
                 />
               </div>
             ) : (
@@ -61,7 +61,7 @@ const UserProfileBanner = ({ id }: { id: string }) => {
             )}
             <div className="grow md:flex md:justify-between text-center md:text-left gap-4">
               <div className="w-full">
-                <h2 className="text-2xl lg:text-4xl font-semibold">
+                <h2 className="text-2xl md:text-[1.2rem] lg:text-4xl font-semibold ">
                   {data?.user[0]?.name}
                 </h2>
                 <h3 className="text-center md:text-left text-xsfont-semibold">
@@ -69,7 +69,7 @@ const UserProfileBanner = ({ id }: { id: string }) => {
                 </h3>
                 <Separator className="w-full my-2" />
                 <div className="">
-                  <div className="line-clamp-3">
+                  <div className="line-clamp-3 w-[80%]">
                     {formatted(data?.aboutUser[0]?.bio)[0]}
                   </div>
                   {formatted(data?.aboutUser[0]?.bio)?.length > 1 && (

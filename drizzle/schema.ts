@@ -1,18 +1,8 @@
-import { pgTable, unique, serial, integer, uuid, timestamp, text, varchar, index, foreignKey, boolean, pgEnum } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, serial, text, integer, timestamp, uuid, varchar, unique, index, boolean, pgEnum } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 export const bookingStatus = pgEnum("booking_status", ['pending', 'confirmed', 'cancelled'])
 
-
-export const commentVotes = pgTable("comment_votes", {
-	id: serial().primaryKey().notNull(),
-	commentId: integer("comment_id").notNull(),
-	userId: uuid("user_id").notNull(),
-	vote: integer().notNull(),
-	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
-}, (table) => [
-	unique("comment_votes_comment_id_user_id_unique").on(table.commentId, table.userId),
-]);
 
 export const comment = pgTable("comment", {
 	id: serial().primaryKey().notNull(),
@@ -21,7 +11,23 @@ export const comment = pgTable("comment", {
 	ownerId: text("owner_id"),
 	parentId: integer("parent_id"),
 	date: timestamp({ mode: 'string' }).defaultNow().notNull(),
-});
+}, (table) => [
+	foreignKey({
+			columns: [table.postId],
+			foreignColumns: [articles.id],
+			name: "comment_post_id_articles_id_fk"
+		}),
+	foreignKey({
+			columns: [table.ownerId],
+			foreignColumns: [users.id],
+			name: "comment_owner_id_users_id_fk"
+		}),
+	foreignKey({
+			columns: [table.parentId],
+			foreignColumns: [table.id],
+			name: "comments_parent_id_fkey_cascade"
+		}).onDelete("cascade"),
+]);
 
 export const readlist = pgTable("readlist", {
 	id: serial().primaryKey().notNull(),
@@ -62,6 +68,21 @@ export const eventsRegister = pgTable("events_register", {
 	userId: uuid("user_id"),
 	eventId: integer(),
 });
+
+export const commentVotes = pgTable("comment_votes", {
+	id: serial().primaryKey().notNull(),
+	commentId: integer("comment_id").notNull(),
+	userId: uuid("user_id").notNull(),
+	vote: integer().notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
+}, (table) => [
+	foreignKey({
+			columns: [table.commentId],
+			foreignColumns: [comment.id],
+			name: "comment_votes_comment_id_comment_id_fk"
+		}),
+	unique("comment_votes_comment_id_user_id_unique").on(table.commentId, table.userId),
+]);
 
 export const videos = pgTable("videos", {
 	id: integer().primaryKey().generatedAlwaysAsIdentity({ name: "videos_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 2147483647, cache: 1 }),
@@ -104,20 +125,15 @@ export const account = pgTable("account", {
 ]);
 
 export const about = pgTable("about", {
-	id: text().notNull(),
+	id: text().primaryKey().notNull(),
 	position: text(),
 	bio: text(),
 	fb: text(),
 	twitter: text(),
 	linkedIn: text(),
 	instagram: text(),
-}, (table) => [
-	foreignKey({
-			columns: [table.id],
-			foreignColumns: [users.id],
-			name: "about_id_users_id_fk"
-		}).onDelete("cascade"),
-]);
+	ownerId: text("owner_id").notNull(),
+});
 
 export const verification = pgTable("verification", {
 	id: text().primaryKey().notNull(),

@@ -4,16 +4,12 @@ import {
   MenubarGroup,
   MenubarItem,
   MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { IoMenuOutline } from "react-icons/io5";
 import Link from "next/link";
-import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const MenuList = () => {
@@ -64,13 +60,12 @@ const MenuList = () => {
               <Button variant="ghost" className="w-full flex justify-start">
                 <HoverCardTrigger>Dark Mode</HoverCardTrigger>
               </Button>
-
-              <HoverCardContent>
+              <HoverCardContent className="flex flex-col gap-2">
                 <Button onClick={() => setTheme("light")}>
-                  <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                  <span>Light mode</span>
                 </Button>
                 <Button onClick={() => setTheme("dark")}>
-                  <Moon className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                  <span>Dark Mode</span>
                 </Button>
               </HoverCardContent>
             </HoverCard>

@@ -42,17 +42,18 @@ export async function POST(
 
   try {
     const userData = await db.select().from(about).where(eq(about.ownerId, id));
+    console.log(position, bio, fb, twitter, linkedIn, instagram);
 
     if (userData?.length === 0) {
       const aboutUserData = await db
         .insert(about)
         .values({
-          position: position,
-          bio: bio,
-          fb: fb,
-          twitter: twitter,
-          linkedIn: linkedIn,
-          instagram: instagram,
+          position,
+          bio,
+          fb,
+          twitter,
+          linkedIn,
+          instagram,
           ownerId: id,
         })
         .returning();
