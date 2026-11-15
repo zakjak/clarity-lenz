@@ -6,7 +6,8 @@ import {
   FaEnvelope,
   FaYoutube,
 } from "react-icons/fa";
-import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import { FaXTwitter, FaLinkedin, FaRegCalendar } from "react-icons/fa6";
+import { Button } from "./ui/button";
 
 const Footer = () => {
   return (
@@ -35,7 +36,14 @@ const Footer = () => {
               <Link href="/about-us" className="hover:underline">
                 About us
               </Link>
+              <Link href="/booking" className="w-full">
+                <Button className="bg-violet-800 w-full text-xs cursor-pointer hover:bg-violet-700 text-white font-semibold">
+                  <FaRegCalendar className="text-white" />
+                  <span>Book Appointment</span>
+                </Button>
+              </Link>
             </div>
+
             <div className="flex flex-col gap-2">
               <div className="">
                 <h1 className="font-semibold whitespace-nowrap">Contact Us:</h1>

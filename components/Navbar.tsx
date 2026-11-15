@@ -35,7 +35,7 @@ const Navbar = () => {
                 />
               </Link>
             </div>
-            <div className="flex items-center overflow-hidde w-30 h-23 md:w-40 relative dark:hidden">
+            <div className="items-center overflow-hidden w-20 h-20 lg:w-35 relative dark:hidden">
               <Link href="/" className="mt-5 md:mt-0">
                 <Image
                   src="/images/logo_lightmode.png"
@@ -98,7 +98,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
             />
             <UserNavbarProfile />
-            <Link href="/booking">
+            <Link href="/booking" className="hidden md:block">
               <Button className="bg-violet-800 text-xs cursor-pointer hover:bg-violet-700 text-white font-semibold">
                 Book Appointment
               </Button>
