@@ -185,16 +185,19 @@ const MenuList = () => {
                 <RxDashboard /> Dashboard
               </Link>
             </MenubarItem>
-            <MenubarItem>
-              <div
-                onClick={handleSignOut}
-                className="w-full hover:text-red-400 flex justify-start items-center gap-2 text-red-500 cursor-pointer font-bold"
-                // variant="ghost"
-              >
-                <VscSignOut className="text-red-500" />
-                Sign Out
-              </div>
-            </MenubarItem>
+            {session?.user && (
+              <MenubarItem>
+                <div
+                  onClick={handleSignOut}
+                  className="w-full hover:text-red-400 flex justify-start items-center gap-2 text-red-500 cursor-pointer font-bold"
+                  // variant="ghost"
+                >
+                  <VscSignOut className="text-red-500" />
+                  Sign Out
+                </div>
+              </MenubarItem>
+            )}
+
             <MenubarItem>
               <Link href="/booking" className="w-full">
                 <Button className="bg-violet-800 w-full text-xs cursor-pointer hover:bg-violet-700 text-white font-semibold">
