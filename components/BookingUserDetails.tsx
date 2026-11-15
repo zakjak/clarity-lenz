@@ -13,7 +13,9 @@ const BookingUserDetails = () => {
 
   return (
     <div className="mt-6">
-      <h1 className="text-sm text-cyan-950 font-semibold my-3">3. Payment</h1>
+      <h1 className="text-sm text-cyan-950 dark:text-zinc-100 font-semibold my-3">
+        3. Payment
+      </h1>
       <Elements
         stripe={stripePromise}
         options={{

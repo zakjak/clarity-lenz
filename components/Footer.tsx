@@ -18,6 +18,7 @@ const Footer = () => {
             <Image
               src="/images/logo_lightmode.png"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="w-full h-full object-cover absolute"
               alt="Clarity Lenz Logo"
             />

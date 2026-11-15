@@ -71,6 +71,7 @@ const LatestEventComponent = ({ event }: { event: EventProp }) => {
               alt={`${event?.title}`}
               className="w-full h-32 rounded-sm object-cover absolute"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
         )}

@@ -60,6 +60,7 @@ const AboutPage = () => {
               fill
               alt=""
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div className="grid lg:grid-cols-2 md:p-6 items-end">
@@ -76,8 +77,10 @@ const AboutPage = () => {
               <Image
                 src="/images/ceo.jpeg"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt="Ceo Dr. Dorcas Eyinla (Drock)"
                 className="object-cover absolute"
+                loading="eager"
               />
             </div>
             <div className="flex flex-col justify-center gap-4 md:gap-6 pl-8 pt-10 lg:pt-0">
@@ -134,6 +137,7 @@ const AboutPage = () => {
                       src={staff.image}
                       alt={`${staff.name} image`}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="absolute object-cover object-top"
                     />
                   </div>

@@ -61,6 +61,7 @@ const TopCategoryStory = ({ topStory }: { topStory: Article }) => {
               fill
               alt={`${topStory?.title}`}
               className=" w-full h-56 object-cover absolute"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
         </Link>

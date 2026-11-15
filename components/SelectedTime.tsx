@@ -149,7 +149,7 @@ const SelectedTime = () => {
 
   return (
     <div className="w-full min-w-0">
-      <h2 className="text-sm text-cyan-950 font-semibold my-3">
+      <h2 className="text-sm text-cyan-950 dark:text-zinc-100 font-semibold my-3">
         2. Select Time
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-3 w-full">

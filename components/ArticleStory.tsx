@@ -95,6 +95,7 @@ const ArticleStory = ({
             alt={`${articleStory?.article[0]?.imageTitle}` || "image"}
             className="absolute w-full h-80 md:h-100 lg:h-120 object-cover object-center rounded-lg"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
 

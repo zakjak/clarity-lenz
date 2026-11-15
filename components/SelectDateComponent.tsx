@@ -36,7 +36,10 @@ const SelectDateComponent = () => {
 
   return (
     <div className="h-full w-full">
-      <h2 className="text-sm my-4 text-cyan-950 font-semibold ">
+      <h2
+        className="text-sm my-4 text-cyan-950 
+      dark:text-zinc-300 font-semibold "
+      >
         1. Select Date
       </h2>
       <Calendar

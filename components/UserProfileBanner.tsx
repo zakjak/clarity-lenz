@@ -51,6 +51,7 @@ const UserProfileBanner = ({ id }: { id: string }) => {
                   src={data?.user[0].image}
                   alt={`Profile of ${data?.user[0].name}`}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="border-3 w-full h-full border-white shadow-xl object-cover absolute rounded-full"
                 />
               </div>

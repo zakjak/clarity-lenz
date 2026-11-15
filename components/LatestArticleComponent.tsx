@@ -27,6 +27,7 @@ const LatestArticleComponent = ({ article }: { article: Article }) => {
             alt={`${article?.title}`}
             className="w-full h-[50%] object-cover rounded-sm object-center opacity-90 hover:opacity-95 transition-opacity"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
 

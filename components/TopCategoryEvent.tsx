@@ -53,6 +53,7 @@ const TopCategoryEvent = ({ event }: { event: EventProp }) => {
               alt={`${event?.title}`}
               className=" w-full h-56 object-cover object-center"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             <Badge className="text-[.6rem] bg-blue-500 text-white font-semibold absolute top-3 left-3">
               {event?.platform}

@@ -11,6 +11,7 @@ const BannerMainPage = () => {
       <Image
         src="/images/ceo.jpeg"
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         alt="Banner image, lady on a laptop"
         className="w-full h-full object-cover object-center"
       />

@@ -57,7 +57,7 @@ const MenuList = () => {
 
           <div className="flex items-center  overflow-hidden  dark:hidden">
             <Link href="/" className="mt-5 md:mt-0 cursor-pointer">
-              <div className=" relative w-16 h-10">
+              <div className="relative w-16 h-10">
                 <Image
                   src="/images/logo_lightmode.png"
                   fill

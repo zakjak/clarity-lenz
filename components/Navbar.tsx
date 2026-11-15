@@ -35,13 +35,17 @@ const Navbar = () => {
                 />
               </Link>
             </div>
-            <div className="items-center overflow-hidden w-20 h-20 lg:w-35 relative dark:hidden">
-              <Link href="/" className="mt-5 md:mt-0">
+            <div className="items-center overflow-hidden dark:hidden">
+              <Link
+                href="/"
+                className="mt-5 md:mt-0 relative w-20 h-20 lg:w-35 "
+              >
                 <Image
                   src="/images/logo_lightmode.png"
                   fill
                   alt="Clarity Lenz Logo"
-                  className="absolute object-cover  object-top"
+                  className="absolute object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </Link>
             </div>
