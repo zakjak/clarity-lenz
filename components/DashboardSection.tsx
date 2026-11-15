@@ -30,7 +30,6 @@ const DashboardSection = ({
   );
 
   const { data: dataSearch } = useSearchUser(search, page);
-  console.log(search);
 
   const router = useRouter();
 

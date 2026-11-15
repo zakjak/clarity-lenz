@@ -129,8 +129,6 @@ const EventsForm = ({
     formData.append("ownerId", session?.user?.id ?? "");
 
     try {
-      console.log(values.startTime);
-      console.log(values.endTime);
       mutate(formData);
       form.reset({
         title: "",
