@@ -1,6 +1,6 @@
 import { db } from "@/lib";
 import { users } from "@/db/schema";
-import { count, or, sql } from "drizzle-orm";
+import { count, ilike, or, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
@@ -20,8 +20,9 @@ export async function GET(req: Request) {
       .from(users)
       .where(
         or(
-          sql`${users.email} @@ plainto_tsquery('english', ${query})`,
-          sql`${users.name} @@ plainto_tsquery('english', ${query})`,
+          ilike(users.name, `%${query}%`),
+          ilike(users.email, `%${query}%`),
+          sql`${users.id} @@ plainto_tsquery('english', ${query})`,
         ),
       );
 
@@ -32,8 +33,9 @@ export async function GET(req: Request) {
       .from(users)
       .where(
         or(
-          sql`${users.email} @@ plainto_tsquery('english', ${query})`,
-          sql`${users.name} @@ plainto_tsquery('english', ${query})`,
+          ilike(users.name, `%${query}%`),
+          ilike(users.email, `%${query}%`),
+          sql`${users.id} @@ plainto_tsquery('english', ${query})`,
         ),
       )
       .limit(10)

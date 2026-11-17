@@ -8,13 +8,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 
-const SearchSchema = z.object({
+export const SearchSchema = z.object({
   search: z.string().min(1, { message: "Search query cannot be empty" }),
 });
 
 export type SearchFormValues = z.infer<typeof SearchSchema>;
 
-interface SearchInputProps {
+export interface SearchInputProps {
   value: string;
   onSearch: (query: string) => void;
 }
@@ -36,7 +36,7 @@ const SearchInput = ({ onSearch, value }: SearchInputProps) => {
     if (value) {
       setValue("search", value);
     }
-  });
+  }, []);
 
   const onSubmit = (data: SearchFormValues) => [onSearch(data.search)];
 

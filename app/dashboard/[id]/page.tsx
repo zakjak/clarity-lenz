@@ -5,10 +5,10 @@ export const dynamic = "force-dynamic";
 const Dashboard = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; q?: string }>;
+  searchParams: Promise<{ page?: string; dashboardSearch?: string }>;
 }) => {
   const page = (await searchParams)?.page;
-  const q = (await searchParams)?.q;
+  const q = (await searchParams)?.dashboardSearch;
   return (
     <div className="p-10">
       <h1 className="text-center p-8 text-2xl md:text-4xl font-semibold text-blue-900/90 dark:text-white border-b w-[80%] mx-auto">

@@ -35,7 +35,7 @@ const Navbar = () => {
                 />
               </Link>
             </div>
-            <div className="items-center overflow-hidden dark:hidden">
+            <div className="items-center overflow-hidden flex dark:hidden">
               <Link
                 href="/"
                 className="mt-5 md:mt-0 relative w-20 h-20 lg:w-35 "

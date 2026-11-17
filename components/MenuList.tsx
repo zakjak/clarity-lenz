@@ -176,15 +176,16 @@ const MenuList = () => {
                 <FaMoon /> <span>Dark Mode</span>
               </MenubarRadioItem>
             </MenubarRadioGroup>
-
-            <MenubarItem>
-              <Link
-                className="flex items-center gap-2"
-                href={`/dashboard/${session?.user?.id}`}
-              >
-                <RxDashboard /> Dashboard
-              </Link>
-            </MenubarItem>
+            {session?.user && (
+              <MenubarItem>
+                <Link
+                  className="flex items-center gap-2"
+                  href={`/dashboard/${session?.user?.id}`}
+                >
+                  <RxDashboard /> Dashboard
+                </Link>
+              </MenubarItem>
+            )}
             {session?.user && (
               <MenubarItem>
                 <div

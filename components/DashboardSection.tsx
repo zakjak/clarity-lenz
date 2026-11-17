@@ -37,20 +37,6 @@ const DashboardSection = ({
     return null;
   }
 
-  if (!session?.user?.isAdmin && !session?.user?.isOwner) {
-    redirect("/");
-  }
-
-  const handleSearch = (data: string) => {
-    if (search) {
-      router.push(
-        `/dashboard/${session?.user?.id}?q=${data.split(" ").join("+")}`,
-      );
-    } else {
-      router.push(`/dashboard/${session?.user?.id}`);
-    }
-  };
-
   return (
     <div className="p-14 max-w-280 mx-auto flex flex-col gap-10">
       <DashboardStats
@@ -58,7 +44,7 @@ const DashboardSection = ({
         totalCoAuthors={dataStats?.totalCoAuthors[0]?.count}
         totalAdminUsers={dataStats?.totalAdminUsers[0]?.count}
       />
-      <DashboardSearch onSearch={handleSearch} />
+      <DashboardSearch />
       <TablePanel
         users={search ? dataSearch?.searchUsers : allUsers?.users}
         pageNumber={dataStats?.pageNumber}

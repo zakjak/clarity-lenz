@@ -72,7 +72,9 @@ const UsersTable = ({ users }: { users: User[] }) => {
                 <TableCell className="font-medium flex items-center gap-2">
                   <Avatar>
                     <AvatarImage src={user?.image as string} />
-                    <AvatarFallback>{user?.name?.slice(1)}</AvatarFallback>
+                    <AvatarFallback className="bg-blue-400 text-zinc-300">
+                      {user?.name?.charAt(0)}
+                    </AvatarFallback>
                   </Avatar>
                   {user?.name}
                 </TableCell>

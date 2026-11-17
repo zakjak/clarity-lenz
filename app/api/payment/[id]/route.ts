@@ -9,6 +9,18 @@ export async function POST(req: Request): Promise<NextResponse> {
   const { amount } = body;
 
   try {
+    // const session = await stripeClient.checkout.sessions.create({
+    //   ui_mode: "embedded_page",
+    //   line_items: [
+    //     {
+    //       price: "{{PRICE_ID}}",
+    //       quantity: 1,
+    //     },
+    //   ],
+    //   mode: "payment",
+    //   return_url: `${process.env.API_URL}/payment?session_id={CHECKOUT_SESSION_ID}`,
+    // });
+    // return NextResponse.json({ clientSecret: session.client_secret });
     const paymentIntent = await stripeClient.paymentIntents.create({
       amount: amount,
       currency: "usd",
